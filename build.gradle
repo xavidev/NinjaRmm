@@ -1,0 +1,96 @@
+allprojects {
+	apply plugin: 'java'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+	sourceCompatibility = '17'
+	targetCompatibility = '17'
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		//Production dependencies
+		implementation 'org.springframework.boot:spring-boot-starter'
+
+		//Test dependencies
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	}
+
+	test {
+		useJUnitPlatform()
+
+		testLogging {
+			events "passed", "skipped", "failed"
+		}
+	}
+
+	task view_paths {
+		doLast { task ->
+			println "$task.project.name"
+			println "------------------"
+			println "Main: $sourceSets.main.java.srcDirTrees"
+			println "   Resources: $sourceSets.main.resources.srcDirTrees"
+			println "Tests: $sourceSets.test.java.srcDirTrees"
+			println "   Resources: $sourceSets.test.resources.srcDirTrees"
+		}
+	}
+}
+
+subprojects {
+	group = "com.ninjaone.${rootProject.name}"
+
+	sourceSets {
+		main {
+			java { srcDirs = ['main'] }
+			resources { srcDirs = ['main/resources'] }
+		}
+
+		test {
+			java { srcDirs = ['test'] }
+			resources { srcDirs = ['test/resources'] }
+		}
+	}
+
+	dependencies {
+		//Dependencies for all subprojects
+		testImplementation rootProject.sourceSets.main.output
+	}
+
+	bootJar {
+		enabled = false
+	}
+
+	jar {
+		enabled = true
+	}
+}
+
+sourceSets {
+	main {
+		java { srcDirs = ['apps/main'] }
+		resources { srcDirs = ['apps/main/resources'] }
+	}
+
+	test {
+		java { srcDirs = ['apps/test'] }
+		resources { srcDirs = ['apps/test/resources'] }
+	}
+}
+
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath('org.springframework.boot:spring-boot-gradle-plugin:3.0.2')
+	}
+}
+
+bootJar {
+	baseName = 'ninjarrm'
+	version = '0.0.1'
+}
+
+
