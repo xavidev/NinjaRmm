@@ -57,7 +57,15 @@ subprojects {
 
 	dependencies {
 		//Dependencies for all subprojects
+		implementation 'org.springframework.boot:spring-boot-starter-web'
+
+		//Test dependencies
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
 		testImplementation rootProject.sourceSets.main.output
+
+		if (project.name != "shared") {
+			implementation project(":shared")
+		}
 	}
 
 	bootJar {
@@ -93,6 +101,11 @@ buildscript {
 bootJar {
 	baseName = 'ninjarrm'
 	version = '0.0.1'
+}
+
+dependencies {
+	implementation project(':shared')
+	implementation project(":rrm")
 }
 
 

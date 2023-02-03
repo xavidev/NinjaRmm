@@ -2,3 +2,6 @@ rootProject.name = 'ninjarrm'
 
 include ':rrm'
 project(':rrm').projectDir = new File('src/rrm')
+
+include ':shared'
+project(':shared').projectDir = new File('src/shared')
