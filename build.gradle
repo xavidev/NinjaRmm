@@ -20,6 +20,9 @@ allprojects {
 		implementation 'org.apache.tomcat:tomcat-dbcp:10.0.16'
 		implementation 'io.github.cdimascio:dotenv-java:2.3.2'
 		implementation 'mysql:mysql-connector-java:8.0.32'
+		implementation 'javax.xml.bind:jaxb-api:2.3.1'
+		implementation 'com.sun.xml.bind:jaxb-impl:4.0.1'
+
 
 
 

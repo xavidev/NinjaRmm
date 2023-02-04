@@ -1,20 +1,20 @@
 package com.ninjaone.rmm.services;
 
-import com.ninjaone.rmm.services.domain.DeviceServiceRepository;
-import com.ninjaone.rmm.services.domain.model.DeviceService;
+import com.ninjaone.rmm.services.domain.ServiceRepository;
+import com.ninjaone.rmm.services.domain.model.Service;
 import org.junit.jupiter.api.BeforeEach;
 
 import static org.mockito.Mockito.*;
 
 public abstract class ServicesModuleUnitTestCase {
-    protected DeviceServiceRepository repository;
+    protected ServiceRepository repository;
 
     @BeforeEach
     protected void setUp(){
-        repository = mock(DeviceServiceRepository.class);
+        repository = mock(ServiceRepository.class);
     }
 
-    public void shouldHaveSaved(DeviceService service) {
+    public void shouldHaveSaved(Service service) {
         verify(repository, atLeastOnce()).save(service);
     }
 }

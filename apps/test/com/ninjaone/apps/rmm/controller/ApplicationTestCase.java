@@ -19,6 +19,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @Transactional
 public abstract class ApplicationTestCase {
+
+    protected final int BAD_REQUEST = 400;
+    protected final int CREATED = 201;
     @Autowired
     private MockMvc mockMvc;
 

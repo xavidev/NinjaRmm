@@ -6,6 +6,10 @@ public class ServiceId extends Identifier {
     public ServiceId(String id) {
         super(id);
     }
+
+    private ServiceId() {
+
+    }
 }
 
 

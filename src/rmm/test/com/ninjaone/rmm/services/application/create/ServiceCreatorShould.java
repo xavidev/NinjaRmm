@@ -1,7 +1,7 @@
 package com.ninjaone.rmm.services.application.create;
 
 import com.ninjaone.rmm.services.ServicesModuleUnitTestCase;
-import com.ninjaone.rmm.services.domain.DeviceServiceMother;
+import com.ninjaone.rmm.services.domain.ServiceMother;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ final class ServiceCreatorShould extends ServicesModuleUnitTestCase {
     }
     @Test
     void create_valid_service() {
-        var service = DeviceServiceMother.random();
+        var service = ServiceMother.random();
 
         subject.create(service.id(), service.name());
 
