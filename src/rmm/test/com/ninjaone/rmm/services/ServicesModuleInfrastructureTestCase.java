@@ -8,7 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 @ContextConfiguration(classes = Starter.class)
 @SpringBootTest
-public class ServicesModuleInfrastructureTestCase {
+public abstract class ServicesModuleInfrastructureTestCase {
 
     @Autowired
     protected ServiceRepository mySqlCourseRepository;

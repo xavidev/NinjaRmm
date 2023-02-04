@@ -2,12 +2,14 @@ package com.ninjaone.rmm.services.infrastructure.persistence;
 
 import com.ninjaone.rmm.services.domain.ServiceRepository;
 import com.ninjaone.rmm.services.domain.model.Service;
+import com.ninjaone.rmm.services.domain.model.ServiceId;
 import com.ninjaone.shared.domain.criteria.Criteria;
 import com.ninjaone.shared.infrastructure.hibernate.HibernateRepository;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @com.ninjaone.shared.domain.Service
@@ -25,5 +27,10 @@ public class MySqlServiceRepository extends HibernateRepository<Service> impleme
     @Override
     public List<Service> matching(Criteria criteria) {
         return byCriteria(criteria);
+    }
+
+    @Override
+    public Optional<Service> search(ServiceId id) {
+        return Optional.empty();
     }
 }

@@ -28,6 +28,10 @@ public class Service {
         return name.value();
     }
 
+    public double costFor(String deviceType) {
+        return 0;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
