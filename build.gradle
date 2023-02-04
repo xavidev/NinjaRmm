@@ -14,6 +14,14 @@ allprojects {
 		//Production dependencies
 		implementation 'org.springframework.boot:spring-boot-starter'
 		implementation 'org.springframework.boot:spring-boot-starter-web'
+		implementation 'org.hibernate.orm:hibernate-core:6.1.6.Final'
+		implementation 'org.springframework:spring-orm:6.0.4'
+		implementation 'org.springframework:spring-context-support:6.0.4'
+		implementation 'org.apache.tomcat:tomcat-dbcp:10.0.16'
+		implementation 'io.github.cdimascio:dotenv-java:2.3.2'
+		implementation 'mysql:mysql-connector-java:8.0.32'
+
+
 
 		//Test dependencies
 		testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -65,6 +73,7 @@ subprojects {
 
 		if (project.name != "shared") {
 			implementation project(":shared")
+			testImplementation project(":shared").sourceSets.test.output
 		}
 	}
 
@@ -99,13 +108,15 @@ buildscript {
 }
 
 bootJar {
-	baseName = 'ninjarrm'
+	baseName = 'ninjarmm'
 	version = '0.0.1'
 }
 
 dependencies {
 	implementation project(':shared')
-	implementation project(":rrm")
+	implementation project(":rmm")
+
+	testImplementation project(":shared").sourceSets.test.output
 }
 
 
