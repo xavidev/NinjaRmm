@@ -1,128 +1,126 @@
 allprojects {
-	apply plugin: 'java'
-	apply plugin: 'org.springframework.boot'
-	apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
 
-	sourceCompatibility = '17'
-	targetCompatibility = '17'
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
 
-	repositories {
-		mavenCentral()
-	}
+    repositories {
+        mavenCentral()
+    }
 
-	dependencies {
-		//Production dependencies
-		implementation 'org.springframework.boot:spring-boot-starter'
-		implementation 'org.springframework.boot:spring-boot-starter-web'
-		implementation 'org.hibernate.orm:hibernate-core:6.1.6.Final'
-		implementation 'org.springframework:spring-orm:6.0.4'
-		implementation 'org.springframework:spring-context-support:6.0.4'
-		implementation 'org.apache.tomcat:tomcat-dbcp:10.0.16'
-		implementation 'io.github.cdimascio:dotenv-java:2.3.2'
-		implementation 'mysql:mysql-connector-java:8.0.32'
-		implementation 'javax.xml.bind:jaxb-api:2.3.1'
-		implementation 'com.sun.xml.bind:jaxb-impl:4.0.1'
-
-
+    dependencies {
+        //Production dependencies
+        implementation 'org.springframework.boot:spring-boot-starter'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.hibernate.orm:hibernate-core:6.1.6.Final'
+        implementation 'org.springframework:spring-orm:6.0.4'
+        implementation 'org.springframework:spring-context-support:6.0.4'
+        implementation 'org.apache.tomcat:tomcat-dbcp:10.0.16'
+        implementation 'io.github.cdimascio:dotenv-java:2.3.2'
+        implementation 'mysql:mysql-connector-java:8.0.32'
+        implementation 'javax.xml.bind:jaxb-api:2.3.1'
+        implementation 'com.sun.xml.bind:jaxb-impl:4.0.1'
 
 
-		//Test dependencies
-		testImplementation 'org.springframework.boot:spring-boot-starter-test'
-		testImplementation 'junit:junit:4.13.1'
-	}
+        //Test dependencies
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'junit:junit:4.13.1'
+    }
 
-	test {
-		useJUnitPlatform()
+    test {
+        useJUnitPlatform()
 
-		testLogging {
-			events "passed", "skipped", "failed"
-		}
-	}
+        testLogging {
+            events "passed", "skipped", "failed"
+        }
+    }
 
-	task view_paths {
-		doLast { task ->
-			println "$task.project.name"
-			println "------------------"
-			println "Main: $sourceSets.main.java.srcDirTrees"
-			println "   Resources: $sourceSets.main.resources.srcDirTrees"
-			println "Tests: $sourceSets.test.java.srcDirTrees"
-			println "   Resources: $sourceSets.test.resources.srcDirTrees"
-		}
-	}
+    task view_paths {
+        doLast { task ->
+            println "$task.project.name"
+            println "------------------"
+            println "Main: $sourceSets.main.java.srcDirTrees"
+            println "   Resources: $sourceSets.main.resources.srcDirTrees"
+            println "Tests: $sourceSets.test.java.srcDirTrees"
+            println "   Resources: $sourceSets.test.resources.srcDirTrees"
+        }
+    }
 }
 
 subprojects {
-	group = "com.ninjaone.${rootProject.name}"
+    group = "com.ninjaone.${rootProject.name}"
 
-	sourceSets {
-		main {
-			java { srcDirs = ['main'] }
-			resources { srcDirs = ['main/resources'] }
-		}
+    sourceSets {
+        main {
+            java { srcDirs = ['main'] }
+            resources { srcDirs = ['main/resources'] }
+        }
 
-		test {
-			java { srcDirs = ['test'] }
-			resources { srcDirs = ['test/resources'] }
-		}
-	}
+        test {
+            java { srcDirs = ['test'] }
+            resources { srcDirs = ['test/resources'] }
+        }
+    }
 
-	dependencies {
-		//Dependencies for all subprojects
-		implementation 'org.springframework.boot:spring-boot-starter-web'
+    dependencies {
+        //Dependencies for all subprojects
+        implementation 'org.springframework.boot:spring-boot-starter-web'
 
-		//Test dependencies
-		testImplementation 'org.springframework.boot:spring-boot-starter-test'
-		testImplementation rootProject.sourceSets.main.output
+        //Test dependencies
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation rootProject.sourceSets.main.output
 
-		if (project.name != "shared") {
-			implementation project(":shared")
-			testImplementation project(":shared").sourceSets.test.output
-		}
-	}
+        if (project.name != "shared") {
+            implementation project(":shared")
+            testImplementation project(":shared").sourceSets.test.output
+        }
+    }
 
-	bootJar {
-		enabled = false
-	}
+    bootJar {
+        enabled = false
+    }
 
-	jar {
-		enabled = true
-	}
+    jar {
+        enabled = true
+    }
 }
 
 sourceSets {
-	main {
-		java { srcDirs = ['apps/main'] }
-		resources { srcDirs = ['apps/main/resources'] }
-	}
+    main {
+        java { srcDirs = ['apps/main'] }
+        resources { srcDirs = ['apps/main/resources'] }
+    }
 
-	test {
-		java { srcDirs = ['apps/test'] }
-		resources { srcDirs = ['apps/test/resources'] }
-	}
+    test {
+        java { srcDirs = ['apps/test'] }
+        resources { srcDirs = ['apps/test/resources'] }
+    }
 }
 
 buildscript {
-	repositories {
-		maven {
-			url "https://plugins.gradle.org/m2/"
-		}
-	}
-	dependencies {
-		classpath "org.springframework.boot:spring-boot-gradle-plugin:3.0.2"
-	}
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:3.0.2"
+    }
 }
 
 bootJar {
-	archiveBaseName = 'ninjarmm'
-	archiveVersion = '0.0.1'
-	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    archiveBaseName = 'ninjarmm'
+    archiveVersion = '0.0.1'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 dependencies {
-	implementation project(':shared')
-	implementation project(":rmm")
+    implementation project(':shared')
+    implementation project(":rmm")
 
-	testImplementation project(":shared").sourceSets.test.output
+    testImplementation project(":shared").sourceSets.test.output
 }
 
 

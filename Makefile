@@ -12,3 +12,7 @@ build:
 .PHONY: run-tests
 run-tests:
 	@./gradlew test --warning-mode all
+
+.PHONY: run
+run:
+	@./gradlew bootRun

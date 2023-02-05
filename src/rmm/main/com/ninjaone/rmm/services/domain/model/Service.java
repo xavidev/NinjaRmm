@@ -1,15 +1,16 @@
 package com.ninjaone.rmm.services.domain.model;
 
-import java.util.Objects;
+import java.util.*;
 
 public class Service {
     private ServiceId id;
     private ServiceName name;
+    private Set<ServiceCost> costs;
 
     public Service(ServiceId id, ServiceName name) {
-
         this.id = id;
         this.name = name;
+        this.costs = new HashSet<>();
     }
 
     private Service() {
@@ -20,16 +21,22 @@ public class Service {
         return new Service(id, name);
     }
 
+    public void addCost(String costId, double cost, String deviceType) {
+        ServiceCost serviceCost = ServiceCost.create(costId, cost, deviceType);
+        addCost(serviceCost);
+    }
+
+    private void addCost(ServiceCost serviceCost) {
+        costs.add(serviceCost);
+        serviceCost.assignTo(this);
+    }
+
     public String id() {
         return id.value();
     }
 
     public String name() {
         return name.value();
-    }
-
-    public double costFor(String deviceType) {
-        return 0;
     }
 
     @Override

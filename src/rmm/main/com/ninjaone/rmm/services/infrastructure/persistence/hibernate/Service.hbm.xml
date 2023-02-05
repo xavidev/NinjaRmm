@@ -12,5 +12,12 @@
         <component name="name" class="com.ninjaone.rmm.services.domain.model.ServiceName" access="field">
             <property name="value" column="name" type="string" access="field" />
         </component>
+
+        <set name="costs" table="service_costs" cascade="all" access="field" fetch="join" lazy="false">
+            <key>
+                <column name="service_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.ninjaone.rmm.services.domain.model.ServiceCost"/>
+        </set>
     </class>
 </hibernate-mapping>
