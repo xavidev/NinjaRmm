@@ -7,6 +7,7 @@ public final class Device {
     private DeviceType type;
 
     private SystemName systemName;
+
     private Device(DeviceId id, DeviceType type) {
 
         this.id = id;
