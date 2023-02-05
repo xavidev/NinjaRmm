@@ -1,5 +1,6 @@
 package com.ninjaone.rmm.services;
 
+import com.ninjaone.rmm.services.domain.DeviceTypeRepository;
 import com.ninjaone.rmm.services.domain.ServiceRepository;
 import com.ninjaone.rmm.services.domain.model.Service;
 import com.ninjaone.rmm.services.domain.model.ServiceId;
@@ -11,18 +12,20 @@ import java.util.Optional;
 import static org.mockito.Mockito.*;
 
 public abstract class ServicesModuleUnitTestCase {
-    protected ServiceRepository repository;
+    protected ServiceRepository serviceRepository;
+    protected DeviceTypeRepository deviceTypeRepository;
 
     @BeforeEach
     protected void setUp(){
-        repository = mock(ServiceRepository.class);
+        serviceRepository = mock(ServiceRepository.class);
+        deviceTypeRepository = mock(DeviceTypeRepository.class);
     }
 
     public void shouldHaveSaved(Service service) {
-        verify(repository, atLeastOnce()).save(service);
+        verify(serviceRepository, atLeastOnce()).save(service);
     }
 
     public void shouldSearch(Service service) {
-        Mockito.when(repository.search(new ServiceId(service.id()))).thenReturn(Optional.of(service));
+        Mockito.when(serviceRepository.search(new ServiceId(service.id()))).thenReturn(Optional.of(service));
     }
 }

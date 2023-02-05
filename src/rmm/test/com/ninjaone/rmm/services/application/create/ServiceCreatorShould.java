@@ -13,7 +13,7 @@ final class ServiceCreatorShould extends ServicesModuleUnitTestCase {
     protected void setUp() {
         super.setUp();
 
-        subject = new ServiceCreator(repository);
+        subject = new ServiceCreator(serviceRepository);
     }
     @Test
     void create_valid_service() {
