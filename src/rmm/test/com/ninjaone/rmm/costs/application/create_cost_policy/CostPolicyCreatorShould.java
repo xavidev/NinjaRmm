@@ -17,7 +17,6 @@ class CostPolicyCreatorShould extends CostsModuleUnitTestCase {
         super.setUp();
         subject = new CostPolicyCreator(serviceRepository, costPolicyRepository);
     }
-
     @Test
     void create_new_cost_policy_for_an_existent_service() {
         Service service = ServiceMother.random();

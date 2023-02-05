@@ -103,16 +103,19 @@ sourceSets {
 
 buildscript {
 	repositories {
-		mavenCentral()
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
 	}
 	dependencies {
-		classpath('org.springframework.boot:spring-boot-gradle-plugin:3.0.2')
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:3.0.2"
 	}
 }
 
 bootJar {
-	baseName = 'ninjarmm'
-	version = '0.0.1'
+	archiveBaseName = 'ninjarmm'
+	archiveVersion = '0.0.1'
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 dependencies {
@@ -121,5 +124,7 @@ dependencies {
 
 	testImplementation project(":shared").sourceSets.test.output
 }
+
+
 
 
