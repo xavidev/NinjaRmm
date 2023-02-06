@@ -19,7 +19,7 @@ final class ServiceCreatorShould extends ServicesModuleUnitTestCase {
     void create_valid_service() {
         var service = ServiceMother.random();
 
-        subject.create(service.id(), service.name());
+        subject.create(service.id(), service.name(), 20);
 
         shouldHaveSaved(service);
     }

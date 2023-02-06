@@ -20,7 +20,7 @@ class DeviceCreatorShould extends DevicesModuleUnitTestCase {
     void create_new_device() {
         Device device = DeviceMother.Windows();
 
-        subject.create(device.id(), device.type());
+        subject.create(device.id(), device.type(), device.cost());
 
         shouldHaveSaved(device);
     }

@@ -12,8 +12,8 @@ public final class DeviceCreator {
         this.repository = repository;
     }
 
-    public void create(String id, String type) {
-        Device device = Device.create(id, type);
+    public void create(String id, String type, double cost) {
+        Device device = Device.create(id, type, cost);
 
         repository.save(device);
     }

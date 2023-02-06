@@ -21,7 +21,7 @@ public final class ServiceCreator {
         this.repository = repository;
     }
 
-    public void create(String id, String name) {
+    public void create(String id, String name, double cost) {
 
         List<Filter> filters = new ArrayList<>();
         filters.add(Filter.create("name", FilterOperator.EQUAL.value(), name));
@@ -30,7 +30,7 @@ public final class ServiceCreator {
           throw new DuplicateServiceException(new ServiceName(name));
         }
 
-        var service = Service.create(new ServiceId(id), new ServiceName(name));
+        var service = Service.create(new ServiceId(id), new ServiceName(name), cost);
 
         repository.save(service);
     }

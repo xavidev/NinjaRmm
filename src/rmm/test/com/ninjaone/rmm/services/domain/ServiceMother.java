@@ -6,9 +6,18 @@ import com.ninjaone.rmm.services.domain.model.ServiceName;
 
 public class ServiceMother {
     public static Service random() {
-        return new Service(
+        return Service.create(
             new ServiceId("7cce24cd-832f-48af-8ebf-81c9e169bcfb"),
-            new ServiceName("random service")
+            new ServiceName("random service"),
+            10
+        );
+    }
+
+    public static Service antivirus(int cost) {
+        return Service.create(
+            new ServiceId("7cce24cd-832f-48af-8ebf-81c9e169bcfb"),
+            new ServiceName("antivirus"),
+            cost
         );
     }
 }

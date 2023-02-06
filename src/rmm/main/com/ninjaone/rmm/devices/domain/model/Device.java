@@ -5,14 +5,16 @@ import java.util.Objects;
 public final class Device {
     private final DeviceId id;
     private final DeviceType type;
+    private double cost;
 
-    private Device(DeviceId id, DeviceType type) {
+    private Device(DeviceId id, DeviceType type, double cost) {
         this.id = id;
         this.type = type;
+        this.cost = cost;
     }
 
-    public static Device create(String id, String type) {
-        return new Device(new DeviceId(id), new DeviceType(type));
+    public static Device create(String id, String type, double cost) {
+        return new Device(new DeviceId(id), new DeviceType(type), cost);
     }
 
     public String id() {
@@ -20,7 +22,11 @@ public final class Device {
     }
 
     public String type() {
-        return id.value();
+        return type.value();
+    }
+
+    public double cost() {
+        return cost;
     }
 
     @Override

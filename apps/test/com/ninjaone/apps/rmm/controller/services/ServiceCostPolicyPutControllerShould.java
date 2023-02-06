@@ -3,7 +3,7 @@ package com.ninjaone.apps.rmm.controller.services;
 import com.ninjaone.apps.rmm.controller.ApplicationTestCase;
 import org.junit.jupiter.api.Test;
 
-class ServiceCostPutControllerShould extends ApplicationTestCase {
+class ServiceCostPolicyPutControllerShould extends ApplicationTestCase {
 
     @Test
     void asign_cost_to_an_existent_service() throws Exception {

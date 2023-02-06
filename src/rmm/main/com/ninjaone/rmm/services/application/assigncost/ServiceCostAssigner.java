@@ -28,7 +28,7 @@ public final class ServiceCostAssigner {
 
         queryBus.ask(new FindDeviceByCriteriaQuery(deviceType));
 
-        service.addCost(uuidGenerator.generate(), cost, deviceType);
+        service.addCostPolicy(uuidGenerator.generate(), cost, deviceType);
 
         serviceRepository.save(service);
     }

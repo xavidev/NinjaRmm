@@ -1,15 +1,19 @@
 package com.ninjaone.rmm.services.domain.model;
 
+import com.ninjaone.rmm.devices.domain.model.Device;
+
 import java.util.*;
 
 public class Service {
     private ServiceId id;
     private ServiceName name;
-    private Set<ServiceCost> costs;
+    private double cost;
+    private Set<ServiceCostPolicy> costs;
 
-    public Service(ServiceId id, ServiceName name) {
+    private Service(ServiceId id, ServiceName name, double cost) {
         this.id = id;
         this.name = name;
+        this.cost = cost;
         this.costs = new HashSet<>();
     }
 
@@ -17,18 +21,31 @@ public class Service {
 
     }
 
-    public static Service create(ServiceId id, ServiceName name) {
-        return new Service(id, name);
+    public static Service create(ServiceId id, ServiceName name, double cost) {
+        return new Service(id, name, cost);
     }
 
-    public void addCost(String costId, double cost, String deviceType) {
-        ServiceCost serviceCost = ServiceCost.create(costId, cost, deviceType);
-        addCost(serviceCost);
+    public void addCostPolicy(String costId, double cost, String deviceType) {
+        ServiceCostPolicy serviceCostPolicy = ServiceCostPolicy.create(costId, cost, deviceType);
+        addCostPolicy(serviceCostPolicy);
     }
 
-    private void addCost(ServiceCost serviceCost) {
-        costs.add(serviceCost);
-        serviceCost.assignTo(this);
+    public void addCostPolicy(ServiceCostPolicy serviceCostPolicy) {
+        costs.add(serviceCostPolicy);
+        serviceCostPolicy.assignTo(this);
+    }
+
+    public double costFor(Device device) {
+
+        Optional<ServiceCostPolicy> deviceCost = costs
+            .stream()
+            .filter(cost -> cost.deviceType() != null)
+            .filter(cost -> cost.deviceType().equals(device.type()))
+            .findFirst();
+
+        if (deviceCost.isPresent()) return deviceCost.get().cost();
+
+        return cost();
     }
 
     public String id() {
@@ -37,6 +54,10 @@ public class Service {
 
     public String name() {
         return name.value();
+    }
+
+    public double cost() {
+        return cost;
     }
 
     @Override

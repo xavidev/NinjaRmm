@@ -17,7 +17,7 @@
             <key>
                 <column name="service_id" not-null="true"/>
             </key>
-            <one-to-many class="com.ninjaone.rmm.services.domain.model.ServiceCost"/>
+            <one-to-many class="com.ninjaone.rmm.services.domain.model.ServiceCostPolicy"/>
         </set>
     </class>
 </hibernate-mapping>

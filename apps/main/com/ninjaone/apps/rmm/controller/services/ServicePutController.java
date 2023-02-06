@@ -22,7 +22,7 @@ public final class ServicePutController {
     @PutMapping("/services/{id}")
     public ResponseEntity<String> index(@PathVariable String id, @RequestBody Request request) {
         try {
-            creator.create(id, request.name());
+            creator.create(id, request.name(), request.cost());
         } catch (DuplicateServiceException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -34,12 +34,22 @@ public final class ServicePutController {
 final class Request {
     private String name;
 
+    private double cost;
+
     public String name() {
         return name;
     }
 
+    public double cost() {
+        return cost;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
     }
 }
 

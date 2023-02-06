@@ -2,7 +2,7 @@ package com.ninjaone.rmm.services.application.assigncost;
 
 import com.ninjaone.rmm.devices.application.find.FindDeviceByCriteriaQuery;
 import com.ninjaone.rmm.services.ServicesModuleUnitTestCase;
-import com.ninjaone.rmm.services.domain.ServiceCostMother;
+import com.ninjaone.rmm.services.domain.ServiceCostPolicyMother;
 import com.ninjaone.rmm.services.domain.ServiceMother;
 import com.ninjaone.rmm.services.domain.ServiceNotExistException;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class ServiceCostAssignerShould extends ServicesModuleUnitTestCase {
+class ServiceCostPolicyAssignerShould extends ServicesModuleUnitTestCase {
 
     private ServiceCostAssigner subject;
 
@@ -24,7 +24,7 @@ class ServiceCostAssignerShould extends ServicesModuleUnitTestCase {
     @Test
     void assign_cost_to_existing_service() {
         var service = ServiceMother.random();
-        var serviceCost = ServiceCostMother.random();
+        var serviceCost = ServiceCostPolicyMother.random();
 
         shouldSearch(service);
         shouldGenerateUuid(serviceCost.id());
