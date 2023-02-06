@@ -120,6 +120,7 @@ bootJar {
 dependencies {
     implementation project(':shared')
     implementation project(":rmm")
+    implementation project(":rmmcustomers")
 
     testImplementation project(":shared").sourceSets.test.output
 }

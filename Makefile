@@ -13,6 +13,11 @@ build:
 run-tests:
 	@./gradlew test --warning-mode all
 
-.PHONY: run
-run:
-	@./gradlew bootRun
+.PHONY: run-rmm-backend
+run-rmm-backend:
+	@./gradlew bootRun --args='rmm_backend server'
+
+.PHONY: run-rmmcustomers-backend
+run-rmmcustomers-backend:
+	@./gradlew bootRun --args='rmmcustomers_backend server'
+

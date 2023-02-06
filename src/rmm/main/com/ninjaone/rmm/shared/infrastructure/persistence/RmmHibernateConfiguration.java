@@ -14,13 +14,13 @@ import java.io.IOException;
 
 @Configuration
 @EnableTransactionManagement
-public class HibernateConfiguration {
+public class RmmHibernateConfiguration {
     private final HibernateConfigurationFactory factory;
     private final ConfigurationParam config;
     private final String CONTEXT_NAME = "rmm";
 
 
-    public HibernateConfiguration(HibernateConfigurationFactory factory, ConfigurationParam config) {
+    public RmmHibernateConfiguration(HibernateConfigurationFactory factory, ConfigurationParam config) {
         this.factory = factory;
         this.config = config;
     }
@@ -38,11 +38,11 @@ public class HibernateConfiguration {
     @Bean
     public DataSource dataSource() throws IOException, ConfigurationNotExist {
         return factory.dataSource(
-            config.get("DATABASE_HOST"),
-            config.getInt("DATABASE_PORT"),
-            config.get("DATABASE_NAME"),
-            config.get("DATABASE_USER"),
-            config.get("DATABASE_PASSWORD")
+            config.get("RMM_DATABASE_HOST"),
+            config.getInt("RMM_DATABASE_PORT"),
+            config.get("RMM_DATABASE_NAME"),
+            config.get("RMM_DATABASE_USER"),
+            config.get("RMM_DATABASE_PASSWORD")
         );
     }
 }

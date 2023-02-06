@@ -3,5 +3,8 @@ rootProject.name = 'ninjarmm'
 include ':rmm'
 project(':rmm').projectDir = new File('src/rmm')
 
+include ':rmmcustomers'
+project(':rmmcustomers').projectDir = new File('src/rmmcustomers')
+
 include ':shared'
 project(':shared').projectDir = new File('src/shared')
