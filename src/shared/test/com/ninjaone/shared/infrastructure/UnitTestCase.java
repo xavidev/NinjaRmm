@@ -6,7 +6,6 @@ import com.ninjaone.shared.domain.bus.query.QueryBus;
 import com.ninjaone.shared.domain.bus.query.QueryHandlerExecutionError;
 import com.ninjaone.shared.domain.bus.query.Response;
 import org.junit.jupiter.api.BeforeEach;
-import org.mockito.Mockito;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

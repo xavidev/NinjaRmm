@@ -1,6 +1,6 @@
 package com.ninjaone.apps.rmm.controller.services;
 
-import com.ninjaone.rmm.services.application.assigncost.ServiceCostAssigner;
+import com.ninjaone.rmm.services.application.assigncost.ServiceCostPolicyAssigner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public final class ServiceCostPutController {
 
-    private final ServiceCostAssigner costAsigner;
+    private final ServiceCostPolicyAssigner costAsigner;
 
-    public ServiceCostPutController(ServiceCostAssigner costAsigner) {
+    public ServiceCostPutController(ServiceCostPolicyAssigner costAsigner) {
         this.costAsigner = costAsigner;
     }
     @PutMapping("/services/{id}/cost")

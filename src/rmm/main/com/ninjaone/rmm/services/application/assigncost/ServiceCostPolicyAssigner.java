@@ -9,14 +9,14 @@ import com.ninjaone.shared.domain.UuidGenerator;
 import com.ninjaone.shared.domain.bus.query.QueryBus;
 
 @com.ninjaone.shared.domain.Service
-public final class ServiceCostAssigner {
+public final class ServiceCostPolicyAssigner {
     private final ServiceRepository serviceRepository;
 
     private final QueryBus queryBus;
 
     private final UuidGenerator uuidGenerator;
 
-    public ServiceCostAssigner(ServiceRepository serviceRepository, QueryBus queryBus, UuidGenerator uuidGenerator) {
+    public ServiceCostPolicyAssigner(ServiceRepository serviceRepository, QueryBus queryBus, UuidGenerator uuidGenerator) {
         this.serviceRepository = serviceRepository;
         this.queryBus = queryBus;
         this.uuidGenerator = uuidGenerator;
@@ -25,8 +25,6 @@ public final class ServiceCostAssigner {
     public void assign(String serviceId, double cost, String deviceType) {
         Service service = serviceRepository.search(new ServiceId(serviceId)).
             orElseThrow(() -> new ServiceNotExistException(new ServiceId(serviceId)));
-
-        queryBus.ask(new FindDeviceByCriteriaQuery(deviceType));
 
         service.addCostPolicy(uuidGenerator.generate(), cost, deviceType);
 

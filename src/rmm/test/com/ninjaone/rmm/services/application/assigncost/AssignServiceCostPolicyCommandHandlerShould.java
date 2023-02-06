@@ -5,20 +5,22 @@ import com.ninjaone.rmm.services.ServicesModuleUnitTestCase;
 import com.ninjaone.rmm.services.domain.ServiceCostPolicyMother;
 import com.ninjaone.rmm.services.domain.ServiceMother;
 import com.ninjaone.rmm.services.domain.ServiceNotExistException;
+import com.ninjaone.shared.infrastructure.UnitTestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
-class ServiceCostPolicyAssignerShould extends ServicesModuleUnitTestCase {
+class AssignServiceCostPolicyCommandHandlerShould extends ServicesModuleUnitTestCase {
 
     private ServiceCostPolicyAssigner subject;
-
+    private AssignServiceCostPolicyCommandHandler handler;
     @BeforeEach
     protected void setUp() {
         super.setUp();
 
         subject = new ServiceCostPolicyAssigner(serviceRepository, queryBus, uuidGenerator);
+        handler = new AssignServiceCostPolicyCommandHandler(subject);
     }
 
     @Test
@@ -29,7 +31,7 @@ class ServiceCostPolicyAssignerShould extends ServicesModuleUnitTestCase {
         shouldSearch(service);
         shouldGenerateUuid(serviceCost.id());
 
-        subject.assign(service.id(), 20, "WIN");
+        handler.handle(new AssignServiceCostPolicyCommand(service.id(), 20, "WIN"));
 
         shouldHaveSaved(service);
     }
@@ -40,18 +42,7 @@ class ServiceCostPolicyAssignerShould extends ServicesModuleUnitTestCase {
 
         assertThrows(
             ServiceNotExistException.class,
-            () -> subject.assign(service.id(), 20, "WIN")
+            () -> handler.handle(new AssignServiceCostPolicyCommand(service.id(), 20, "WIN"))
         );
-    }
-
-    @Test
-    void not_assign_cost_by_device_when_device_not_exist() {
-        var service = ServiceMother.random();
-
-        shouldSearch(service);
-
-        shouldThrowWhenAskFor(new FindDeviceByCriteriaQuery("NOT_EXIST"));
-
-        shouldNotSave(service);
     }
 }
