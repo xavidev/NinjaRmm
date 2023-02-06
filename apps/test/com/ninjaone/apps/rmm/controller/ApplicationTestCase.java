@@ -4,9 +4,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -21,6 +24,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public abstract class ApplicationTestCase {
 
     protected final int BAD_REQUEST = 400;
+
+    protected final int CONFLICT = 409;
     protected final int CREATED = 201;
     @Autowired
     private MockMvc mockMvc;
@@ -56,5 +61,18 @@ public abstract class ApplicationTestCase {
             .perform(request(HttpMethod.valueOf(method), endpoint).content(body).contentType(APPLICATION_JSON))
             .andExpect(status().is(expectedStatusCode))
             .andExpect(content().string(""));
+    }
+
+    protected void assertResponseWithBody(
+        String method,
+        String endpoint,
+        String body,
+        Integer expectedStatusCode,
+        String expectedContent
+    ) throws Exception {
+        mockMvc
+            .perform(request(HttpMethod.valueOf(method), endpoint).content(body).contentType(APPLICATION_JSON))
+            .andExpect(status().is(expectedStatusCode))
+            .andExpect(content().string(expectedContent));
     }
 }

@@ -1,7 +1,13 @@
 package com.ninjaone.apps.rmm.controller.services;
 
+import com.ninjaone.rmm.services.application.create.CreateServiceCommand;
 import com.ninjaone.rmm.services.application.create.ServiceCreator;
 import com.ninjaone.rmm.services.domain.DuplicateServiceException;
+import com.ninjaone.rmm.services.domain.ServiceNotExistException;
+import com.ninjaone.shared.domain.DomainException;
+import com.ninjaone.shared.domain.bus.command.CommandBus;
+import com.ninjaone.shared.domain.bus.query.QueryBus;
+import com.ninjaone.shared.infrastructure.spring.ApiController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,25 +15,29 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+
 @RestController
-public final class ServicePutController {
+public final class ServicePutController extends ApiController {
 
-    private final ServiceCreator creator;
 
-    public ServicePutController(ServiceCreator creator) {
-
-        this.creator = creator;
+    public ServicePutController(QueryBus queryBus, CommandBus commandBus) {
+        super(queryBus, commandBus);
     }
 
     @PutMapping("/services/{id}")
     public ResponseEntity<String> index(@PathVariable String id, @RequestBody Request request) {
-        try {
-            creator.create(id, request.name(), request.cost());
-        } catch (DuplicateServiceException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        dispatch(new CreateServiceCommand(id, request.name(), request.cost()));
 
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @Override
+    public HashMap<Class<? extends DomainException>, HttpStatus> errorMapping() {
+        HashMap<Class<? extends DomainException>, HttpStatus> errors = new HashMap<>();
+        errors.put(DuplicateServiceException.class, HttpStatus.CONFLICT);
+
+        return errors;
     }
 }
 
