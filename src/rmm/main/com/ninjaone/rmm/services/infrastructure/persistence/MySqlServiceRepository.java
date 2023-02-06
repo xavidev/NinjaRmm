@@ -33,4 +33,9 @@ public class MySqlServiceRepository extends HibernateRepository<Service> impleme
     public Optional<Service> search(ServiceId id) {
         return byId(id);
     }
+
+    @Override
+    public void delete(Service service) {
+
+    }
 }

@@ -19,7 +19,7 @@ class DeleteDeviceCommandHandlerShould extends DevicesModuleUnitTestCase {
     }
 
     @Test
-    void delet_a_device() {
+    void delete_a_device() {
         Device device = DeviceMother.Windows();
 
         shouldSearch(device);

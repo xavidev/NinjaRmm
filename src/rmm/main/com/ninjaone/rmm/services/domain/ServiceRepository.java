@@ -13,4 +13,6 @@ public interface ServiceRepository {
     List<Service> matching(Criteria criteria);
 
     Optional<Service> search(ServiceId id);
+
+    void delete(Service service);
 }

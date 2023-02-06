@@ -32,4 +32,11 @@ public abstract class ServicesModuleUnitTestCase extends UnitTestCase {
         Mockito.when(serviceRepository.search(new ServiceId(service.id()))).thenReturn(Optional.of(service));
     }
 
+    protected void shouldDelete(Service service) {
+        verify(serviceRepository, atLeastOnce()).delete(service);
+    }
+
+    protected void shouldNotDelete(Service service) {
+        verify(serviceRepository, never()).delete(service);
+    }
 }
