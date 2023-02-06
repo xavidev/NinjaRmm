@@ -25,4 +25,8 @@ public final class ServiceCost {
     public void assignTo(Service service) {
         this.service = service;
     }
+
+    public String id() {
+        return id.value();
+    }
 }

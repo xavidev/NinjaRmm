@@ -1,6 +1,7 @@
 package com.ninjaone.shared.infrastructure.hibernate;
 
 import com.ninjaone.shared.domain.Identifier;
+import com.ninjaone.shared.domain.UuidIdentifier;
 import com.ninjaone.shared.domain.criteria.Criteria;
 import jakarta.persistence.criteria.CriteriaQuery;
 import org.hibernate.SessionFactory;
@@ -34,5 +35,13 @@ public class HibernateRepository<T> {
         CriteriaQuery<T> hibernateCriteria = criteriaConverter.convert(criteria, aggregateClass);
 
         return sessionFactory.getCurrentSession().createQuery(hibernateCriteria).getResultList();
+    }
+
+    protected List<T> all() {
+        CriteriaQuery<T> criteria = sessionFactory.getCriteriaBuilder().createQuery(aggregateClass);
+
+        criteria.from(aggregateClass);
+
+        return sessionFactory.getCurrentSession().createQuery(criteria).getResultList();
     }
 }

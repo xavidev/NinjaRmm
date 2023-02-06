@@ -16,10 +16,10 @@ public final class ServiceCostPutController {
     public ServiceCostPutController(ServiceCostAssigner costAsigner) {
         this.costAsigner = costAsigner;
     }
-    @PutMapping("/services/{id}/cost/{costId}")
-    public ResponseEntity<String> index(@PathVariable String id, @PathVariable String costId, @RequestBody ServiceCostRequest request) {
+    @PutMapping("/services/{id}/cost")
+    public ResponseEntity<String> index(@PathVariable String id, @RequestBody ServiceCostRequest request) {
 
-        this.costAsigner.assign(id, costId, request.cost(), request.deviceType());
+        this.costAsigner.assign(id, request.cost(), request.deviceType());
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

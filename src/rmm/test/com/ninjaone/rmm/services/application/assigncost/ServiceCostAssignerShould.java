@@ -1,7 +1,8 @@
 package com.ninjaone.rmm.services.application.assigncost;
 
+import com.ninjaone.rmm.devices.application.find.FindDeviceByCriteriaQuery;
 import com.ninjaone.rmm.services.ServicesModuleUnitTestCase;
-import com.ninjaone.rmm.services.domain.DeviceTypeNotExistException;
+import com.ninjaone.rmm.services.domain.ServiceCostMother;
 import com.ninjaone.rmm.services.domain.ServiceMother;
 import com.ninjaone.rmm.services.domain.ServiceNotExistException;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,16 +18,18 @@ class ServiceCostAssignerShould extends ServicesModuleUnitTestCase {
     protected void setUp() {
         super.setUp();
 
-        subject = new ServiceCostAssigner(serviceRepository);
+        subject = new ServiceCostAssigner(serviceRepository, queryBus, uuidGenerator);
     }
 
     @Test
     void assign_cost_to_existing_service() {
         var service = ServiceMother.random();
+        var serviceCost = ServiceCostMother.random();
 
         shouldSearch(service);
+        shouldGenerateUuid(serviceCost.id());
 
-        subject.assign(service.id(), "32f02af7-5245-46f2-a7dd-2c28a6b16abb", 20, "WIN");
+        subject.assign(service.id(), 20, "WIN");
 
         shouldHaveSaved(service);
     }
@@ -37,21 +40,18 @@ class ServiceCostAssignerShould extends ServicesModuleUnitTestCase {
 
         assertThrows(
             ServiceNotExistException.class,
-            () -> subject.assign(service.id(), "32f02af7-5245-46f2-a7dd-2c28a6b16abb", 20, "WIN")
+            () -> subject.assign(service.id(), 20, "WIN")
         );
     }
 
     @Test
-    void not_assign_costby_device_when_device_not_exist() {
+    void not_assign_cost_by_device_when_device_not_exist() {
         var service = ServiceMother.random();
 
         shouldSearch(service);
 
-        subject.assign(service.id(), "32f02af7-5245-46f2-a7dd-2c28a6b16abb", 20, "NOT_EXIST");
+        shouldThrowWhenAskFor(new FindDeviceByCriteriaQuery("NOT_EXIST"));
 
-        assertThrows(
-            DeviceTypeNotExistException.class,
-            () -> subject.assign(service.id(), "32f02af7-5245-46f2-a7dd-2c28a6b16abb", 20, "WIN")
-        );
+        shouldNotSave(service);
     }
 }

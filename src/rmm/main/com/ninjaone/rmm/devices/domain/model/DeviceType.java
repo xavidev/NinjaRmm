@@ -6,4 +6,8 @@ public final class DeviceType extends StringValue {
     public DeviceType(String type) {
         super(type);
     }
+
+    private DeviceType() {
+        super(null);
+    }
 }

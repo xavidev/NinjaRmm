@@ -15,7 +15,7 @@ class ServiceCostPutControllerShould extends ApplicationTestCase {
             """;
 
         assertRequestWithBody("PUT", "/services/322d91b8-441e-48f3-b223-ecc01eeb517d", service, CREATED);
-        assertRequestWithBody("PUT", "/services/322d91b8-441e-48f3-b223-ecc01eeb517d/cost/e3a99bf0-441c-4877-8356-cbe8629583d5", cost, CREATED);
+        assertRequestWithBody("PUT", "/services/322d91b8-441e-48f3-b223-ecc01eeb517d/cost", cost, CREATED);
     }
 
 }
