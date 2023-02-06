@@ -41,4 +41,8 @@ public final class Device {
     public int hashCode() {
         return Objects.hash(id, type);
     }
+
+    public void delete() {
+
+    }
 }
