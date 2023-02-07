@@ -29,7 +29,7 @@ class AssignServiceCostPolicyCommandHandlerShould extends ServicesModuleUnitTest
         var serviceCost = ServiceCostPolicyMother.random();
 
         shouldSearch(service);
-        shouldGenerateUuid(serviceCost.id());
+//        shouldGenerateUuid(serviceCost.id());
 
         handler.handle(new AssignServiceCostPolicyCommand(service.id(), 20, "WIN"));
 

@@ -26,7 +26,7 @@ public final class ServiceCostPolicyAssigner {
         Service service = serviceRepository.search(new ServiceId(serviceId)).
             orElseThrow(() -> new ServiceNotExistException(new ServiceId(serviceId)));
 
-        service.addCostPolicy(uuidGenerator.generate(), cost, deviceType);
+        service.addCostPolicy(cost, deviceType);
 
         serviceRepository.save(service);
     }

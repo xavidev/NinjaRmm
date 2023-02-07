@@ -6,22 +6,22 @@ import com.ninjaone.rmm.services.domain.model.ServiceCostPolicy;
 public final class ServiceCostPolicyMother {
 
     public static ServiceCostPolicy random() {
-        return ServiceCostPolicy.create(ServiceCostIdMother.random().value(), 10, "WIN");
+        return ServiceCostPolicy.create(10, "WIN");
     }
 
     public static ServiceCostPolicy deviceCost(double cost) {
-        return ServiceCostPolicy.create(ServiceCostIdMother.random().value(), cost, null);
+        return ServiceCostPolicy.create(cost, null);
     }
 
     public static ServiceCostPolicy forDeviceType(Device windows, int cost) {
-        return ServiceCostPolicy.create(ServiceCostIdMother.random().value(), cost, windows.type());
+        return ServiceCostPolicy.create(cost, windows.type());
     }
 
     public static ServiceCostPolicy antivirus(double cost) {
-        return ServiceCostPolicy.create(ServiceCostIdMother.random().value(), 20, null);
+        return ServiceCostPolicy.create(20, null);
     }
 
     public static ServiceCostPolicy forDevice(Device device, double cost) {
-        return ServiceCostPolicy.create(ServiceCostIdMother.random().value(), cost, device.type());
+        return ServiceCostPolicy.create(cost, device.type());
     }
 }

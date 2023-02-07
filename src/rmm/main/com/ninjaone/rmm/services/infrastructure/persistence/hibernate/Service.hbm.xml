@@ -13,11 +13,17 @@
             <property name="value" column="name" type="string" access="field" />
         </component>
 
-        <set name="costs" table="service_costs" cascade="all" access="field" fetch="join" lazy="false">
-            <key>
-                <column name="service_id" not-null="true"/>
-            </key>
-            <one-to-many class="com.ninjaone.rmm.services.domain.model.ServiceCostPolicy"/>
-        </set>
+<!--        <set name="costs" table="service_costs" cascade="all" access="field" fetch="join" lazy="false">-->
+<!--            <key>-->
+<!--                <column name="service_id" not-null="true"/>-->
+<!--            </key>-->
+<!--            <one-to-many class="com.ninjaone.rmm.services.domain.model.ServiceCostPolicy"/>-->
+<!--        </set>-->
+
+        <property name="costs" column="service_costs" access="field">
+            <type name="json_string">
+                <param name="list_of">com.ninjaone.rmm.services.domain.model.ServiceCostPolicy</param>
+            </type>
+        </property>
     </class>
 </hibernate-mapping>

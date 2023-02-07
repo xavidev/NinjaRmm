@@ -30,7 +30,7 @@ public class RmmHibernateConfiguration {
         return factory.hibernateTransactionManager(sessionFactory());
     }
 
-    @Bean
+    @Bean(name="entityManagerFactory")
     public LocalSessionFactoryBean sessionFactory() throws IOException, ConfigurationNotExist {
         return factory.sessionFactory(CONTEXT_NAME, dataSource());
     }

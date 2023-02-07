@@ -9,7 +9,7 @@ import org.springframework.context.annotation.FilterType;
 @SpringBootApplication(exclude = HibernateJpaAutoConfiguration.class)
 @ComponentScan(
     includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Service.class),
-    value = {"com.ninjaone.apps.rmm", "com.ninjaone.rmm", "com.ninjaone.shared"})
+    value = {"com.ninjaone.shared", "com.ninjaone.rmm", "com.ninjaone.apps.rmm" })
 
 public class RmmBackendApplication {
 

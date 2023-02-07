@@ -5,7 +5,7 @@ import java.util.Objects;
 public final class Device {
     private final DeviceId id;
     private final DeviceType type;
-    private double cost;
+    private final double cost;
 
     private Device(DeviceId id, DeviceType type, double cost) {
         this.id = id;

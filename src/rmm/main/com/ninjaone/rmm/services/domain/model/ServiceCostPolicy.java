@@ -1,33 +1,21 @@
 package com.ninjaone.rmm.services.domain.model;
 
-public final class ServiceCostPolicy {
-    private ServiceCostId id;
+public class ServiceCostPolicy {
     private String deviceType;
     private double cost;
-
-    private Service service;
-
     private ServiceCostPolicy() {
 
     }
 
-    private ServiceCostPolicy(ServiceCostId costId, double cost, String deviceType) {
-        this.id = costId;
+    private ServiceCostPolicy(double cost, String deviceType) {
+
         this.cost = cost;
         this.deviceType = deviceType;
     }
 
-    public static ServiceCostPolicy create(String costId, double cost, String deviceType) {
+    public static ServiceCostPolicy create(double cost, String deviceType) {
 
-        return new ServiceCostPolicy(new ServiceCostId(costId), cost, deviceType);
-    }
-
-    public void assignTo(Service service) {
-        this.service = service;
-    }
-
-    public String id() {
-        return id.value();
+        return new ServiceCostPolicy(cost, deviceType);
     }
 
     public String deviceType() {
@@ -38,4 +26,11 @@ public final class ServiceCostPolicy {
         return cost;
     }
 
+    protected void setCost(double cost){
+        this.cost =cost;
+    }
+
+    protected void setDeviceType(String deviceType){
+        this.deviceType = deviceType;
+    }
 }

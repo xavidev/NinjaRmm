@@ -8,13 +8,13 @@ public class Service {
     private ServiceId id;
     private ServiceName name;
     private double cost;
-    private Set<ServiceCostPolicy> costs;
+    private List<ServiceCostPolicy> costs;
 
     private Service(ServiceId id, ServiceName name, double cost) {
         this.id = id;
         this.name = name;
         this.cost = cost;
-        this.costs = new HashSet<>();
+        this.costs = new ArrayList<>();
     }
 
     private Service() {
@@ -25,14 +25,13 @@ public class Service {
         return new Service(id, name, cost);
     }
 
-    public void addCostPolicy(String costId, double cost, String deviceType) {
-        ServiceCostPolicy serviceCostPolicy = ServiceCostPolicy.create(costId, cost, deviceType);
+    public void addCostPolicy(double cost, String deviceType) {
+        ServiceCostPolicy serviceCostPolicy = ServiceCostPolicy.create(cost, deviceType);
         addCostPolicy(serviceCostPolicy);
     }
 
     public void addCostPolicy(ServiceCostPolicy serviceCostPolicy) {
         costs.add(serviceCostPolicy);
-        serviceCostPolicy.assignTo(this);
     }
 
     public double costFor(Device device) {

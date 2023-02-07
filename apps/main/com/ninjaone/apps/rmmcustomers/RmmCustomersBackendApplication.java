@@ -12,6 +12,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("com.ninjaone.rmmcustomers.*")
 @ComponentScan(
     includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Service.class),
-    value = {"com.ninjaone.apps.rmmcustomers", "com.ninjaone.rmmcustomers", "com.ninjaone.shared"})
+    value = {"com.ninjaone.shared","com.ninjaone.rmmcustomers","com.ninjaone.apps.rmmcustomers" })
 public class RmmCustomersBackendApplication {
 }
