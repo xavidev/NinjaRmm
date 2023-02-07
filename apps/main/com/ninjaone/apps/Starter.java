@@ -3,6 +3,7 @@ package com.ninjaone.apps;
 import com.ninjaone.apps.rmm.RmmBackendApplication;
 import com.ninjaone.apps.rmmcustomers.RmmCustomersBackendApplication;
 import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 import java.util.HashMap;
 
@@ -21,7 +22,12 @@ public class Starter {
 
         SpringApplication app = new SpringApplication(applicationClass);
 
-        app.run(args);
+        ConfigurableApplicationContext context = app.run(args);
+
+        String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName);
+        }
     }
 
     private static void ensureApplicationExist(String applicationName) {
