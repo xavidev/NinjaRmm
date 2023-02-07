@@ -3,14 +3,18 @@ package com.ninjaone.rmm.devices.domain.model;
 import java.util.Objects;
 
 public final class Device {
-    private final DeviceId id;
-    private final DeviceType type;
-    private final double cost;
+    private DeviceId id;
+    private  DeviceType type;
+    private  double cost;
 
     private Device(DeviceId id, DeviceType type, double cost) {
         this.id = id;
         this.type = type;
         this.cost = cost;
+    }
+
+    private Device(){
+
     }
 
     public static Device create(String id, String type, double cost) {

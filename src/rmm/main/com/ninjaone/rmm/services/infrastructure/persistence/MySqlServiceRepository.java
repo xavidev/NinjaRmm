@@ -36,6 +36,6 @@ public class MySqlServiceRepository extends HibernateRepository<Service> impleme
 
     @Override
     public void delete(Service service) {
-
+        remove(service);
     }
 }

@@ -8,8 +8,6 @@ import com.ninjaone.shared.infrastructure.hibernate.HibernateRepository;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,22 +20,21 @@ public class MySqlDeviceRepository extends HibernateRepository<Device> implement
 
     @Override
     public void save(Device device) {
-
+        persist(device);
     }
 
     @Override
     public List<Device> matching(Criteria criteria) {
-        List<Device> device = Collections.emptyList();
-        return device;
+        return byCriteria(criteria);
     }
 
     @Override
-    public Optional<Device> search(DeviceId deviceId) {
-        return Optional.empty();
+    public Optional<Device> search(DeviceId id) {
+        return byId(id);
     }
 
     @Override
     public void delete(Device device) {
-
+        remove(device);
     }
 }
