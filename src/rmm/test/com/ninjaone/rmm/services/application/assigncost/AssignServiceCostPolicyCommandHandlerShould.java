@@ -1,11 +1,9 @@
 package com.ninjaone.rmm.services.application.assigncost;
 
-import com.ninjaone.rmm.devices.application.find.FindDeviceByCriteriaQuery;
 import com.ninjaone.rmm.services.ServicesModuleUnitTestCase;
 import com.ninjaone.rmm.services.domain.ServiceCostPolicyMother;
 import com.ninjaone.rmm.services.domain.ServiceMother;
 import com.ninjaone.rmm.services.domain.ServiceNotExistException;
-import com.ninjaone.shared.infrastructure.UnitTestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +17,7 @@ class AssignServiceCostPolicyCommandHandlerShould extends ServicesModuleUnitTest
     protected void setUp() {
         super.setUp();
 
-        subject = new ServiceCostPolicyAssigner(serviceRepository, queryBus, uuidGenerator);
+        subject = new ServiceCostPolicyAssigner(serviceRepository);
         handler = new AssignServiceCostPolicyCommandHandler(subject);
     }
 

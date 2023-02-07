@@ -1,7 +1,9 @@
 package com.ninjaone.rmm.services.application.assigncost;
 
+import com.ninjaone.shared.domain.Service;
 import com.ninjaone.shared.domain.bus.command.CommandHandler;
 
+@Service
 public final class AssignServiceCostPolicyCommandHandler implements CommandHandler<AssignServiceCostPolicyCommand> {
     private final ServiceCostPolicyAssigner costPolicyAssigner;
 

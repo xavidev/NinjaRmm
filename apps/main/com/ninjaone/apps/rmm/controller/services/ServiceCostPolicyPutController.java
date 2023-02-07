@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 
 @RestController
-public final class ServiceCostPutController extends ApiController {
+public final class ServiceCostPolicyPutController extends ApiController {
 
-    public ServiceCostPutController(QueryBus queryBus, CommandBus commandBus) {
+    public ServiceCostPolicyPutController(QueryBus queryBus, CommandBus commandBus) {
         super(queryBus, commandBus);
     }
 

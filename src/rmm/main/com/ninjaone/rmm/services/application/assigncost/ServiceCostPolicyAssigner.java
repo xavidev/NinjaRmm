@@ -1,25 +1,16 @@
 package com.ninjaone.rmm.services.application.assigncost;
 
-import com.ninjaone.rmm.devices.application.find.FindDeviceByCriteriaQuery;
 import com.ninjaone.rmm.services.domain.ServiceNotExistException;
 import com.ninjaone.rmm.services.domain.ServiceRepository;
 import com.ninjaone.rmm.services.domain.model.Service;
 import com.ninjaone.rmm.services.domain.model.ServiceId;
-import com.ninjaone.shared.domain.UuidGenerator;
-import com.ninjaone.shared.domain.bus.query.QueryBus;
 
 @com.ninjaone.shared.domain.Service
 public final class ServiceCostPolicyAssigner {
     private final ServiceRepository serviceRepository;
 
-    private final QueryBus queryBus;
-
-    private final UuidGenerator uuidGenerator;
-
-    public ServiceCostPolicyAssigner(ServiceRepository serviceRepository, QueryBus queryBus, UuidGenerator uuidGenerator) {
+    public ServiceCostPolicyAssigner(ServiceRepository serviceRepository) {
         this.serviceRepository = serviceRepository;
-        this.queryBus = queryBus;
-        this.uuidGenerator = uuidGenerator;
     }
 
     public void assign(String serviceId, double cost, String deviceType) {
