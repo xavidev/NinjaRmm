@@ -10,20 +10,25 @@ import java.util.UUID;
 public class CustomerDevice {
     @Id
     private UUID id;
-    private double cost;
+
+    private UUID deviceId;
+    private UUID customerId;
     private String systemName;
 
-    private CustomerDevice(UUID id, double cost, String systemName) {
+    private CustomerDevice(UUID id, UUID deviceId, UUID customerId, String systemName) {
         this.id = id;
-        this.cost = cost;
         this.systemName = systemName;
     }
 
-    protected CustomerDevice(){
+    protected CustomerDevice() {
 
     }
 
-    public static CustomerDevice create(UUID id, double cost, String systemName) {
-        return new CustomerDevice(id, cost, systemName);
+    public static CustomerDevice create(String id, String devideId, String customerId) {
+        return new CustomerDevice(UUID.fromString(id), UUID.fromString(devideId), UUID.fromString(customerId), getSystemName(UUID.fromString(id)));
+    }
+
+    private static String getSystemName(UUID id) {
+        return id.toString().split("-")[0] + "test-user";
     }
 }

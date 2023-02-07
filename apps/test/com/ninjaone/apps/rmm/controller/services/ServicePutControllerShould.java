@@ -1,6 +1,6 @@
 package com.ninjaone.apps.rmm.controller.services;
 
-import com.ninjaone.apps.rmm.controller.ApplicationTestCase;
+import com.ninjaone.apps.ApplicationTestCase;
 import org.junit.jupiter.api.Test;
 
 public class ServicePutControllerShould extends ApplicationTestCase {

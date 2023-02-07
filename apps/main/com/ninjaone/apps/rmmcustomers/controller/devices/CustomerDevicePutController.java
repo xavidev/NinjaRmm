@@ -1,30 +1,32 @@
 package com.ninjaone.apps.rmmcustomers.controller.devices;
 
-import com.ninjaone.rmmcustomers.devices.domain.CustomerDeviceRepository;
-import com.ninjaone.rmmcustomers.devices.domain.model.CustomerDevice;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import com.ninjaone.rmmcustomers.devices.application.create.CustomerDeviceCreator;
+import lombok.Data;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-
-@Controller
+@RestController
 public final class CustomerDevicePutController {
 
-    private final CustomerDeviceRepository customerDeviceRepository;
+    private final CustomerDeviceCreator creator;
 
-    public CustomerDevicePutController(CustomerDeviceRepository customerDeviceRepository) {
-        this.customerDeviceRepository = customerDeviceRepository;
+    public CustomerDevicePutController(CustomerDeviceCreator creator) {
+
+        this.creator = creator;
     }
 
     @PutMapping(path = "/devices/{id}")
-    public @ResponseBody String addNewUser(@PathVariable String id) {
+    public @ResponseBody ResponseEntity<String> index(@PathVariable String id, @RequestBody DeviceRequest request) {
+        creator.create(id, request.getDeviceId(), request.getCustomerId());
 
-        CustomerDevice device = CustomerDevice.create(UUID.randomUUID(), 100, "testing");
-
-        customerDeviceRepository.save(device);
-
-        return "Saved";
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
+}
+
+@Data
+class DeviceRequest {
+
+    private String deviceId;
+    private String customerId;
 }

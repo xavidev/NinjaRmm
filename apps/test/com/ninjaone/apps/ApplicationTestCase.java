@@ -1,4 +1,4 @@
-package com.ninjaone.apps.rmm.controller;
+package com.ninjaone.apps;
 
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

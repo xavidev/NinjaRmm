@@ -15,7 +15,7 @@ public class HealthCheckGetController {
     @GetMapping("/health-check")
     public HashMap<String, String> index() {
         HashMap<String, String> status = new HashMap<>();
-        status.put("application", "rrm");
+        status.put("application", "rrmcustomers");
         status.put("status", "ok");
 
         return status;
