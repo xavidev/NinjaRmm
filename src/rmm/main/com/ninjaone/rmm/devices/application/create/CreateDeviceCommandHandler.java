@@ -5,7 +5,7 @@ import com.ninjaone.shared.domain.bus.command.CommandHandler;
 
 @Service
 public final class CreateDeviceCommandHandler implements CommandHandler<CreateDeviceCommand> {
-    private DeviceCreator creator;
+    private final DeviceCreator creator;
 
     public CreateDeviceCommandHandler(DeviceCreator creator) {
         this.creator = creator;

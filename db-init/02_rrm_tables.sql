@@ -9,15 +9,13 @@ CREATE TABLE IF NOT EXISTS services (
     DEFAULT CHARSET = utf8mb4
     COLLATE = utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS service_costs (
+CREATE TABLE IF NOT EXISTS devices (
     id       CHAR(36)     NOT NULL,
-    service_id       CHAR(36)     NOT NULL,
-    device_type     VARCHAR(255) NOT NULL,
-    cost   DOUBLE    NOT NULL,
-    PRIMARY KEY (id),
-    KEY (service_id),
-    FOREIGN KEY (service_id) REFERENCES services(id)
+    type     VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
     )
     ENGINE = InnoDB
     DEFAULT CHARSET = utf8mb4
     COLLATE = utf8mb4_unicode_ci;
+
+

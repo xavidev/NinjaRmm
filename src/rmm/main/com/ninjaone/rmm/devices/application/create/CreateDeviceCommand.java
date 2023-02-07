@@ -3,9 +3,9 @@ package com.ninjaone.rmm.devices.application.create;
 import com.ninjaone.shared.domain.bus.command.Command;
 
 public final class CreateDeviceCommand implements Command {
-    private String id;
-    private String type;
-    private double cost;
+    private final String id;
+    private final String type;
+    private final double cost;
 
     public CreateDeviceCommand(String id, String type, double cost) {
         this.id = id;
