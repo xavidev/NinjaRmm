@@ -1,20 +1,18 @@
 package com.ninjaone.rmm.services.domain.model;
 
-import com.ninjaone.rmm.devices.domain.model.Device;
-
 import java.util.*;
 
 public class Service {
     private ServiceId id;
     private ServiceName name;
     private double cost;
-    private List<ServiceCostPolicy> costs;
+    private List<ServiceCostPolicy> costPolicies;
 
     private Service(ServiceId id, ServiceName name, double cost) {
         this.id = id;
         this.name = name;
         this.cost = cost;
-        this.costs = new ArrayList<>();
+        this.costPolicies = new ArrayList<>();
     }
 
     private Service() {
@@ -25,26 +23,8 @@ public class Service {
         return new Service(id, name, cost);
     }
 
-    public void addCostPolicy(double cost, String deviceType) {
-        ServiceCostPolicy serviceCostPolicy = ServiceCostPolicy.create(cost, deviceType);
-        addCostPolicy(serviceCostPolicy);
-    }
-
-    public void addCostPolicy(ServiceCostPolicy serviceCostPolicy) {
-        costs.add(serviceCostPolicy);
-    }
-
-    public double costFor(Device device) {
-
-        Optional<ServiceCostPolicy> deviceCost = costs
-            .stream()
-            .filter(cost -> cost.deviceType() != null)
-            .filter(cost -> cost.deviceType().equals(device.type()))
-            .findFirst();
-
-        if (deviceCost.isPresent()) return deviceCost.get().cost();
-
-        return cost();
+    public void addCostPolicy(ServiceCostPolicy policy) {
+        costPolicies.add(policy);
     }
 
     public String id() {
@@ -70,9 +50,5 @@ public class Service {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
-    }
-
-    public void delete() {
-
     }
 }
