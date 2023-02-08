@@ -17,7 +17,6 @@ public class BillExplanation extends AggregateRoot {
     @JdbcTypeCode(java.sql.Types.VARCHAR)
     private UUID id;
 
-
     private List<BillItem> items;
 
     private BillExplanation(UUID id, List<BillItem> items) {
@@ -40,5 +39,31 @@ public class BillExplanation extends AggregateRoot {
         this.items = items;
 
         record(new BillRecreatedDomainEvent(id.toString()));
+    }
+
+    private double totalCost() {
+        double cost = 0;
+        for (BillItem item : items) {
+            cost += item.cost();
+        }
+
+        return cost;
+    }
+
+    public String explain(){
+        return this.toString();
+    }
+
+    @Override
+    public String toString() {
+        var builder = new StringBuilder();
+        builder.append(String.format("Total cost: %,.2f", totalCost()));
+        builder.append("\n");
+
+        for (BillItem item : items) {
+            builder.append(String.format("Concept: %s  Cost: %,.2f", item.concept(), item.cost()));
+        }
+
+        return builder.toString();
     }
 }

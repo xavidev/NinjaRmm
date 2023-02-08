@@ -36,4 +36,12 @@ public class BillItem extends AggregateRoot {
     public static BillItem create(String itemRef, String customerId, String concept, String itemType, double cost) {
         return new BillItem(UUID.fromString(itemRef), customerId, concept, itemType, cost);
     }
+
+    public String concept() {
+        return concept;
+    }
+
+    public double cost() {
+        return cost;
+    }
 }
