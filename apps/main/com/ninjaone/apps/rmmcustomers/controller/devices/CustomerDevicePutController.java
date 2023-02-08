@@ -20,7 +20,7 @@ public final class CustomerDevicePutController {
 
     @PutMapping(path = "/devices/{id}")
     public @ResponseBody ResponseEntity<String> index(@PathVariable String id, @RequestBody DeviceRequest request) {
-        bus.dispatch(new CreateCustomerDeviceCommand(id, request.getCustomerId()));
+        bus.dispatch(new CreateCustomerDeviceCommand(id, request.getDeviceId(), request.getCustomerId()));
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -28,7 +28,6 @@ public final class CustomerDevicePutController {
 
 @Data
 class DeviceRequest {
+    private String deviceId;
     private String customerId;
-
-    private List<String> services;
 }

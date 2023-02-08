@@ -17,20 +17,22 @@ public class CustomerDevice extends AggregateRoot {
     private UUID customerId;
     private String systemName;
 
-    private CustomerDevice(UUID deviceId, UUID customerId, String systemName) {
-        this.id = deviceId;
+    private CustomerDevice(UUID id, UUID deviceId, UUID customerId, String systemName) {
+        this.id = id;
+        this.deviceId = deviceId;
         this.customerId = customerId;
         this.systemName = systemName;
 
-        record(new CustomerDeviceCreatedDomainEvent(this.id.toString(), customerId.toString()));
+        record(new CustomerDeviceCreatedDomainEvent(this.id.toString(), deviceId.toString(), customerId.toString()));
     }
 
     protected CustomerDevice() {
 
     }
 
-    public static CustomerDevice create(String deviceId, String customerId) {
+    public static CustomerDevice create(String id, String deviceId, String customerId) {
         return new CustomerDevice(
+            UUID.fromString(id),
             UUID.fromString(deviceId),
             UUID.fromString(customerId),
             getSystemName(UUID.fromString(deviceId))

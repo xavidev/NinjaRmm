@@ -2,7 +2,6 @@ package com.ninjaone.rmmcustomers.devices.application.assignservice;
 
 import com.ninjaone.rmmcustomers.devices.domain.CustomerDeviceRepository;
 import com.ninjaone.shared.domain.bus.event.EventBus;
-import com.ninjaone.shared.domain.bus.query.QueryBus;
 
 public final class CustomerDeviceServiceAssigner {
 

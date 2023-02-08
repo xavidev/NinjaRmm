@@ -7,7 +7,7 @@ import com.ninjaone.shared.domain.bus.query.QueryHandler;
 @Service
 public final class FindDeviceByIdQueryHandler implements QueryHandler<FindDeviceByIdQuery, DeviceResponse> {
 
-    private DeviceFinder finder;
+    private final DeviceFinder finder;
 
     public FindDeviceByIdQueryHandler(DeviceFinder finder) {
         this.finder = finder;

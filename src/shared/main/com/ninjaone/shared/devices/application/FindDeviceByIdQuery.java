@@ -1,4 +1,4 @@
-package com.ninjaone.rmm.devices.application.find;
+package com.ninjaone.shared.devices.application;
 
 import com.ninjaone.shared.domain.bus.query.Query;
 

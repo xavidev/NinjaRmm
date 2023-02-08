@@ -10,7 +10,7 @@ import org.springframework.context.event.EventListener;
 @DomainEventSubscriber({CustomerDeviceCreatedDomainEvent.class})
 public final class CreateDeviceCostOnCustomerDeviceCreated  {
 
-    private DeviceCostCreator creator;
+    private final DeviceCostCreator creator;
 
     public CreateDeviceCostOnCustomerDeviceCreated(DeviceCostCreator creator) {
         this.creator = creator;
@@ -18,6 +18,6 @@ public final class CreateDeviceCostOnCustomerDeviceCreated  {
 
     @EventListener
     public void on(CustomerDeviceCreatedDomainEvent event) {
-        creator.create(event.aggregateId(), event.customerId());
+        creator.create(event.deviceId(), event.customerId());
     }
 }
