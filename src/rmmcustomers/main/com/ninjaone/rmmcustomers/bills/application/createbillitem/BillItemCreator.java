@@ -1,4 +1,4 @@
-package com.ninjaone.rmmcustomers.bills.application.create;
+package com.ninjaone.rmmcustomers.bills.application.createbillitem;
 
 import com.ninjaone.rmmcustomers.bills.domain.BillItemRepository;
 import com.ninjaone.rmmcustomers.bills.domain.model.BillItem;

@@ -1,4 +1,4 @@
-package com.ninjaone.rmmcustomers.bills.application.create;
+package com.ninjaone.rmmcustomers.bills.application.createbillitem;
 
 import com.ninjaone.shared.domain.Service;
 import com.ninjaone.shared.domain.bus.event.DomainEventSubscriber;
