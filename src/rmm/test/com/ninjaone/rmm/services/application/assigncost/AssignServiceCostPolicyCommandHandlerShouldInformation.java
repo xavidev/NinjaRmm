@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AssignServiceCostPolicyCommandHandlerShould extends ServicesModuleUnitTestCase {
+class AssignServiceCostPolicyCommandHandlerShouldInformation extends ServicesModuleUnitTestCase {
 
     private ServiceCostPolicyAssigner subject;
     private AssignServiceCostPolicyCommandHandler handler;

@@ -1,6 +1,7 @@
 package com.ninjaone.apps.rmm.controller.devices;
 
 import com.ninjaone.rmm.devices.application.create.CreateDeviceCommand;
+import com.ninjaone.rmmcustomers.devices.application.create.CreateCustomerDeviceCommand;
 import com.ninjaone.shared.domain.DomainException;
 import com.ninjaone.shared.domain.bus.command.CommandBus;
 import com.ninjaone.shared.domain.bus.query.QueryBus;

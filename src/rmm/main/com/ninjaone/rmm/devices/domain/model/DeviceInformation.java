@@ -2,23 +2,23 @@ package com.ninjaone.rmm.devices.domain.model;
 
 import java.util.Objects;
 
-public final class Device {
+public final class DeviceInformation {
     private DeviceId id;
     private  DeviceType type;
     private  double cost;
 
-    private Device(DeviceId id, DeviceType type, double cost) {
+    private DeviceInformation(DeviceId id, DeviceType type, double cost) {
         this.id = id;
         this.type = type;
         this.cost = cost;
     }
 
-    private Device(){
+    private DeviceInformation(){
 
     }
 
-    public static Device create(String id, String type, double cost) {
-        return new Device(new DeviceId(id), new DeviceType(type), cost);
+    public static DeviceInformation create(String id, String type, double cost) {
+        return new DeviceInformation(new DeviceId(id), new DeviceType(type), cost);
     }
 
     public String id() {
@@ -37,16 +37,12 @@ public final class Device {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Device device = (Device) o;
-        return Objects.equals(id, device.id) && Objects.equals(type, device.type);
+        DeviceInformation deviceInformation = (DeviceInformation) o;
+        return Objects.equals(id, deviceInformation.id) && Objects.equals(type, deviceInformation.type);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, type);
-    }
-
-    public void delete() {
-
     }
 }

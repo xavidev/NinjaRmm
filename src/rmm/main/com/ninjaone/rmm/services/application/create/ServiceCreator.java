@@ -3,7 +3,7 @@ package com.ninjaone.rmm.services.application.create;
 
 import com.ninjaone.rmm.services.domain.ServiceRepository;
 import com.ninjaone.rmm.services.domain.DuplicateServiceException;
-import com.ninjaone.rmm.services.domain.model.Service;
+import com.ninjaone.rmm.services.domain.model.ServiceInformation;
 import com.ninjaone.rmm.services.domain.model.ServiceId;
 import com.ninjaone.rmm.services.domain.model.ServiceName;
 import com.ninjaone.shared.domain.criteria.*;
@@ -30,7 +30,7 @@ public final class ServiceCreator {
           throw new DuplicateServiceException(new ServiceName(name));
         }
 
-        var service = Service.create(new ServiceId(id), new ServiceName(name), cost);
+        var service = ServiceInformation.create(new ServiceId(id), new ServiceName(name), cost);
 
         repository.save(service);
     }

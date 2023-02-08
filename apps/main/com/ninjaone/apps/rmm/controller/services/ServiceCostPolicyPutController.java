@@ -24,7 +24,7 @@ public final class ServiceCostPolicyPutController extends ApiController {
 
     @PutMapping("/services/{id}/cost")
     public ResponseEntity<String> index(@PathVariable String id, @RequestBody ServiceCostRequest request) {
-        dispatch(new AssignServiceCostPolicyCommand(id, request.cost(), request.deviceType()));
+        dispatch(new AssignServiceCostPolicyCommand(id, request.policyType(), request.policyValue()));
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -39,22 +39,22 @@ public final class ServiceCostPolicyPutController extends ApiController {
 }
 
 final class ServiceCostRequest {
-    private String deviceType;
-    private double cost;
+    private String policyType;
+    private String policyValue;
 
-    public String deviceType() {
-        return deviceType;
+    public String policyType() {
+        return policyType;
     }
 
-    public double cost() {
-        return cost;
+    public void setPolicyType(String policyType) {
+        this.policyType = policyType;
     }
 
-    public void setDeviceType(String deviceType) {
-        this.deviceType = deviceType;
+    public String policyValue() {
+        return policyValue;
     }
 
-    public void setCost(double cost) {
-        this.cost = cost;
+    public void setPolicyValue(String policyValue) {
+        this.policyValue = policyValue;
     }
 }

@@ -2,25 +2,25 @@ package com.ninjaone.rmm.services.domain.model;
 
 import java.util.*;
 
-public class Service {
+public class ServiceInformation {
     private ServiceId id;
     private ServiceName name;
     private double cost;
     private List<ServiceCostPolicy> costPolicies;
 
-    private Service(ServiceId id, ServiceName name, double cost) {
+    private ServiceInformation(ServiceId id, ServiceName name, double cost) {
         this.id = id;
         this.name = name;
         this.cost = cost;
         this.costPolicies = new ArrayList<>();
     }
 
-    private Service() {
+    private ServiceInformation() {
 
     }
 
-    public static Service create(ServiceId id, ServiceName name, double cost) {
-        return new Service(id, name, cost);
+    public static ServiceInformation create(ServiceId id, ServiceName name, double cost) {
+        return new ServiceInformation(id, name, cost);
     }
 
     public void addCostPolicy(ServiceCostPolicy policy) {
@@ -43,7 +43,7 @@ public class Service {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Service that = (Service) o;
+        ServiceInformation that = (ServiceInformation) o;
         return Objects.equals(id, that.id) && Objects.equals(name, that.name);
     }
 

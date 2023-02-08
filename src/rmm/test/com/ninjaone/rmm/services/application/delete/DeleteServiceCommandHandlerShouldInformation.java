@@ -2,11 +2,11 @@ package com.ninjaone.rmm.services.application.delete;
 
 import com.ninjaone.rmm.services.ServicesModuleUnitTestCase;
 import com.ninjaone.rmm.services.domain.ServiceMother;
-import com.ninjaone.rmm.services.domain.model.Service;
+import com.ninjaone.rmm.services.domain.model.ServiceInformation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class DeleteServiceCommandHandlerShould extends ServicesModuleUnitTestCase {
+class DeleteServiceCommandHandlerShouldInformation extends ServicesModuleUnitTestCase {
 
     private ServiceDeleter subject;
     private DeleteServiceCommandHandler handler;
@@ -21,21 +21,21 @@ class DeleteServiceCommandHandlerShould extends ServicesModuleUnitTestCase {
 
     @Test
     void delete_a_service() {
-        Service service = ServiceMother.random();
+        ServiceInformation serviceInformation = ServiceMother.random();
 
-        shouldSearch(service);
+        shouldSearch(serviceInformation);
 
-        handler.handle(new DeleteServiceCommand(service.id()));
+        handler.handle(new DeleteServiceCommand(serviceInformation.id()));
 
-        shouldDelete(service);
+        shouldDelete(serviceInformation);
     }
 
     @Test
     void not_delete_not_existent_service() {
-        Service service = ServiceMother.random();
+        ServiceInformation serviceInformation = ServiceMother.random();
 
-        handler.handle(new DeleteServiceCommand(service.id()));
+        handler.handle(new DeleteServiceCommand(serviceInformation.id()));
 
-        shouldNotDelete(service);
+        shouldNotDelete(serviceInformation);
     }
 }

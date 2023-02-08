@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.ninjaone.rmm.devices.domain.model.Device" table="devices">
+    <class name="com.ninjaone.rmm.devices.domain.model.DeviceInformation" table="devices">
         <composite-id name="id" class="com.ninjaone.rmm.devices.domain.model.DeviceId" access="field">
             <key-property column="id" name="value" length="36" access="field" />
         </composite-id>

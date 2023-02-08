@@ -3,7 +3,7 @@ package com.ninjaone.apps.rmmcustomers.controller.devices;
 import com.ninjaone.apps.ApplicationTestCase;
 import org.junit.jupiter.api.Test;
 
-class CustomerDevicePutControllerShould extends ApplicationTestCase {
+class CustomerDevicePutControllerShouldInformation extends ApplicationTestCase {
 
     @Test
     void create_customer_device() throws Exception {

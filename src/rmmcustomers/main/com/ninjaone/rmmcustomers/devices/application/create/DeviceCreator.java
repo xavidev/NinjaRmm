@@ -1,22 +1,44 @@
 package com.ninjaone.rmmcustomers.devices.application.create;
 
+import com.ninjaone.rmm.devices.application.FindDeviceByIdQuery;
+import com.ninjaone.rmmcustomers.devices.domain.CustomerDeviceRepository;
 import com.ninjaone.rmmcustomers.devices.domain.model.CustomerDevice;
 import com.ninjaone.shared.domain.Service;
-import com.ninjaone.shared.domain.bus.command.CommandBus;
+import com.ninjaone.shared.domain.bus.event.EventBus;
+import com.ninjaone.shared.domain.bus.query.QueryBus;
 
-import java.util.List;
+import java.util.UUID;
 
 @Service
-public final class DeviecCreator {
-    public DeviecCreator(CommandBus bus) {
-        this.customerDeviceRepository = customerDeviceRepository;
+public final class DeviceCreator {
+    private final CustomerDeviceRepository repository;
+    private final EventBus eventBus;
+    private final QueryBus queryBus;
+
+    public DeviceCreator(CustomerDeviceRepository repository, EventBus eventBus, QueryBus queryBus) {
+
+        this.repository = repository;
+        this.eventBus = eventBus;
+        this.queryBus = queryBus;
     }
 
-    public void create(String customerId, String deviceId, List<String> services){
+    public void create(String deviceId, String customerId) {
 
+        ensureDeviceExist(deviceId);
 
-        CustomerDevice device = CustomerDevice.create(customerId, deviceId, services);
+        if (repository.existsById(UUID.fromString(deviceId))) {
+            return;
+        }
 
-        customerDeviceRepository.save(device);
+        CustomerDevice device = CustomerDevice.create(
+            deviceId,
+            customerId
+        );
+
+        eventBus.publish(device.pullDomainEvents());
+    }
+
+    private void ensureDeviceExist(String deviceId) {
+        queryBus.ask(new FindDeviceByIdQuery(deviceId));
     }
 }

@@ -2,8 +2,7 @@ package com.ninjaone.rmm.services.application.assigncost;
 
 import com.ninjaone.rmm.services.domain.ServiceNotExistException;
 import com.ninjaone.rmm.services.domain.ServiceRepository;
-import com.ninjaone.rmm.services.domain.model.Service;
-import com.ninjaone.rmm.services.domain.model.ServiceId;
+import com.ninjaone.rmm.services.domain.model.*;
 
 @com.ninjaone.shared.domain.Service
 public final class ServiceCostPolicyAssigner {
@@ -13,12 +12,12 @@ public final class ServiceCostPolicyAssigner {
         this.serviceRepository = serviceRepository;
     }
 
-    public void assign(String serviceId, double cost, String deviceType) {
-        Service service = serviceRepository.search(new ServiceId(serviceId)).
+    public void assign(String serviceId, String policyType, String policyValue) {
+        ServiceInformation serviceInformation = serviceRepository.search(new ServiceId(serviceId)).
             orElseThrow(() -> new ServiceNotExistException(new ServiceId(serviceId)));
 
-        service.addCostPolicy(cost, deviceType);
+        serviceInformation.addCostPolicy(CostPolicy.makeFor(policyType, policyValue));
 
-        serviceRepository.save(service);
+        serviceRepository.save(serviceInformation);
     }
 }

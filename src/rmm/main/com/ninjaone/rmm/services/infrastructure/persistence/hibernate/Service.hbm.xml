@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.ninjaone.rmm.services.domain.model.Service" table="services">
+    <class name="com.ninjaone.rmm.services.domain.model.ServiceInformation" table="services">
         <composite-id name="id" class="com.ninjaone.rmm.services.domain.model.ServiceId" access="field">
             <key-property column="id" name="value" length="36" access="field" />
         </composite-id>

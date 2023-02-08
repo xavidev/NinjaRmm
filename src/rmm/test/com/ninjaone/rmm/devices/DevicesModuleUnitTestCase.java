@@ -1,10 +1,8 @@
 package com.ninjaone.rmm.devices;
 
-import com.ninjaone.rmm.devices.domain.DeviceRepository;
-import com.ninjaone.rmm.devices.domain.model.Device;
+import com.ninjaone.rmm.devices.domain.DeviceInformationRepository;
+import com.ninjaone.rmm.devices.domain.model.DeviceInformation;
 import com.ninjaone.rmm.devices.domain.model.DeviceId;
-import com.ninjaone.rmm.services.domain.model.Service;
-import com.ninjaone.rmm.services.domain.model.ServiceId;
 import com.ninjaone.shared.infrastructure.UnitTestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
@@ -15,25 +13,25 @@ import static org.mockito.Mockito.*;
 
 public class DevicesModuleUnitTestCase extends UnitTestCase {
 
-    protected DeviceRepository repository;
+    protected DeviceInformationRepository repository;
     @BeforeEach
     protected void setUp(){
-        repository = mock(DeviceRepository.class);
+        repository = mock(DeviceInformationRepository.class);
     }
 
-    public void shouldSearch(Device device) {
-        Mockito.when(repository.search(new DeviceId(device.id()))).thenReturn(Optional.of(device));
+    public void shouldSearch(DeviceInformation deviceInformation) {
+        Mockito.when(repository.search(new DeviceId(deviceInformation.id()))).thenReturn(Optional.of(deviceInformation));
     }
 
-    protected void shouldHaveSaved(Device device) {
-        verify(repository, atLeastOnce()).save(device);
+    protected void shouldHaveSaved(DeviceInformation deviceInformation) {
+        verify(repository, atLeastOnce()).save(deviceInformation);
     }
 
-    protected void shouldDelete(Device device) {
-        verify(repository, atLeastOnce()).delete(device);
+    protected void shouldDelete(DeviceInformation deviceInformation) {
+        verify(repository, atLeastOnce()).delete(deviceInformation);
     }
 
-    protected void shouldNotDelete(Device device) {
-        verify(repository, never()).delete(device);
+    protected void shouldNotDelete(DeviceInformation deviceInformation) {
+        verify(repository, never()).delete(deviceInformation);
     }
 }

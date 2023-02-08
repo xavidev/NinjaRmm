@@ -13,6 +13,6 @@ public final class AssignServiceCostPolicyCommandHandler implements CommandHandl
 
     @Override
     public void handle(AssignServiceCostPolicyCommand command) {
-        costPolicyAssigner.assign(command.serviceId(), command.cost(), command.deviceType());
+        costPolicyAssigner.assign(command.serviceId(), command.policyType(), command.policyValue());
     }
 }

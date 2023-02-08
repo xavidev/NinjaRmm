@@ -1,7 +1,7 @@
 package com.ninjaone.rmm.devices.application.delete;
 
-import com.ninjaone.rmm.devices.domain.DeviceRepository;
-import com.ninjaone.rmm.devices.domain.model.Device;
+import com.ninjaone.rmm.devices.domain.DeviceInformationRepository;
+import com.ninjaone.rmm.devices.domain.model.DeviceInformation;
 import com.ninjaone.rmm.devices.domain.model.DeviceId;
 import com.ninjaone.shared.domain.Service;
 
@@ -9,20 +9,20 @@ import java.util.Optional;
 
 @Service
 public final class DeviceDeleter {
-    private final DeviceRepository repository;
+    private final DeviceInformationRepository repository;
 
-    public DeviceDeleter(DeviceRepository repository) {
+    public DeviceDeleter(DeviceInformationRepository repository) {
         this.repository = repository;
     }
 
     public void delete(String id) {
-        Optional<Device> device = repository.search(new DeviceId(id));
+        Optional<DeviceInformation> device = repository.search(new DeviceId(id));
 
         if (device.isEmpty()) {
             return;
         }
 
-        Device toDelete = device.get();
+        DeviceInformation toDelete = device.get();
         repository.delete(toDelete);
         toDelete.delete();
     }

@@ -1,7 +1,7 @@
 package com.ninjaone.rmm.services.application.delete;
 
 import com.ninjaone.rmm.services.domain.ServiceRepository;
-import com.ninjaone.rmm.services.domain.model.Service;
+import com.ninjaone.rmm.services.domain.model.ServiceInformation;
 import com.ninjaone.rmm.services.domain.model.ServiceId;
 
 import java.util.Optional;
@@ -15,13 +15,13 @@ public final class ServiceDeleter {
     }
 
     public void delete(String id) {
-        Optional<Service> service = repository.search(new ServiceId(id));
+        Optional<ServiceInformation> service = repository.search(new ServiceId(id));
 
         if (service.isEmpty()) {
             return;
         }
 
-        Service toDelete = service.get();
+        ServiceInformation toDelete = service.get();
         repository.delete(toDelete);
         toDelete.delete();
     }

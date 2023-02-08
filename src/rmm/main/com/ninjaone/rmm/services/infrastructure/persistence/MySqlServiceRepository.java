@@ -1,7 +1,7 @@
 package com.ninjaone.rmm.services.infrastructure.persistence;
 
 import com.ninjaone.rmm.services.domain.ServiceRepository;
-import com.ninjaone.rmm.services.domain.model.Service;
+import com.ninjaone.rmm.services.domain.model.ServiceInformation;
 import com.ninjaone.rmm.services.domain.model.ServiceId;
 import com.ninjaone.shared.domain.criteria.Criteria;
 import com.ninjaone.shared.infrastructure.hibernate.HibernateRepository;
@@ -14,28 +14,28 @@ import java.util.Optional;
 
 @com.ninjaone.shared.domain.Service
 @Transactional
-public class MySqlServiceRepository extends HibernateRepository<Service> implements ServiceRepository {
+public class MySqlServiceRepository extends HibernateRepository<ServiceInformation> implements ServiceRepository {
     public MySqlServiceRepository(SessionFactory sessionFactory) {
-        super(sessionFactory, Service.class);
+        super(sessionFactory, ServiceInformation.class);
     }
 
     @Override
-    public void save(Service service) {
-        persist(service);
+    public void save(ServiceInformation serviceInformation) {
+        persist(serviceInformation);
     }
 
     @Override
-    public List<Service> matching(Criteria criteria) {
+    public List<ServiceInformation> matching(Criteria criteria) {
         return byCriteria(criteria);
     }
 
     @Override
-    public Optional<Service> search(ServiceId id) {
+    public Optional<ServiceInformation> search(ServiceId id) {
         return byId(id);
     }
 
     @Override
-    public void delete(Service service) {
-        remove(service);
+    public void delete(ServiceInformation serviceInformation) {
+        remove(serviceInformation);
     }
 }

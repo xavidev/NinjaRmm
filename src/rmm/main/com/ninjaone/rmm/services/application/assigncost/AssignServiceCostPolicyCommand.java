@@ -3,26 +3,27 @@ package com.ninjaone.rmm.services.application.assigncost;
 import com.ninjaone.shared.domain.bus.command.Command;
 
 public final class AssignServiceCostPolicyCommand implements Command {
-    private String serviceId;
-    private double cost;
-    private String deviceType;
+    private final String serviceId;
+    private final String policyType;
+    private final String policyValue;
 
-    public AssignServiceCostPolicyCommand(String serviceId, double cost, String deviceType) {
+    public AssignServiceCostPolicyCommand(String serviceId, String policyType, String policyValue) {
+
 
         this.serviceId = serviceId;
-        this.cost = cost;
-        this.deviceType = deviceType;
+        this.policyType = policyType;
+        this.policyValue = policyValue;
     }
 
     public String serviceId() {
         return serviceId;
     }
 
-    public double cost() {
-        return cost;
+    public String policyType() {
+        return policyType;
     }
 
-    public String deviceType() {
-        return deviceType;
+    public String policyValue() {
+        return policyValue;
     }
 }

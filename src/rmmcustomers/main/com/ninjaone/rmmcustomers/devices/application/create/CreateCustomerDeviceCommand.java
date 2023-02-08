@@ -2,18 +2,13 @@ package com.ninjaone.rmmcustomers.devices.application.create;
 
 import com.ninjaone.shared.domain.bus.command.Command;
 
-import java.util.List;
+public final class CreateCustomerDeviceCommand implements Command {
+    private final String deviceId;
+    private final String customerId;
 
-public final class CreateCustomerDevice implements Command {
-    private String deviceId;
-    private String customerId;
-    private List<String> services;
-
-    public CreateCustomerDevice(String deviceId, String customerId, List<String> services) {
-
+    public CreateCustomerDeviceCommand(String deviceId, String customerId) {
         this.deviceId = deviceId;
         this.customerId = customerId;
-        this.services = services;
     }
 
     public String deviceId() {
@@ -22,9 +17,5 @@ public final class CreateCustomerDevice implements Command {
 
     public String customerId() {
         return customerId;
-    }
-
-    public List<String> services() {
-        return services;
     }
 }

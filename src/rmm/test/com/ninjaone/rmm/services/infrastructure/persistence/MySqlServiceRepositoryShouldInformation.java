@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-class MySqlServiceRepositoryShould extends ServicesModuleInfrastructureTestCase {
+class MySqlServiceRepositoryShouldInformation extends ServicesModuleInfrastructureTestCase {
 
     @Test
     void save_a_service() {

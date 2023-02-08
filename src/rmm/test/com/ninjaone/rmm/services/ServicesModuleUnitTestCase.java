@@ -1,7 +1,7 @@
 package com.ninjaone.rmm.services;
 
 import com.ninjaone.rmm.services.domain.ServiceRepository;
-import com.ninjaone.rmm.services.domain.model.Service;
+import com.ninjaone.rmm.services.domain.model.ServiceInformation;
 import com.ninjaone.rmm.services.domain.model.ServiceId;
 import com.ninjaone.shared.infrastructure.UnitTestCase;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,23 +20,23 @@ public abstract class ServicesModuleUnitTestCase extends UnitTestCase {
         serviceRepository = mock(ServiceRepository.class);
     }
 
-    public void shouldHaveSaved(Service service) {
-        verify(serviceRepository, atLeastOnce()).save(service);
+    public void shouldHaveSaved(ServiceInformation serviceInformation) {
+        verify(serviceRepository, atLeastOnce()).save(serviceInformation);
     }
 
-    public void shouldNotSave(Service service) {
-        verify(serviceRepository, never()).save(service);
+    public void shouldNotSave(ServiceInformation serviceInformation) {
+        verify(serviceRepository, never()).save(serviceInformation);
     }
 
-    public void shouldSearch(Service service) {
-        Mockito.when(serviceRepository.search(new ServiceId(service.id()))).thenReturn(Optional.of(service));
+    public void shouldSearch(ServiceInformation serviceInformation) {
+        Mockito.when(serviceRepository.search(new ServiceId(serviceInformation.id()))).thenReturn(Optional.of(serviceInformation));
     }
 
-    protected void shouldDelete(Service service) {
-        verify(serviceRepository, atLeastOnce()).delete(service);
+    protected void shouldDelete(ServiceInformation serviceInformation) {
+        verify(serviceRepository, atLeastOnce()).delete(serviceInformation);
     }
 
-    protected void shouldNotDelete(Service service) {
-        verify(serviceRepository, never()).delete(service);
+    protected void shouldNotDelete(ServiceInformation serviceInformation) {
+        verify(serviceRepository, never()).delete(serviceInformation);
     }
 }

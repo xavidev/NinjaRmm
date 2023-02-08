@@ -1,6 +1,6 @@
 package com.ninjaone.rmm.devices.infrastructure.persistence;
 
-import com.ninjaone.rmm.devices.domain.DeviceRepository;
+import com.ninjaone.rmm.devices.domain.DeviceInformationRepository;
 import com.ninjaone.rmm.devices.domain.model.DeviceInformation;
 import com.ninjaone.rmm.devices.domain.model.DeviceId;
 import com.ninjaone.shared.domain.criteria.Criteria;
@@ -13,8 +13,8 @@ import java.util.Optional;
 
 @com.ninjaone.shared.domain.Service
 @Transactional
-public class MySqlDeviceRepository extends HibernateRepository<DeviceInformation> implements DeviceRepository {
-    public MySqlDeviceRepository(SessionFactory sessionFactory) {
+public class MySqlDeviceInformationRepository extends HibernateRepository<DeviceInformation> implements DeviceInformationRepository {
+    public MySqlDeviceInformationRepository(SessionFactory sessionFactory) {
         super(sessionFactory, DeviceInformation.class);
     }
 

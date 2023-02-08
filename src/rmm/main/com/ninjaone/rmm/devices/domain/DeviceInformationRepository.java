@@ -7,7 +7,7 @@ import com.ninjaone.shared.domain.criteria.Criteria;
 import java.util.List;
 import java.util.Optional;
 
-public interface DeviceRepository {
+public interface DeviceInformationRepository {
     void save(DeviceInformation deviceInformation);
 
     List<DeviceInformation> matching(Criteria criteria);
