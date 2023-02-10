@@ -26,9 +26,8 @@ class ServiceOrderPutControllerShould extends ApplicationTestCase {
             """;
         assertRequestWithBody(
             "PUT",
-            "/services/322d91b8-441e-48f3-b223-ecc01eeb517d/order/",
+            "/services/322d91b8-441e-48f3-b223-ecc01eeb517d/order/0f91e69d-ed92-482f-aefb-fc54046ad05b",
             orderRequest,
             CREATED);
     }
-
 }
