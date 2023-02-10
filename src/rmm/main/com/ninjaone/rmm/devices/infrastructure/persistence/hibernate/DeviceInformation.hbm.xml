@@ -13,7 +13,7 @@
             <property name="value" column="type" type="string" access="field" />
         </component>
 
-        <property name="price" column="price" access="field" type="double"/>
+        <property name="cost" column="price" access="field" type="double"/>
 
     </class>
 </hibernate-mapping>

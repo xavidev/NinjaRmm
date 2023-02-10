@@ -20,13 +20,11 @@ CREATE TABLE IF NOT EXISTS devices (
     DEFAULT CHARSET = utf8mb4
     COLLATE = utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS services_cost (
+CREATE TABLE IF NOT EXISTS service_orders (
     id       CHAR(36)     NOT NULL,
     serviceId     CHAR(36)     NOT NULL,
     deviceId     CHAR(36)     NOT NULL,
     customerId     CHAR(36)     NOT NULL,
-    name     CHAR(36)     NOT NULL,
-    price     DOUBLE,
     PRIMARY KEY (id)
     )
     ENGINE = InnoDB
@@ -34,11 +32,11 @@ CREATE TABLE IF NOT EXISTS services_cost (
     COLLATE = utf8mb4_unicode_ci;
 
 
-CREATE TABLE IF NOT EXISTS devices_cost (
+CREATE TABLE IF NOT EXISTS device_orders (
     id       CHAR(36)     NOT NULL,
     deviceId     CHAR(36)     NOT NULL,
     customerId     CHAR(36)     NOT NULL,
-    price     DOUBLE,
+    name VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
     )
     ENGINE = InnoDB

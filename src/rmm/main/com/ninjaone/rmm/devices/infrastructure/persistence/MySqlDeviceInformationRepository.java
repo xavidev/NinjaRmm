@@ -15,7 +15,7 @@ import java.util.Optional;
 @com.ninjaone.shared.domain.Service
 @Transactional("rmm-transaction_manager")
 public class MySqlDeviceInformationRepository extends HibernateRepository<DeviceInformation> implements DeviceInformationRepository {
-    public MySqlDeviceInformationRepository(@Qualifier("rmm-session-factory") SessionFactory sessionFactory) {
+    public MySqlDeviceInformationRepository(@Qualifier("rmm-session_factory") SessionFactory sessionFactory) {
         super(sessionFactory, DeviceInformation.class);
     }
 

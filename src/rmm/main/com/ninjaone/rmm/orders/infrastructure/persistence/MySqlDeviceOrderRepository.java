@@ -1,12 +1,14 @@
-package com.ninjaone.rmm.orders.persistence;
+package com.ninjaone.rmm.orders.infrastructure.persistence;
 
 import com.ninjaone.rmm.orders.domain.DeviceOrderRepository;
 import com.ninjaone.rmm.orders.domain.model.DeviceOrder;
+import com.ninjaone.shared.domain.Service;
 import com.ninjaone.shared.infrastructure.hibernate.HibernateRepository;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 @Transactional("rmm-transaction_manager")
 public class MySqlDeviceOrderRepository extends HibernateRepository<DeviceOrder> implements DeviceOrderRepository {
     public MySqlDeviceOrderRepository(@Qualifier("rmm-session_factory") SessionFactory sessionFactory) {

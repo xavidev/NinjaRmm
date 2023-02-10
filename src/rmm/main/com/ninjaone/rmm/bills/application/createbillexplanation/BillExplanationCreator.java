@@ -17,10 +17,12 @@ public final class BillExplanationCreator {
     }
 
     public BillExplanationResponse create(String customerId) {
-        List<BillItem> items = billItemRepository.findAllByCustomerId(customerId);
+//        List<BillItem> items = billItemRepository.findAllByCustomerId(customerId);
 
-        BillExplanation bill = BillExplanation.create(customerId, items);
+//        BillExplanation bill = BillExplanation.create(customerId, items);
 
-        return new BillExplanationResponse(bill.explain());
+//        return new BillExplanationResponse(bill.explain());
+
+        return new BillExplanationResponse("afsd");
     }
 }

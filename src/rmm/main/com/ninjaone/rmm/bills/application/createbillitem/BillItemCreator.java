@@ -29,7 +29,7 @@ public final class BillItemCreator {
             new BillItemInfo(concept, itemType, customerId),
             new Price(cost));
 
-        repository.save(item);
+//        repository.save(item);
 
         bus.publish(item.pullDomainEvents());
     }
