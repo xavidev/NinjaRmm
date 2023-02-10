@@ -2,16 +2,15 @@ package com.ninjaone.rmm.orders.create;
 
 import com.ninjaone.rmm.devices.application.find.FindDeviceByIdQuery;
 import com.ninjaone.rmm.orders.domain.ServiceOrderRepository;
-import com.ninjaone.rmm.orders.domain.model.OrderName;
 import com.ninjaone.rmm.orders.domain.model.ServiceOrder;
 import com.ninjaone.rmm.orders.domain.model.ServiceOrderId;
+import com.ninjaone.rmm.services.application.find.FindServiceByIdQuery;
 import com.ninjaone.shared.domain.CustomerId;
 import com.ninjaone.shared.domain.DeviceId;
 import com.ninjaone.shared.domain.Service;
 import com.ninjaone.shared.domain.ServiceId;
 import com.ninjaone.shared.domain.bus.event.EventBus;
 import com.ninjaone.shared.domain.bus.query.QueryBus;
-import com.ninjaone.rmm.services.application.find.FindServiceByIdQuery;
 
 @Service
 public final class ServiceOrderCreator {
@@ -27,16 +26,14 @@ public final class ServiceOrderCreator {
     }
 
     public void create(String id, String serviceId, String deviceId, String customerId) {
-
-        ensureServiceExist(serviceId);
         ensureDeviceExist(deviceId);
+        ensureServiceExist(serviceId);
 
         ServiceOrder service = ServiceOrder.create(
             new ServiceOrderId(id),
-            new ServiceId(id),
-            new DeviceId(id),
-            new CustomerId(customerId),
-            new OrderName("pepe")
+            new ServiceId(serviceId),
+            new DeviceId(deviceId),
+            new CustomerId(customerId)
         );
 
         repository.save(service);

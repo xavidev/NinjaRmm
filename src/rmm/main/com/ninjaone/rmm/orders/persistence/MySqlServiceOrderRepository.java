@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional("rmm-transaction_manager")
-public class MySqlCustomerServiceRepository extends HibernateRepository<ServiceOrder> implements ServiceOrderRepository {
-    public MySqlCustomerServiceRepository(@Qualifier("rmm-session_factory") SessionFactory sessionFactory) {
+public class MySqlServiceOrderRepository extends HibernateRepository<ServiceOrder> implements ServiceOrderRepository {
+    public MySqlServiceOrderRepository(@Qualifier("rmm-session_factory") SessionFactory sessionFactory) {
         super(sessionFactory, ServiceOrder.class);
     }
 

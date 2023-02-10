@@ -15,6 +15,6 @@ public final class CreateServiceOrderCommandHandler implements CommandHandler<Cr
 
     @Override
     public void handle(CreateServiceOrderCommand command) {
-        creator.create(command.customerServiceId(), command.serviceId(), command.deviceId(), command.customerId());
+        creator.create(command.orderId(),command.serviceId(), command.deviceId(), command.customerId());
     }
 }

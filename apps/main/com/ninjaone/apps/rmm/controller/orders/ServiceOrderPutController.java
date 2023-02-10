@@ -22,7 +22,7 @@ public final class ServiceOrderPutController {
         @PathVariable String id,
         @RequestBody ServiceRequest request) {
 
-        bus.dispatch(new CreateServiceOrderCommand(serviceId, id, request.getDeviceId(), request.getCustomerId()));
+        bus.dispatch(new CreateServiceOrderCommand(id, serviceId, request.getDeviceId(), request.getCustomerId()));
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

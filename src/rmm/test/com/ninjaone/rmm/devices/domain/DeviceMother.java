@@ -12,4 +12,8 @@ public final class DeviceMother {
     public static DeviceInformation Mac() {
         return DeviceInformation.create(UuidMother.random(), "Mac", 50);
     }
+
+    public static DeviceInformation random() {
+        return null;
+    }
 }

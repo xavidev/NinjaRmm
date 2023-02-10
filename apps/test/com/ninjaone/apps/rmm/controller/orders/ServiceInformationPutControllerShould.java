@@ -3,7 +3,7 @@ package com.ninjaone.apps.rmm.controller.orders;
 import com.ninjaone.apps.ApplicationTestCase;
 import org.junit.jupiter.api.Test;
 
-class ServiceOrderPutControllerShould extends ApplicationTestCase {
+class ServiceInformationPutControllerShould extends ApplicationTestCase {
 
     @Test
     void should_create_new_service_order_for_existent_service_and_device() throws Exception {

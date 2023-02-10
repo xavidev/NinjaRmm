@@ -6,52 +6,62 @@ import com.ninjaone.shared.domain.CustomerId;
 import com.ninjaone.shared.domain.DeviceId;
 import com.ninjaone.shared.domain.ServiceId;
 
+import java.util.Objects;
+
 public class ServiceOrder extends AggregateRoot {
 
     private ServiceOrderId id;
     private ServiceId serviceId;
-
-    private OrderName name;
     private DeviceId deviceId;
     private CustomerId customerId;
 
-    private ServiceOrder(ServiceOrderId id, ServiceId serviceId, DeviceId deviceId, CustomerId customerId, OrderName name) {
+    private ServiceOrder(ServiceOrderId id, ServiceId serviceId, DeviceId deviceId, CustomerId customerId) {
         this.id = id;
         this.serviceId = serviceId;
         this.deviceId = deviceId;
         this.customerId = customerId;
-        this.name = name;
 
-        record(new ServiceOrderCreatedDomainEvent(id.value(), deviceId.value(), serviceId.value(), customerId.value(), name.value()));
+        record(new ServiceOrderCreatedDomainEvent(id.value(), deviceId.value(), serviceId.value(), customerId.value()));
     }
 
-    public static ServiceOrder create(ServiceOrderId id, ServiceId serviceId, DeviceId deviceId, CustomerId customerId, OrderName name) {
+    public static ServiceOrder create(ServiceOrderId id, ServiceId serviceId, DeviceId deviceId, CustomerId customerId) {
         return new ServiceOrder(
             id,
             serviceId,
             deviceId,
-            customerId,
-            name
+            customerId
         );
     }
 
     public String id() {
-        return id.toString();
+        return id.value();
     }
 
     public String serviceId() {
-        return serviceId.toString();
+        return serviceId.value();
     }
 
     public String deviceId() {
-        return deviceId.toString();
+        return deviceId.value();
     }
 
     public String customerId() {
-        return customerId.toString();
+        return customerId.value();
     }
 
-    public String name() {
-        return name.value();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ServiceOrder that = (ServiceOrder) o;
+        return Objects.equals(id, that.id) &&
+            Objects.equals(serviceId, that.serviceId) &&
+            Objects.equals(deviceId, that.deviceId) &&
+            Objects.equals(customerId, that.customerId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, serviceId, deviceId, customerId);
     }
 }

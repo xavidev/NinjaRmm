@@ -29,7 +29,8 @@ public abstract class ServicesModuleUnitTestCase extends UnitTestCase {
     }
 
     public void shouldSearch(ServiceInformation serviceInformation) {
-        Mockito.when(serviceInformationRepository.search(new ServiceId(serviceInformation.id()))).thenReturn(Optional.of(serviceInformation));
+        Mockito.when(serviceInformationRepository.search(new ServiceId(serviceInformation.id())))
+            .thenReturn(Optional.of(serviceInformation));
     }
 
     protected void shouldDelete(ServiceInformation serviceInformation) {

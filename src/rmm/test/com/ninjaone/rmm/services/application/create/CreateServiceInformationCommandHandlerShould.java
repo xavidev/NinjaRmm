@@ -5,7 +5,7 @@ import com.ninjaone.rmm.services.domain.ServiceMother;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class CreateServiceCommandHandlerShouldInformation extends ServicesModuleUnitTestCase {
+class CreateServiceInformationCommandHandlerShould extends ServicesModuleUnitTestCase {
 
     private ServiceCreator subject;
     private CreateServiceCommandHandler handler;
