@@ -7,7 +7,6 @@ import com.ninjaone.rmm.devices.application.find.FindDeviceByIdQuery;
 import com.ninjaone.rmm.devices.domain.DeviceInformationMother;
 import com.ninjaone.rmm.devices.domain.DeviceOrderMother;
 import com.ninjaone.rmm.orders.domain.ServiceOrderMother;
-import com.ninjaone.rmm.services.application.ServiceResponseMother;
 import com.ninjaone.rmm.services.domain.ServiceInformationMother;
 import com.ninjaone.shared.domain.ServiceOrderCreatedDomainEventMother;
 import org.junit.jupiter.api.BeforeEach;
