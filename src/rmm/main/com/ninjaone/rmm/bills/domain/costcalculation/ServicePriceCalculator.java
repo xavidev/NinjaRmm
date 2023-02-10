@@ -9,7 +9,7 @@ import com.ninjaone.shared.domain.bus.query.QueryBus;
 @Service
 public class ServicePriceCalculator {
 
-    private QueryBus queryBus;
+    private final QueryBus queryBus;
 
     public ServicePriceCalculator(QueryBus queryBus) {
         this.queryBus = queryBus;
@@ -19,6 +19,8 @@ public class ServicePriceCalculator {
 
         ServiceResponse service = queryBus.ask(new FindServiceByIdQuery(serviceId));
 
-        return service.cost();
+
+//        return response.cost();
+        return new Price("0");
     }
 }

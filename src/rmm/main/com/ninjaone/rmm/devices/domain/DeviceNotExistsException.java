@@ -1,6 +1,6 @@
 package com.ninjaone.rmm.devices.domain;
 
-import com.ninjaone.shared.domain.DeviceId;
+import com.ninjaone.rmm.shared.domain.DeviceId;
 import com.ninjaone.shared.domain.DomainException;
 
 public final class DeviceNotExistsException extends DomainException {

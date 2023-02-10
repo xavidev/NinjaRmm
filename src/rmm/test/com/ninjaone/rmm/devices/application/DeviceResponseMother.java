@@ -11,6 +11,6 @@ public final class DeviceResponseMother {
     }
 
     public static DeviceResponse fromDevice(DeviceInformation device) {
-        return new DeviceResponse(device.type(), device.cost());
+        return new DeviceResponse(device.id(), device.type(), device.cost());
     }
 }

@@ -1,6 +1,6 @@
 package com.ninjaone.rmm.services.domain;
 
-import com.ninjaone.shared.domain.ServiceId;
+import com.ninjaone.rmm.shared.domain.ServiceId;
 import com.ninjaone.shared.domain.DomainException;
 
 public final class ServiceNotExistException extends DomainException {

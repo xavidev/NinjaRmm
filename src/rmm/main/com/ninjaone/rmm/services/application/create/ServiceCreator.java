@@ -4,7 +4,7 @@ import com.ninjaone.rmm.services.application.find.FindCriteria;
 import com.ninjaone.rmm.services.domain.DuplicateServiceException;
 import com.ninjaone.rmm.services.domain.ServiceInformationRepository;
 import com.ninjaone.shared.domain.Price;
-import com.ninjaone.shared.domain.ServiceId;
+import com.ninjaone.rmm.shared.domain.ServiceId;
 import com.ninjaone.rmm.services.domain.model.ServiceInformation;
 import com.ninjaone.rmm.services.domain.model.ServiceName;
 

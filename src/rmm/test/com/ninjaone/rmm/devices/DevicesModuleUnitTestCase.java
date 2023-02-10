@@ -2,7 +2,7 @@ package com.ninjaone.rmm.devices;
 
 import com.ninjaone.rmm.devices.domain.DeviceInformationRepository;
 import com.ninjaone.rmm.devices.domain.model.DeviceInformation;
-import com.ninjaone.shared.domain.DeviceId;
+import com.ninjaone.rmm.shared.domain.DeviceId;
 import com.ninjaone.shared.infrastructure.UnitTestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;

@@ -1,6 +1,7 @@
 package com.ninjaone.shared.infrastructure.hibernate;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -67,6 +68,7 @@ public class JsonListType implements UserType, DynamicParameterizedType {
         }
         if (value != null && !value.equals("")) {
             try {
+                OBJECT_MAPPER.setSerializationInclusion(JsonInclude.Include.NON_NULL);
                 result = OBJECT_MAPPER.readValue(value, valueType);
             } catch (IOException e) {
                 throw new HibernateException("Exception deserializing value " + value, e);

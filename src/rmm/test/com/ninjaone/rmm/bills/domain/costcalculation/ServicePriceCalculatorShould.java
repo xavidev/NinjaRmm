@@ -1,8 +1,10 @@
 package com.ninjaone.rmm.bills.domain.costcalculation;
 
 import com.ninjaone.rmm.bills.BillsModuleUnitTestCase;
+import com.ninjaone.rmm.devices.domain.DeviceInformationMother;
 import com.ninjaone.rmm.services.application.ServiceResponseMother;
 import com.ninjaone.rmm.services.application.find.FindServiceByIdQuery;
+import com.ninjaone.rmm.services.domain.ServiceCostPolicyMother;
 import com.ninjaone.rmm.services.domain.ServiceInformationMother;
 import com.ninjaone.rmm.services.domain.model.ServiceInformation;
 import com.ninjaone.rmm.shared.domain.UuidMother;
@@ -29,6 +31,21 @@ class ServicePriceCalculatorShould extends BillsModuleUnitTestCase {
         shouldAsk(new FindServiceByIdQuery(service.id()), ServiceResponseMother.fromService(service));
 
         Price calculatedPrice = subject.priceFor(UuidMother.random(), service.id(), UuidMother.random());
+
+        assertEquals(service.cost(), calculatedPrice);
+    }
+
+    @Test
+    void should_calculate_price_for_service_with_device_type_cost_policy() {
+        var serviceDevice = DeviceInformationMother.Windows();
+
+        ServiceInformation service = ServiceInformationMother.antivirus("100");
+        service.addCostPolicy(ServiceCostPolicyMother.forDevice(DeviceInformationMother.Mac(), "150"));
+        service.addCostPolicy(ServiceCostPolicyMother.forDevice(DeviceInformationMother.Windows(), "100"));
+
+        shouldAsk(new FindServiceByIdQuery(service.id()), ServiceResponseMother.fromService(service));
+
+        Price calculatedPrice = subject.priceFor(UuidMother.random(), service.id(), serviceDevice.id());
 
         assertEquals(service.cost(), calculatedPrice);
     }

@@ -1,11 +1,10 @@
 package com.ninjaone.rmm.orders.domain.model;
 
 import com.ninjaone.rmm.orders.domain.ServiceOrderCreatedDomainEvent;
-import com.ninjaone.rmm.services.domain.model.ServiceName;
 import com.ninjaone.shared.domain.AggregateRoot;
-import com.ninjaone.shared.domain.CustomerId;
-import com.ninjaone.shared.domain.DeviceId;
-import com.ninjaone.shared.domain.ServiceId;
+import com.ninjaone.rmm.shared.domain.CustomerId;
+import com.ninjaone.rmm.shared.domain.DeviceId;
+import com.ninjaone.rmm.shared.domain.ServiceId;
 
 import java.util.Objects;
 

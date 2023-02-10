@@ -1,7 +1,10 @@
 package com.ninjaone.rmm.services.domain.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.ninjaone.rmm.services.domain.InvalidCostPolicyException;
+import com.ninjaone.rmm.shared.domain.ServiceCostPolicy;
 import com.ninjaone.shared.domain.Price;
-import com.ninjaone.shared.domain.ServiceId;
+import com.ninjaone.rmm.shared.domain.ServiceId;
 
 import java.util.*;
 
@@ -42,16 +45,6 @@ public class ServiceInformation {
         return cost;
     }
 
-    public Price costFor(String deviceType) {
-        for (ServiceCostPolicy policy : costs) {
-            if(policy.applyFor(deviceType)) {
-                return new Price(policy.cost());
-            }
-        }
-
-        return cost;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,5 +56,18 @@ public class ServiceInformation {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
+    }
+
+    public HashMap<String, String> costPolicies() {
+        var map = new HashMap<String, String>();
+        for (ServiceCostPolicy policy : costs) {
+            try {
+                map.put(policy.type(),policy.value());
+            } catch (JsonProcessingException e) {
+                throw new InvalidCostPolicyException(policy.type());
+            }
+        }
+
+        return map;
     }
 }

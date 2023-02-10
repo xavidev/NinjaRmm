@@ -5,8 +5,8 @@ import com.ninjaone.rmm.orders.domain.model.DeviceOrder;
 import com.ninjaone.rmm.orders.domain.model.DeviceOrderId;
 import com.ninjaone.rmm.orders.domain.model.OrderName;
 import com.ninjaone.rmm.shared.domain.UuidMother;
-import com.ninjaone.shared.domain.CustomerId;
-import com.ninjaone.shared.domain.DeviceId;
+import com.ninjaone.rmm.shared.domain.CustomerId;
+import com.ninjaone.rmm.shared.domain.DeviceId;
 
 public final class DeviceOrderMother {
     public static DeviceOrder from(DeviceInformation device) {

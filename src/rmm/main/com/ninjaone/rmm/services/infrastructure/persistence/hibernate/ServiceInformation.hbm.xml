@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
     <class name="com.ninjaone.rmm.services.domain.model.ServiceInformation" table="services">
-        <composite-id name="id" class="com.ninjaone.shared.domain.ServiceId" access="field">
+        <composite-id name="id" class="com.ninjaone.rmm.shared.domain.ServiceId" access="field">
             <key-property column="id" name="value" length="36" access="field" />
         </composite-id>
 
@@ -19,7 +19,7 @@
 
         <property name="costs" column="service_costs" access="field">
             <type name="json_string">
-                <param name="list_of">com.ninjaone.rmm.services.domain.model.ServiceCostPolicy</param>
+                <param name="list_of">com.ninjaone.rmm.shared.domain.ServiceCostPolicy</param>
             </type>
         </property>
     </class>

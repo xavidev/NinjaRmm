@@ -1,9 +1,13 @@
 package com.ninjaone.rmm.services.application;
 
+import com.ninjaone.rmm.services.domain.model.ServiceInformation;
 import com.ninjaone.shared.domain.Price;
 import com.ninjaone.shared.domain.bus.query.Response;
 
+import java.util.HashMap;
+
 public final class ServiceResponse implements Response {
+    private final HashMap<String, String> costPolicies;
     private String id;
     private Price cost;
     private String name;
@@ -12,6 +16,14 @@ public final class ServiceResponse implements Response {
         this.id = id;
         this.cost = cost;
         this.name = name;
+        costPolicies = null;
+    }
+
+    public ServiceResponse(ServiceInformation info) {
+        this.id = info.id();
+        this.cost = info.cost();
+        this.name = info.name();
+        this.costPolicies = info.costPolicies();
     }
 
     public Price cost() {
@@ -20,5 +32,9 @@ public final class ServiceResponse implements Response {
 
     public String name() {
         return name;
+    }
+
+    public HashMap<String, String> policies() {
+        return policies();
     }
 }

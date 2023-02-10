@@ -1,7 +1,7 @@
 package com.ninjaone.rmm.services.domain;
 
 import com.ninjaone.rmm.services.domain.model.ServiceInformation;
-import com.ninjaone.shared.domain.ServiceId;
+import com.ninjaone.rmm.shared.domain.ServiceId;
 import com.ninjaone.shared.domain.criteria.Criteria;
 
 import java.util.List;

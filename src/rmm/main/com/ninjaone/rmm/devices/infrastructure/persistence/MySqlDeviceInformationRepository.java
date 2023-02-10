@@ -2,7 +2,7 @@ package com.ninjaone.rmm.devices.infrastructure.persistence;
 
 import com.ninjaone.rmm.devices.domain.DeviceInformationRepository;
 import com.ninjaone.rmm.devices.domain.model.DeviceInformation;
-import com.ninjaone.shared.domain.DeviceId;
+import com.ninjaone.rmm.shared.domain.DeviceId;
 import com.ninjaone.shared.domain.criteria.Criteria;
 import com.ninjaone.shared.infrastructure.hibernate.HibernateRepository;
 import org.hibernate.SessionFactory;

@@ -1,4 +1,4 @@
-package com.ninjaone.shared.domain;
+package com.ninjaone.rmm.shared.domain;
 
 import com.ninjaone.shared.domain.UuidIdentifier;
 

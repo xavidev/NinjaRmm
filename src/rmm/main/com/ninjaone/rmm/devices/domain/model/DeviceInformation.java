@@ -1,6 +1,6 @@
 package com.ninjaone.rmm.devices.domain.model;
 
-import com.ninjaone.shared.domain.DeviceId;
+import com.ninjaone.rmm.shared.domain.DeviceId;
 import com.ninjaone.shared.domain.Price;
 
 import java.util.Objects;

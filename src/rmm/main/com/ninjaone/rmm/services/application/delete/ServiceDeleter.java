@@ -2,7 +2,7 @@ package com.ninjaone.rmm.services.application.delete;
 
 import com.ninjaone.rmm.services.domain.ServiceInformationRepository;
 import com.ninjaone.rmm.services.domain.model.ServiceInformation;
-import com.ninjaone.shared.domain.ServiceId;
+import com.ninjaone.rmm.shared.domain.ServiceId;
 
 import java.util.Optional;
 
