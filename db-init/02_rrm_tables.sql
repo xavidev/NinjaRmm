@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS services (
 CREATE TABLE IF NOT EXISTS devices (
     id       CHAR(36)     NOT NULL,
     type     VARCHAR(255) NOT NULL,
-    price     DOUBLE,
+    cost     DOUBLE,
     PRIMARY KEY (id)
     )
     ENGINE = InnoDB

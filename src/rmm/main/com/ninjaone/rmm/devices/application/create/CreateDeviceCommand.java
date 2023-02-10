@@ -5,9 +5,9 @@ import com.ninjaone.shared.domain.bus.command.Command;
 public final class CreateDeviceCommand implements Command {
     private String id;
     private String type;
-    private double cost;
+    private String cost;
 
-    public CreateDeviceCommand(String id, String type, double cost) {
+    public CreateDeviceCommand(String id, String type, String cost) {
         this.id = id;
         this.type = type;
         this.cost = cost;
@@ -21,7 +21,7 @@ public final class CreateDeviceCommand implements Command {
         return type;
     }
 
-    public double cost() {
+    public String cost() {
         return cost;
     }
 }

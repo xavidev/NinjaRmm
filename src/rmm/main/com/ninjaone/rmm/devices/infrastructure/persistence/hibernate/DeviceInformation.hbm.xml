@@ -13,7 +13,8 @@
             <property name="value" column="type" type="string" access="field" />
         </component>
 
-        <property name="cost" column="price" access="field" type="double"/>
-
+        <component name="cost" class="com.ninjaone.shared.domain.Price" access="field">
+            <property name="value" column="cost" type="big_decimal" access="field" />
+        </component>
     </class>
 </hibernate-mapping>

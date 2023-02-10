@@ -6,11 +6,11 @@ import com.ninjaone.rmm.shared.domain.UuidMother;
 
 public final class DeviceMother {
     public static DeviceInformation Windows() {
-        return DeviceInformation.create(UuidMother.random(), "Windows", 20);
+        return DeviceInformation.create(UuidMother.random(), "Windows", "20");
     }
 
     public static DeviceInformation Mac() {
-        return DeviceInformation.create(UuidMother.random(), "Mac", 50);
+        return DeviceInformation.create(UuidMother.random(), "Mac", "50");
     }
 
     public static DeviceInformation random() {

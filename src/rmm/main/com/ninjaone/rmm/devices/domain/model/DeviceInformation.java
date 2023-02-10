@@ -1,15 +1,16 @@
 package com.ninjaone.rmm.devices.domain.model;
 
 import com.ninjaone.shared.domain.DeviceId;
+import com.ninjaone.shared.domain.Price;
 
 import java.util.Objects;
 
 public final class DeviceInformation {
     private DeviceId id;
     private  DeviceType type;
-    private  double cost;
+    private Price cost;
 
-    private DeviceInformation(DeviceId id, DeviceType type, double cost) {
+    private DeviceInformation(DeviceId id, DeviceType type, Price cost) {
         this.id = id;
         this.type = type;
         this.cost = cost;
@@ -19,8 +20,8 @@ public final class DeviceInformation {
 
     }
 
-    public static DeviceInformation create(String id, String type, double cost) {
-        return new DeviceInformation(new DeviceId(id), new DeviceType(type), cost);
+    public static DeviceInformation create(String id, String type, String cost) {
+        return new DeviceInformation(new DeviceId(id), new DeviceType(type), new Price(cost));
     }
 
     public String id() {
@@ -31,7 +32,7 @@ public final class DeviceInformation {
         return type.value();
     }
 
-    public double cost() {
+    public Price cost() {
         return cost;
     }
 

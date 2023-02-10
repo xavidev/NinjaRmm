@@ -17,7 +17,7 @@ public final class DeviceCreator {
         this.repository = repository;
     }
 
-    public void create(String id, String type, double cost) {
+    public void create(String id, String type, String cost) {
 
         var device = repository.matching(FindCriteria.perDeviceType(type))
             .stream()

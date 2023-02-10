@@ -23,7 +23,7 @@ class CreateDeviceCommandHandlerShouldInformation extends DevicesModuleUnitTestC
     void create_new_device() {
         DeviceInformation deviceInformation = DeviceMother.Windows();
 
-        handler.handle(new CreateDeviceCommand(deviceInformation.id(), deviceInformation.type(), deviceInformation.cost()));
+        handler.handle(new CreateDeviceCommand(deviceInformation.id(), deviceInformation.type(), deviceInformation.cost().toString()));
 
         shouldHaveSaved(deviceInformation);
     }

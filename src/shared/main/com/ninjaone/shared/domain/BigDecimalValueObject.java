@@ -10,6 +10,10 @@ public class BigDecimalValueObject {
         this.value = new BigDecimal(value);
     }
 
+    protected BigDecimalValueObject(){
+        value = new BigDecimal("0");
+    }
+
     public BigDecimal value() {
         return value;
     }

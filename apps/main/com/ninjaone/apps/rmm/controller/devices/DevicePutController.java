@@ -41,7 +41,7 @@ public final class DevicePutController extends ApiController {
 class DeviceRequest {
 
     private String type;
-    private double cost;
+    private String cost;
     public DeviceRequest() {
     }
 
@@ -49,7 +49,7 @@ class DeviceRequest {
         return type;
     }
 
-    public double cost() {
+    public String cost() {
         return cost;
     }
 
@@ -57,7 +57,7 @@ class DeviceRequest {
         this.type = type;
     }
 
-    public void setCost(double cost) {
+    public void setCost(String cost) {
         this.cost = cost;
     }
 }

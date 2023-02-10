@@ -1,12 +1,14 @@
 package com.ninjaone.shared.domain;
 
-public final class Price extends BigDecimalValueObject {
+import java.math.BigDecimal;
+
+public class Price extends BigDecimalValueObject {
     public Price(String value) {
         super(value);
     }
 
-    private Price(){
-        super("");
+    protected Price(){
+        super();
     }
 
     public Price plus(Price price){
