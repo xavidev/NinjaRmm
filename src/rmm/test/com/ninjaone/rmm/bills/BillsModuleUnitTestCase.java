@@ -4,6 +4,7 @@ import com.ninjaone.rmm.bills.domain.BillItemRepository;
 import com.ninjaone.rmm.bills.domain.costcalculation.ServicePriceCalculator;
 import com.ninjaone.rmm.bills.domain.model.BillItem;
 import com.ninjaone.shared.domain.Price;
+import com.ninjaone.shared.domain.bus.query.QueryBus;
 import com.ninjaone.shared.infrastructure.UnitTestCase;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -18,6 +19,7 @@ public class BillsModuleUnitTestCase extends UnitTestCase {
         super.setUp();
         billItemRepository = mock(BillItemRepository.class);
         calculator = mock(ServicePriceCalculator.class);
+        queryBus = mock(QueryBus.class);
     }
 
     public void shouldHaveSaved(BillItem item) {
