@@ -1,7 +1,7 @@
 package com.ninjaone.rmm.services.application.delete;
 
 import com.ninjaone.rmm.services.ServicesModuleUnitTestCase;
-import com.ninjaone.rmm.services.domain.ServiceMother;
+import com.ninjaone.rmm.services.domain.ServiceInformationMother;
 import com.ninjaone.rmm.services.domain.model.ServiceInformation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ class DeleteServiceCommandHandlerShouldInformation extends ServicesModuleUnitTes
 
     @Test
     void delete_a_service() {
-        ServiceInformation serviceInformation = ServiceMother.random();
+        ServiceInformation serviceInformation = ServiceInformationMother.random();
 
         shouldSearch(serviceInformation);
 
@@ -32,7 +32,7 @@ class DeleteServiceCommandHandlerShouldInformation extends ServicesModuleUnitTes
 
     @Test
     void not_delete_not_existent_service() {
-        ServiceInformation serviceInformation = ServiceMother.random();
+        ServiceInformation serviceInformation = ServiceInformationMother.random();
 
         handler.handle(new DeleteServiceCommand(serviceInformation.id()));
 

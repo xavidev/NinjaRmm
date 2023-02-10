@@ -3,7 +3,7 @@ package com.ninjaone.apps.rmm.controller.orders;
 import com.ninjaone.apps.ApplicationTestCase;
 import org.junit.jupiter.api.Test;
 
-class ServiceInformationPutControllerShould extends ApplicationTestCase {
+class ServiceOrderPutControllerShould extends ApplicationTestCase {
 
     @Test
     void should_create_new_service_order_for_existent_service_and_device() throws Exception {
@@ -22,11 +22,11 @@ class ServiceInformationPutControllerShould extends ApplicationTestCase {
         assertRequestWithBody("PUT", "/devices/322d91b8-441e-48f3-b223-ecc01eeb517d", deviceRequest, CREATED);
 
         var orderRequest = """
-            {"deviceId":"322d91b8-441e-48f3-b223-ecc01eeb517d", "customerId":"1"}
+            {"deviceId":"322d91b8-441e-48f3-b223-ecc01eeb517d", "customerId":"caa5c9ff-65b9-4f98-a3c3-043f4b2fa15e"}
             """;
         assertRequestWithBody(
             "PUT",
-            "/services/322d91b8-441e-48f3-b223-ecc01eeb517d/order/0f91e69d-ed92-482f-aefb-fc54046ad05b",
+            "/orders/98e9d96a-686a-4b07-800a-b4415ba08efb/service/322d91b8-441e-48f3-b223-ecc01eeb517d",
             orderRequest,
             CREATED);
     }

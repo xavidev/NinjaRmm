@@ -1,15 +1,12 @@
 package com.ninjaone.rmm.orders.application.create;
 
 import com.ninjaone.rmm.devices.application.find.FindDeviceByIdQuery;
-import com.ninjaone.rmm.devices.domain.DeviceNotExistsException;
 import com.ninjaone.rmm.orders.OrdersModuleUnitTestCase;
 import com.ninjaone.rmm.orders.create.CreateServiceOrderCommandHandler;
 import com.ninjaone.rmm.orders.create.ServiceOrderCreator;
 import com.ninjaone.rmm.orders.domain.ServiceOrderCreatedDomainEventMother;
 import com.ninjaone.rmm.orders.domain.ServiceOrderMother;
 import com.ninjaone.rmm.services.application.find.FindServiceByIdQuery;
-import com.ninjaone.shared.domain.DeviceId;
-import com.ninjaone.shared.domain.bus.command.CommandHandlerExecutionError;
 import com.ninjaone.shared.domain.bus.query.QueryHandlerExecutionError;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;

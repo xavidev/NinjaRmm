@@ -5,7 +5,7 @@ import com.ninjaone.shared.domain.ServiceId;
 import com.ninjaone.rmm.services.domain.model.ServiceName;
 import com.ninjaone.rmm.shared.domain.UuidMother;
 
-public class ServiceMother {
+public class ServiceInformationMother {
     public static ServiceInformation random() {
         return ServiceInformation.create(
             new ServiceId(UuidMother.random()),
