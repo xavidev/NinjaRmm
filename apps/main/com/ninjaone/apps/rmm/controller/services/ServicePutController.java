@@ -6,6 +6,7 @@ import com.ninjaone.shared.domain.DomainException;
 import com.ninjaone.shared.domain.bus.command.CommandBus;
 import com.ninjaone.shared.domain.bus.query.QueryBus;
 import com.ninjaone.shared.infrastructure.spring.ApiController;
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,7 @@ public final class ServicePutController extends ApiController {
 
     @PutMapping("/services/{id}")
     public ResponseEntity<String> index(@PathVariable String id, @RequestBody ServiceRequest request) {
-        dispatch(new CreateServiceCommand(id, request.name(), request.cost()));
+        dispatch(new CreateServiceCommand(id, request.getName(), request.getCost()));
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -38,27 +39,11 @@ public final class ServicePutController extends ApiController {
         return errors;
     }
 }
-
+@Data
 final class ServiceRequest {
     private String name;
 
-    private double cost;
-
-    public String name() {
-        return name;
-    }
-
-    public double cost() {
-        return cost;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
+    private String cost;
 }
 
 

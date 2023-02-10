@@ -14,7 +14,7 @@ public final class ServiceCostPolicyAssigner {
         this.serviceInformationRepository = serviceInformationRepository;
     }
 
-    public void assign(String serviceId, String deviceType, double cost) {
+    public void assign(String serviceId, String deviceType, String cost) {
         ServiceInformation serviceInformation = serviceInformationRepository.search(new ServiceId(serviceId)).
             orElseThrow(() -> new ServiceNotExistException(new ServiceId(serviceId)));
 

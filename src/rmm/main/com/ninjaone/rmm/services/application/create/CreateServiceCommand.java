@@ -5,15 +5,15 @@ import com.ninjaone.shared.domain.bus.command.Command;
 public final class CreateServiceCommand implements Command {
     private String id;
     private String name;
-    private double cost;
+    private String cost;
 
-    public CreateServiceCommand(String id, String name, double cost) {
+    public CreateServiceCommand(String id, String name, String cost) {
         this.id = id;
         this.name = name;
         this.cost = cost;
     }
 
-    public double cost() {
+    public String cost() {
         return cost;
     }
 

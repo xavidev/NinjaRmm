@@ -8,10 +8,10 @@ class ServiceCostPolicyPutControllerShould extends ApplicationTestCase {
     @Test
     void asign_cost_to_an_existent_service() throws Exception {
         var service = """
-            {"name":"random"}
+            {"name":"random", "cost":"5"}
             """;
         var price = """
-            {"deviceType":"MAC", "price":"10"}
+            {"deviceType":"MAC", "cost":"10"}
             """;
 
         assertRequestWithBody("PUT", "/services/322d91b8-441e-48f3-b223-ecc01eeb517d", service, CREATED);

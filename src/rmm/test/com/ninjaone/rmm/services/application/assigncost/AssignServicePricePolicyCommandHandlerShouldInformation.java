@@ -29,7 +29,7 @@ class AssignServicePricePolicyCommandHandlerShouldInformation extends ServicesMo
         shouldSearch(service);
 //        shouldGenerateUuid(serviceCost.id());
 
-        handler.handle(new AssignServiceCostPolicyCommand(service.id(), "WIN", 20));
+        handler.handle(new AssignServiceCostPolicyCommand(service.id(), "WIN", "20"));
 
         shouldHaveSaved(service);
     }
@@ -40,7 +40,7 @@ class AssignServicePricePolicyCommandHandlerShouldInformation extends ServicesMo
 
         assertThrows(
             ServiceNotExistException.class,
-            () -> handler.handle(new AssignServiceCostPolicyCommand(service.id(), "WIN", 20))
+            () -> handler.handle(new AssignServiceCostPolicyCommand(service.id(), "WIN", "20"))
         );
     }
 }

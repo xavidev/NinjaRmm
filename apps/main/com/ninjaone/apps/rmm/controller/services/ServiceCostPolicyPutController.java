@@ -7,6 +7,7 @@ import com.ninjaone.shared.domain.DomainException;
 import com.ninjaone.shared.domain.bus.command.CommandBus;
 import com.ninjaone.shared.domain.bus.query.QueryBus;
 import com.ninjaone.shared.infrastructure.spring.ApiController;
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,7 @@ public final class ServiceCostPolicyPutController extends ApiController {
 
     @PutMapping("/services/{id}/cost")
     public ResponseEntity<String> index(@PathVariable String id, @RequestBody ServiceCostRequest request) {
-        dispatch(new AssignServiceCostPolicyCommand(id, request.policyType(), request.cost()));
+        dispatch(new AssignServiceCostPolicyCommand(id, request.getDeviceType(), request.getCost()));
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -40,23 +41,8 @@ public final class ServiceCostPolicyPutController extends ApiController {
     }
 }
 
+@Data
 final class ServiceCostRequest {
     private String deviceType;
-    private double cost;
-
-    public String policyType() {
-        return deviceType;
-    }
-
-    public void setDeviceType(String deviceType) {
-        this.deviceType = deviceType;
-    }
-
-    public double cost() {
-        return cost;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
+    private String cost;
 }

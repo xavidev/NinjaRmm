@@ -3,9 +3,9 @@ package com.ninjaone.rmm.services.domain.model;
 public class ServiceCostPolicy {
 
     private String device;
-    private double cost;
+    private String cost;
 
-    private ServiceCostPolicy(String device, double cost) {
+    private ServiceCostPolicy(String device, String cost) {
         this.device = device;
         this.cost = cost;
     }
@@ -14,11 +14,11 @@ public class ServiceCostPolicy {
 
     }
 
-    public static ServiceCostPolicy create(String deviceType, double cost) {
+    public static ServiceCostPolicy create(String deviceType, String cost) {
         return new ServiceCostPolicy(deviceType, cost);
     }
 
-    public double cost() {
+    public String cost() {
         return cost;
     }
 

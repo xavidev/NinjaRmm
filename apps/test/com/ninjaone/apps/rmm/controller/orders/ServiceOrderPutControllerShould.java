@@ -8,7 +8,7 @@ class ServiceOrderPutControllerShould extends ApplicationTestCase {
     @Test
     void should_create_new_service_order_for_existent_service_and_device() throws Exception {
         var serviceRequest = """
-            {"name":"random", "price":"50"}
+            {"name":"random", "cost":"50"}
             """;
         assertRequestWithBody(
             "PUT",
@@ -17,7 +17,7 @@ class ServiceOrderPutControllerShould extends ApplicationTestCase {
             CREATED);
 
         var deviceRequest = """
-            {"type":"Windows", "price":"20"}
+            {"type":"Windows", "cost":"20"}
             """;
         assertRequestWithBody("PUT", "/devices/322d91b8-441e-48f3-b223-ecc01eeb517d", deviceRequest, CREATED);
 

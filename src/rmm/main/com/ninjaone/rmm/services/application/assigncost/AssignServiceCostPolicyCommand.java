@@ -5,9 +5,9 @@ import com.ninjaone.shared.domain.bus.command.Command;
 public final class AssignServiceCostPolicyCommand implements Command {
     private final String serviceId;
     private final String policyType;
-    private final double cost;
+    private final String cost;
 
-    public AssignServiceCostPolicyCommand(String serviceId, String deviceType, double cost) {
+    public AssignServiceCostPolicyCommand(String serviceId, String deviceType, String cost) {
 
 
         this.serviceId = serviceId;
@@ -23,7 +23,7 @@ public final class AssignServiceCostPolicyCommand implements Command {
         return policyType;
     }
 
-    public double cost() {
+    public String cost() {
         return cost;
     }
 }

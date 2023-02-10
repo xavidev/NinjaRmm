@@ -6,10 +6,10 @@ import com.ninjaone.rmm.services.domain.model.ServiceCostPolicy;
 public final class ServiceCostPolicyMother {
 
     public static ServiceCostPolicy random() {
-        return ServiceCostPolicy.create("WIN", 10);
+        return ServiceCostPolicy.create("WIN", "10");
     }
 
-    public static ServiceCostPolicy forDevice(DeviceInformation deviceInformation, double cost) {
+    public static ServiceCostPolicy forDevice(DeviceInformation deviceInformation, String cost) {
         return ServiceCostPolicy.create(deviceInformation.type(), cost);
     }
 }

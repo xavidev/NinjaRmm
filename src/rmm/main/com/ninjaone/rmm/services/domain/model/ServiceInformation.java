@@ -1,5 +1,6 @@
 package com.ninjaone.rmm.services.domain.model;
 
+import com.ninjaone.shared.domain.Price;
 import com.ninjaone.shared.domain.ServiceId;
 
 import java.util.*;
@@ -7,10 +8,10 @@ import java.util.*;
 public class ServiceInformation {
     private ServiceId id;
     private ServiceName name;
-    private double cost;
+    private Price cost;
     private List<ServiceCostPolicy> costs;
 
-    private ServiceInformation(ServiceId id, ServiceName name, double cost) {
+    private ServiceInformation(ServiceId id, ServiceName name, Price cost) {
         this.id = id;
         this.name = name;
         this.cost = cost;
@@ -21,7 +22,7 @@ public class ServiceInformation {
 
     }
 
-    public static ServiceInformation create(ServiceId id, ServiceName name, double cost) {
+    public static ServiceInformation create(ServiceId id, ServiceName name, Price cost) {
         return new ServiceInformation(id, name, cost);
     }
 
@@ -37,14 +38,14 @@ public class ServiceInformation {
         return name.value();
     }
 
-    public double cost() {
+    public Price cost() {
         return cost;
     }
 
-    public double costFor(String deviceType) {
+    public Price costFor(String deviceType) {
         for (ServiceCostPolicy policy : costs) {
             if(policy.applyFor(deviceType)) {
-                return policy.cost();
+                return new Price(policy.cost());
             }
         }
 
