@@ -1,6 +1,7 @@
 package com.ninjaone.rmm.orders.domain.model;
 
 import com.ninjaone.rmm.orders.domain.ServiceOrderCreatedDomainEvent;
+import com.ninjaone.rmm.services.domain.model.ServiceName;
 import com.ninjaone.shared.domain.AggregateRoot;
 import com.ninjaone.shared.domain.CustomerId;
 import com.ninjaone.shared.domain.DeviceId;
@@ -15,9 +16,12 @@ public class ServiceOrder extends AggregateRoot {
     private DeviceId deviceId;
     private CustomerId customerId;
 
-    private ServiceOrder(ServiceOrderId id, ServiceId serviceId, DeviceId deviceId, CustomerId customerId) {
+    private OrderName name;
+
+    private ServiceOrder(ServiceOrderId id, ServiceId serviceId, OrderName name, DeviceId deviceId, CustomerId customerId) {
         this.id = id;
         this.serviceId = serviceId;
+        this.name = name;
         this.deviceId = deviceId;
         this.customerId = customerId;
 
@@ -27,10 +31,11 @@ public class ServiceOrder extends AggregateRoot {
     protected ServiceOrder(){
 
     }
-    public static ServiceOrder create(ServiceOrderId id, ServiceId serviceId, DeviceId deviceId, CustomerId customerId) {
+    public static ServiceOrder create(ServiceOrderId id, ServiceId serviceId, OrderName name, DeviceId deviceId, CustomerId customerId) {
         return new ServiceOrder(
             id,
             serviceId,
+            name,
             deviceId,
             customerId
         );
@@ -50,6 +55,10 @@ public class ServiceOrder extends AggregateRoot {
 
     public String customerId() {
         return customerId.value();
+    }
+
+    public String name() {
+        return name.value();
     }
 
     @Override

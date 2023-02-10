@@ -4,7 +4,7 @@ import com.ninjaone.rmm.devices.domain.model.DeviceInformation;
 import com.ninjaone.rmm.shared.domain.UuidMother;
 
 
-public final class DeviceMother {
+public final class DeviceInformationMother {
     public static DeviceInformation Windows() {
         return DeviceInformation.create(UuidMother.random(), "Windows", "20");
     }

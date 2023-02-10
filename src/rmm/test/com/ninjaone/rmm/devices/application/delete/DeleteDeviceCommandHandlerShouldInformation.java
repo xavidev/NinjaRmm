@@ -1,7 +1,7 @@
 package com.ninjaone.rmm.devices.application.delete;
 
 import com.ninjaone.rmm.devices.DevicesModuleUnitTestCase;
-import com.ninjaone.rmm.devices.domain.DeviceMother;
+import com.ninjaone.rmm.devices.domain.DeviceInformationMother;
 import com.ninjaone.rmm.devices.domain.model.DeviceInformation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ class DeleteDeviceCommandHandlerShouldInformation extends DevicesModuleUnitTestC
 
     @Test
     void delete_a_device() {
-        DeviceInformation deviceInformation = DeviceMother.Windows();
+        DeviceInformation deviceInformation = DeviceInformationMother.Windows();
 
         shouldSearch(deviceInformation);
 
@@ -31,7 +31,7 @@ class DeleteDeviceCommandHandlerShouldInformation extends DevicesModuleUnitTestC
 
     @Test
     void not_delete_not_existent_device() {
-        DeviceInformation deviceInformation = DeviceMother.Windows();
+        DeviceInformation deviceInformation = DeviceInformationMother.Windows();
 
         handler.handle(new DeleteDeviceCommand(deviceInformation.id()));
 

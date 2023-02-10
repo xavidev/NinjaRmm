@@ -2,12 +2,12 @@ package com.ninjaone.rmm.devices.application.create;
 
 import com.ninjaone.shared.domain.bus.command.Command;
 
-public final class CreateDeviceCommand implements Command {
+public final class CreateDeviceInformationCommand implements Command {
     private String id;
     private String type;
     private String cost;
 
-    public CreateDeviceCommand(String id, String type, String cost) {
+    public CreateDeviceInformationCommand(String id, String type, String cost) {
         this.id = id;
         this.type = type;
         this.cost = cost;

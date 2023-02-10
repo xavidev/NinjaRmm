@@ -15,6 +15,14 @@ public final class CreateBillItemOnDeviceOrderCreated {
     }
 
     public void on(DeviceOrderCreatedDomainEvent event) {
-        this.creator.create(event.aggregateId(), event.deviceId(), event.customerId(), event.name(), event.itemType());
+        this.creator.create(new BillCreationParams(
+            event.aggregateId(),
+            event.name(),
+            event.deviceId(),
+            null,
+            event.customerId(),
+            event.itemType()
+        ));
     }
 }
+

@@ -1,6 +1,6 @@
 package com.ninjaone.apps.rmm.controller.devices;
 
-import com.ninjaone.rmm.devices.application.create.CreateDeviceCommand;
+import com.ninjaone.rmm.devices.application.create.CreateDeviceInformationCommand;
 import com.ninjaone.rmm.devices.domain.DeviceTypeAlreadyExistsException;
 import com.ninjaone.shared.domain.DomainException;
 import com.ninjaone.shared.domain.bus.command.CommandBus;
@@ -24,7 +24,7 @@ public final class DevicePutController extends ApiController {
 
     @PutMapping("/devices/{id}")
     public ResponseEntity<String> index(@PathVariable String id, @RequestBody DeviceRequest request) {
-        dispatch(new CreateDeviceCommand(id, request.type(), request.cost()));
+        dispatch(new CreateDeviceInformationCommand(id, request.type(), request.cost()));
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

@@ -2,9 +2,12 @@ package com.ninjaone.rmm.orders.create;
 
 import com.ninjaone.rmm.devices.application.find.FindDeviceByIdQuery;
 import com.ninjaone.rmm.orders.domain.ServiceOrderRepository;
+import com.ninjaone.rmm.orders.domain.model.OrderName;
 import com.ninjaone.rmm.orders.domain.model.ServiceOrder;
 import com.ninjaone.rmm.orders.domain.model.ServiceOrderId;
+import com.ninjaone.rmm.services.application.ServiceResponse;
 import com.ninjaone.rmm.services.application.find.FindServiceByIdQuery;
+import com.ninjaone.rmm.services.domain.model.ServiceName;
 import com.ninjaone.shared.domain.CustomerId;
 import com.ninjaone.shared.domain.DeviceId;
 import com.ninjaone.shared.domain.Service;
@@ -27,11 +30,13 @@ public final class ServiceOrderCreator {
 
     public void create(String id, String serviceId, String deviceId, String customerId) {
         ensureDeviceExist(deviceId);
-        ensureServiceExist(serviceId);
+
+        ServiceResponse response = queryBus.ask(new FindServiceByIdQuery(serviceId));
 
         ServiceOrder service = ServiceOrder.create(
             new ServiceOrderId(id),
             new ServiceId(serviceId),
+            new OrderName(response.name()),
             new DeviceId(deviceId),
             new CustomerId(customerId)
         );
@@ -43,9 +48,5 @@ public final class ServiceOrderCreator {
 
     private void ensureDeviceExist(String deviceId) {
         queryBus.ask(new FindDeviceByIdQuery(deviceId));
-    }
-
-    private void ensureServiceExist(String serviceId) {
-        queryBus.ask(new FindServiceByIdQuery(serviceId));
     }
 }

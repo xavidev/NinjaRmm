@@ -4,15 +4,15 @@ import com.ninjaone.shared.domain.Service;
 import com.ninjaone.shared.domain.bus.command.CommandHandler;
 
 @Service
-public final class CreateDeviceCommandHandler implements CommandHandler<CreateDeviceCommand> {
+public final class CreateDeviceInformationCommandHandler implements CommandHandler<CreateDeviceInformationCommand> {
     private final DeviceCreator creator;
 
-    public CreateDeviceCommandHandler(DeviceCreator creator) {
+    public CreateDeviceInformationCommandHandler(DeviceCreator creator) {
         this.creator = creator;
     }
 
     @Override
-    public void handle(CreateDeviceCommand command) {
+    public void handle(CreateDeviceInformationCommand command) {
         creator.create(command.id(), command.type(), command.cost());
     }
 }

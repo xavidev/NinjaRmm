@@ -1,5 +1,6 @@
 package com.ninjaone.rmm.orders.create;
 
+import com.ninjaone.rmm.devices.application.DeviceResponse;
 import com.ninjaone.rmm.orders.domain.DeviceOrderRepository;
 import com.ninjaone.rmm.orders.domain.model.DeviceOrder;
 import com.ninjaone.rmm.devices.application.find.FindDeviceByIdQuery;
@@ -25,21 +26,17 @@ public final class DeviceOrderCreator {
     }
 
     public void create(String id, String deviceId, String customerId) {
-        ensureDeviceExist(deviceId);
+        DeviceResponse response = queryBus.ask(new FindDeviceByIdQuery(deviceId));
 
         DeviceOrder device = DeviceOrder.orderFor(
             new DeviceOrderId(id),
             new DeviceId(deviceId),
              new CustomerId(customerId),
-            new OrderName("pepe")
+            new OrderName(response.type())
         );
 
         repository.save(device);
 
         eventBus.publish(device.pullDomainEvents());
-    }
-
-    private void ensureDeviceExist(String deviceId) {
-        queryBus.ask(new FindDeviceByIdQuery(deviceId));
     }
 }

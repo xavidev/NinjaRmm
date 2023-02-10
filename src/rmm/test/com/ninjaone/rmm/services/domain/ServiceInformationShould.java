@@ -1,6 +1,6 @@
 package com.ninjaone.rmm.services.domain;
 
-import com.ninjaone.rmm.devices.domain.DeviceMother;
+import com.ninjaone.rmm.devices.domain.DeviceInformationMother;
 import com.ninjaone.rmm.services.domain.model.ServiceInformation;
 import com.ninjaone.shared.domain.Price;
 import org.junit.jupiter.api.Assertions;
@@ -11,7 +11,7 @@ public final class ServiceInformationShould {
     void calulate_price_for_device_with_no_policies(){
         ServiceInformation serviceInformation = ServiceInformationMother.antivirus("100");
 
-        Price cost = serviceInformation.costFor(DeviceMother.Windows().type());
+        Price cost = serviceInformation.costFor(DeviceInformationMother.Windows().type());
 
         Assertions.assertEquals(new Price("100"), cost);
     }
@@ -20,13 +20,13 @@ public final class ServiceInformationShould {
     void calculate_service_with_device_cost_policy(){
         ServiceInformation serviceInformation = ServiceInformationMother.antivirus("100");
         serviceInformation.addCostPolicy(
-            ServiceCostPolicyMother.forDevice(DeviceMother.Windows(), "200")
+            ServiceCostPolicyMother.forDevice(DeviceInformationMother.Windows(), "200")
         );
         serviceInformation.addCostPolicy(
-            ServiceCostPolicyMother.forDevice(DeviceMother.Mac(), "300")
+            ServiceCostPolicyMother.forDevice(DeviceInformationMother.Mac(), "300")
         );
 
-        Price cost = serviceInformation.costFor(DeviceMother.Windows().type());
+        Price cost = serviceInformation.costFor(DeviceInformationMother.Windows().type());
 
         Assertions.assertEquals(new Price("200"), cost);
     }
