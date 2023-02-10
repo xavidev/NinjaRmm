@@ -15,6 +15,6 @@ public final class CreateBillItemOnServiceOrderCreated {
     }
 
     public void on(ServiceOrderCreatedDomainEvent event) {
-        this.creator.create(event.aggregateId(), event.customerId(), event.name(), event.itemType());
+        this.creator.create(event.aggregateId(), event.serviceId(), event.customerId(), event.name(), event.itemType());
     }
 }

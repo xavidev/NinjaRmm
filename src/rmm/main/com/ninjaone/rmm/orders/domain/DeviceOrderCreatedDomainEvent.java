@@ -29,6 +29,6 @@ public final class DeviceOrderCreatedDomainEvent extends DomainEvent {
     }
 
     public String itemType(){
-        return "service";
+        return "device";
     }
 }

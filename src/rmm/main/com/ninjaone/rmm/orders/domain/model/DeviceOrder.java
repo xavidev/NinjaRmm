@@ -25,11 +25,27 @@ public class DeviceOrder extends AggregateRoot {
 
     }
 
-    public static DeviceOrder create(DeviceOrderId id, DeviceId deviceId, CustomerId customerId, OrderName name) {
+    public static DeviceOrder orderFor(DeviceOrderId id, DeviceId deviceId, CustomerId customerId, OrderName name) {
         return new DeviceOrder(
             id,
             deviceId,
             customerId,
             name);
+    }
+
+    public String id() {
+        return id.value();
+    }
+
+    public String deviceId() {
+        return deviceId.value();
+    }
+
+    public String customerId() {
+        return customerId.value();
+    }
+
+    public String name() {
+        return name.value();
     }
 }

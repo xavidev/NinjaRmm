@@ -17,4 +17,6 @@ public final class Price extends BigDecimalValueObject {
     public String toString() {
         return value().toString();
     }
+
+
 }

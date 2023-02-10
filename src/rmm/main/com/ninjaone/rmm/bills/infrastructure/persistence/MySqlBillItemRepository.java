@@ -14,4 +14,9 @@ public class MySqlBillItemRepository extends HibernateRepository<BillItem> imple
     public MySqlBillItemRepository(@Qualifier("rmm-session_factory") SessionFactory sessionFactory) {
         super(sessionFactory, BillItem.class);
     }
+
+    @Override
+    public void save(BillItem item) {
+        persist(item);
+    }
 }

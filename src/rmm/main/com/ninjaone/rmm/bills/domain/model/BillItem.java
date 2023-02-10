@@ -5,6 +5,7 @@ import com.ninjaone.shared.domain.AggregateRoot;
 import com.ninjaone.shared.domain.Price;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class BillItem extends AggregateRoot {
     private BillItemId id;
@@ -34,5 +35,18 @@ public class BillItem extends AggregateRoot {
 
     public BigDecimal cost() {
         return price.value();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BillItem billItem = (BillItem) o;
+        return Objects.equals(id, billItem.id) && Objects.equals(info, billItem.info) && Objects.equals(price, billItem.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, info, price);
     }
 }

@@ -27,7 +27,7 @@ public final class DeviceOrderCreator {
     public void create(String id, String deviceId, String customerId) {
         ensureDeviceExist(deviceId);
 
-        DeviceOrder device = DeviceOrder.create(
+        DeviceOrder device = DeviceOrder.orderFor(
             new DeviceOrderId(id),
             new DeviceId(deviceId),
              new CustomerId(customerId),
