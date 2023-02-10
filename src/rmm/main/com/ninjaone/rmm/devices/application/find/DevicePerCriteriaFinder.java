@@ -28,6 +28,6 @@ public final class DevicePerCriteriaFinder {
             .findFirst()
             .orElseThrow(() -> new DeviceTypeAlreadyExistsException(new DeviceType(type)));
 
-        return new DeviceResponse(device.type());
+        return new DeviceResponse(device.type(), device.cost());
     }
 }

@@ -1,13 +1,11 @@
 package com.ninjaone.apps.rmmcustomers.controller.devices;
 
-import com.ninjaone.rmmcustomers.devices.application.create.CreateCustomerDeviceCommand;
+import com.ninjaone.rmm.orders.create.CreateDeviceOrderCommand;
 import com.ninjaone.shared.domain.bus.command.CommandBus;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 public final class CustomerDevicePutController {
@@ -20,7 +18,7 @@ public final class CustomerDevicePutController {
 
     @PutMapping(path = "/devices/{id}")
     public @ResponseBody ResponseEntity<String> index(@PathVariable String id, @RequestBody DeviceRequest request) {
-        bus.dispatch(new CreateCustomerDeviceCommand(id, request.getDeviceId(), request.getCustomerId()));
+        bus.dispatch(new CreateDeviceOrderCommand(id, request.getDeviceId(), request.getCustomerId()));
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

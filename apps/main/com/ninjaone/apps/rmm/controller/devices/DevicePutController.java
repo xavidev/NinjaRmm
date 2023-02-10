@@ -1,7 +1,7 @@
 package com.ninjaone.apps.rmm.controller.devices;
 
 import com.ninjaone.rmm.devices.application.create.CreateDeviceCommand;
-import com.ninjaone.rmmcustomers.devices.application.create.CreateCustomerDeviceCommand;
+import com.ninjaone.rmm.devices.domain.DeviceTypeAlreadyExistsException;
 import com.ninjaone.shared.domain.DomainException;
 import com.ninjaone.shared.domain.bus.command.CommandBus;
 import com.ninjaone.shared.domain.bus.query.QueryBus;
@@ -31,7 +31,10 @@ public final class DevicePutController extends ApiController {
 
     @Override
     public HashMap<Class<? extends DomainException>, HttpStatus> errorMapping() {
-        return null;
+        HashMap<Class<? extends DomainException>, HttpStatus> errors = new HashMap<>();
+        errors.put(DeviceTypeAlreadyExistsException.class, HttpStatus.CONFLICT);
+
+        return  errors;
     }
 }
 

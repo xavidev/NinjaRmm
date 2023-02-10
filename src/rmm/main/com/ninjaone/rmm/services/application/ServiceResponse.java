@@ -1,16 +1,23 @@
 package com.ninjaone.rmm.services.application;
 
-import java.util.List;
+import com.ninjaone.shared.domain.bus.query.Response;
 
-public final class ServiceResponse {
+public final class ServiceResponse implements Response {
     private String id;
     private double cost;
+    private String name;
 
-    private List<ServiceCostPolicyResponse> costPolicies;
-
-    public ServiceResponse(String id, double cost, List<ServiceCostPolicyResponse> costPolicies) {
+    public ServiceResponse(String id, double cost, String name) {
         this.id = id;
         this.cost = cost;
-        this.costPolicies = costPolicies;
+        this.name = name;
+    }
+
+    public double cost() {
+        return cost;
+    }
+
+    public String name() {
+        return name;
     }
 }

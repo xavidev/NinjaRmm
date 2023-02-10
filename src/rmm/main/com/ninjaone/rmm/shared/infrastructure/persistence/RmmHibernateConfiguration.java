@@ -25,17 +25,17 @@ public class RmmHibernateConfiguration {
         this.config = config;
     }
 
-    @Bean
+    @Bean(name = "rmm-transaction_manager")
     public PlatformTransactionManager hibernateTransactionManager() throws IOException, ConfigurationNotExist {
         return factory.hibernateTransactionManager(sessionFactory());
     }
 
-    @Bean(name="entityManagerFactory")
+    @Bean(name="rmm-sesion_factory")
     public LocalSessionFactoryBean sessionFactory() throws IOException, ConfigurationNotExist {
         return factory.sessionFactory(CONTEXT_NAME, dataSource());
     }
 
-    @Bean
+    @Bean("rmm-data_source")
     public DataSource dataSource() throws IOException, ConfigurationNotExist {
         return factory.dataSource(
             config.get("RMM_DATABASE_HOST"),

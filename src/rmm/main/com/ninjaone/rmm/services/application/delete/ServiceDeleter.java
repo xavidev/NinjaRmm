@@ -1,16 +1,16 @@
 package com.ninjaone.rmm.services.application.delete;
 
-import com.ninjaone.rmm.services.domain.ServiceRepository;
+import com.ninjaone.rmm.services.domain.ServiceInformationRepository;
 import com.ninjaone.rmm.services.domain.model.ServiceInformation;
-import com.ninjaone.rmm.services.domain.model.ServiceId;
+import com.ninjaone.shared.domain.ServiceId;
 
 import java.util.Optional;
 
 @com.ninjaone.shared.domain.Service
 public final class ServiceDeleter {
-    private final ServiceRepository repository;
+    private final ServiceInformationRepository repository;
 
-    public ServiceDeleter(ServiceRepository repository) {
+    public ServiceDeleter(ServiceInformationRepository repository) {
         this.repository = repository;
     }
 
@@ -23,6 +23,5 @@ public final class ServiceDeleter {
 
         ServiceInformation toDelete = service.get();
         repository.delete(toDelete);
-        toDelete.delete();
     }
 }

@@ -1,6 +1,7 @@
 package com.ninjaone.apps.rmm.controller.services;
 
 import com.ninjaone.rmm.services.application.assigncost.AssignServiceCostPolicyCommand;
+import com.ninjaone.rmm.services.domain.InvalidCostPolicyException;
 import com.ninjaone.rmm.services.domain.ServiceNotExistException;
 import com.ninjaone.shared.domain.DomainException;
 import com.ninjaone.shared.domain.bus.command.CommandBus;
@@ -24,7 +25,7 @@ public final class ServiceCostPolicyPutController extends ApiController {
 
     @PutMapping("/services/{id}/cost")
     public ResponseEntity<String> index(@PathVariable String id, @RequestBody ServiceCostRequest request) {
-        dispatch(new AssignServiceCostPolicyCommand(id, request.policyType(), request.policyValue()));
+        dispatch(new AssignServiceCostPolicyCommand(id, request.policyType(), request.cost()));
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -33,28 +34,29 @@ public final class ServiceCostPolicyPutController extends ApiController {
     public HashMap<Class<? extends DomainException>, HttpStatus> errorMapping() {
         HashMap<Class<? extends DomainException>, HttpStatus> errors = new HashMap<>();
         errors.put(ServiceNotExistException.class, HttpStatus.BAD_REQUEST);
+        errors.put(InvalidCostPolicyException.class, HttpStatus.BAD_REQUEST);
 
         return errors;
     }
 }
 
 final class ServiceCostRequest {
-    private String policyType;
-    private String policyValue;
+    private String deviceType;
+    private double cost;
 
     public String policyType() {
-        return policyType;
+        return deviceType;
     }
 
-    public void setPolicyType(String policyType) {
-        this.policyType = policyType;
+    public void setDeviceType(String deviceType) {
+        this.deviceType = deviceType;
     }
 
-    public String policyValue() {
-        return policyValue;
+    public double cost() {
+        return cost;
     }
 
-    public void setPolicyValue(String policyValue) {
-        this.policyValue = policyValue;
+    public void setCost(double cost) {
+        this.cost = cost;
     }
 }

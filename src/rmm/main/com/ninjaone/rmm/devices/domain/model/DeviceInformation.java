@@ -1,5 +1,7 @@
 package com.ninjaone.rmm.devices.domain.model;
 
+import com.ninjaone.shared.domain.DeviceId;
+
 import java.util.Objects;
 
 public final class DeviceInformation {

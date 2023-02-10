@@ -14,7 +14,7 @@ class CreateServiceCommandHandlerShouldInformation extends ServicesModuleUnitTes
     protected void setUp() {
         super.setUp();
 
-        subject = new ServiceCreator(serviceRepository);
+        subject = new ServiceCreator(serviceInformationRepository);
         handler = new CreateServiceCommandHandler(subject);
     }
     @Test

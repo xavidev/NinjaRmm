@@ -2,7 +2,7 @@ package com.ninjaone.rmm.devices.application.delete;
 
 import com.ninjaone.rmm.devices.domain.DeviceInformationRepository;
 import com.ninjaone.rmm.devices.domain.model.DeviceInformation;
-import com.ninjaone.rmm.devices.domain.model.DeviceId;
+import com.ninjaone.shared.domain.DeviceId;
 import com.ninjaone.shared.domain.Service;
 
 import java.util.Optional;
@@ -24,6 +24,5 @@ public final class DeviceDeleter {
 
         DeviceInformation toDelete = device.get();
         repository.delete(toDelete);
-        toDelete.delete();
     }
 }

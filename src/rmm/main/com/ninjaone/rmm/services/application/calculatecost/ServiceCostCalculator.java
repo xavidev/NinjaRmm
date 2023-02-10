@@ -1,28 +1,30 @@
 package com.ninjaone.rmm.services.application.calculatecost;
 
+import com.ninjaone.rmm.devices.application.DeviceResponse;
+import com.ninjaone.rmm.services.domain.ServiceInformationRepository;
 import com.ninjaone.rmm.services.domain.ServiceNotExistException;
-import com.ninjaone.rmm.services.domain.ServiceRepository;
+import com.ninjaone.shared.domain.ServiceId;
 import com.ninjaone.rmm.services.domain.model.ServiceInformation;
-import com.ninjaone.rmm.services.domain.model.ServiceId;
-import com.ninjaone.shared.domain.criteria.Filter;
+import com.ninjaone.rmm.devices.application.find.FindDeviceByIdQuery;
+import com.ninjaone.shared.domain.Service;
+import com.ninjaone.shared.domain.bus.query.QueryBus;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@com.ninjaone.shared.domain.Service
+@Service
 public final class ServiceCostCalculator {
-    private final ServiceRepository repository;
+    private final ServiceInformationRepository repository;
+    private final QueryBus bus;
 
-    public ServiceCostCalculator(ServiceRepository repository, ) {
+    public ServiceCostCalculator(ServiceInformationRepository repository, QueryBus bus) {
         this.repository = repository;
+        this.bus = bus;
     }
 
-    public double calculate(String devicetype, String serviceId) {
-        List<Filter> filters = new ArrayList<>();
+    public ServieCostResponse costFor(String serviceId, String deviceId) {
+        ServiceInformation info = repository.search(new ServiceId(serviceId))
+            .orElseThrow(()-> new ServiceNotExistException(new ServiceId(serviceId)));
 
-        ServiceInformation serviceInformation = repository.search(new ServiceId(serviceId))
-            .orElseThrow(() -> new ServiceNotExistException(new ServiceId(serviceId)));
+        DeviceResponse deviceInfo = bus.ask(new FindDeviceByIdQuery(deviceId));
 
-        return serviceInformation.costFor(devicetype);
+        return new ServieCostResponse(info.costFor(deviceInfo.type()));
     }
 }

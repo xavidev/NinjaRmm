@@ -15,7 +15,7 @@ class DeleteServiceCommandHandlerShouldInformation extends ServicesModuleUnitTes
     protected void setUp() {
         super.setUp();
 
-        subject = new ServiceDeleter(serviceRepository);
+        subject = new ServiceDeleter(serviceInformationRepository);
         handler = new DeleteServiceCommandHandler(subject);
     }
 

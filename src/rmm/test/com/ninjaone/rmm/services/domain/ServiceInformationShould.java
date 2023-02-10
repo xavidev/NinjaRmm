@@ -10,7 +10,7 @@ public final class ServiceInformationShould {
     void calulate_price_for_device_with_no_policies(){
         ServiceInformation serviceInformation = ServiceMother.antivirus(100);
 
-        double cost = serviceInformation.costFor(DeviceMother.Windows());
+        double cost = serviceInformation.costFor(DeviceMother.Windows().type());
 
         Assertions.assertEquals(100, cost);
     }
@@ -25,7 +25,7 @@ public final class ServiceInformationShould {
             ServiceCostPolicyMother.forDevice(DeviceMother.Mac(), 300)
         );
 
-        double cost = serviceInformation.costFor(DeviceMother.Windows());
+        double cost = serviceInformation.costFor(DeviceMother.Windows().type());
 
         Assertions.assertEquals(200, cost);
     }

@@ -3,7 +3,7 @@ package com.ninjaone.rmm.devices.application.find;
 import com.ninjaone.rmm.devices.application.DeviceResponse;
 import com.ninjaone.rmm.devices.domain.DeviceInformationRepository;
 import com.ninjaone.rmm.devices.domain.DeviceNotExistsException;
-import com.ninjaone.rmm.devices.domain.model.DeviceId;
+import com.ninjaone.shared.domain.DeviceId;
 import com.ninjaone.shared.domain.Service;
 
 @Service

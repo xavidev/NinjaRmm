@@ -1,33 +1,25 @@
 package com.ninjaone.rmm.services.application.create;
 
-
-import com.ninjaone.rmm.services.domain.ServiceRepository;
+import com.ninjaone.rmm.services.application.find.FindCriteria;
 import com.ninjaone.rmm.services.domain.DuplicateServiceException;
+import com.ninjaone.rmm.services.domain.ServiceInformationRepository;
+import com.ninjaone.shared.domain.ServiceId;
 import com.ninjaone.rmm.services.domain.model.ServiceInformation;
-import com.ninjaone.rmm.services.domain.model.ServiceId;
 import com.ninjaone.rmm.services.domain.model.ServiceName;
-import com.ninjaone.shared.domain.criteria.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @com.ninjaone.shared.domain.Service
 public final class ServiceCreator {
 
-    private final ServiceRepository repository;
+    private final ServiceInformationRepository repository;
 
-    public ServiceCreator(ServiceRepository repository) {
+    public ServiceCreator(ServiceInformationRepository repository) {
 
         this.repository = repository;
     }
 
     public void create(String id, String name, double cost) {
-
-        List<Filter> filters = new ArrayList<>();
-        filters.add(Filter.create("name", FilterOperator.EQUAL.value(), name));
-
-        if(!repository.matching(new Criteria(new Filters(filters), Order.none())).isEmpty()){
-          throw new DuplicateServiceException(new ServiceName(name));
+        if (!repository.matching(FindCriteria.byName(name)).isEmpty()) {
+            throw new DuplicateServiceException(new ServiceName(name));
         }
 
         var service = ServiceInformation.create(new ServiceId(id), new ServiceName(name), cost);

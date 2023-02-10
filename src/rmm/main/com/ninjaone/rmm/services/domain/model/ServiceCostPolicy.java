@@ -1,21 +1,29 @@
 package com.ninjaone.rmm.services.domain.model;
 
-import java.util.Objects;
+public class ServiceCostPolicy {
 
-public abstract class ServiceCostPolicy {
+    private String device;
+    private double cost;
 
-    public ServiceCostPolicy(String policy) {
-        this.policy = policy;
+    private ServiceCostPolicy(String device, double cost) {
+        this.device = device;
+        this.cost = cost;
     }
 
     protected ServiceCostPolicy(){
 
     }
 
-    private String policy;
+    public static ServiceCostPolicy create(String deviceType, double cost) {
+        return new ServiceCostPolicy(deviceType, cost);
+    }
 
-    public String getPolicy(){
-        return policy;
+    public double cost() {
+        return cost;
+    }
+
+    public boolean applyFor(String device) {
+        return this.device.equals(device);
     }
 }
 

@@ -9,7 +9,7 @@ public class ServiceInformationPutControllerShould extends ApplicationTestCase {
     void create_non_existing_valid_service() throws Exception {
 
         var body = """
-            {"name":"random", "cost":"50"}
+            {"name":"random", "price":"50"}
             """;
         assertRequestWithBody("PUT", "/services/322d91b8-441e-48f3-b223-ecc01eeb517d", body, CREATED);
     }
@@ -18,7 +18,7 @@ public class ServiceInformationPutControllerShould extends ApplicationTestCase {
     void not_create_existing_service() throws Exception {
 
         var body = """
-            {"name":"random", "cost":"50"}
+            {"name":"random", "price":"50"}
             """;
 
         assertRequestWithBody("PUT", "/services/322d91b8-441e-48f3-b223-ecc01eeb517d", body, CREATED);

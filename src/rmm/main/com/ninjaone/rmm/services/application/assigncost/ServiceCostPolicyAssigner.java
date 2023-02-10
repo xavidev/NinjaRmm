@@ -1,23 +1,25 @@
 package com.ninjaone.rmm.services.application.assigncost;
 
 import com.ninjaone.rmm.services.domain.ServiceNotExistException;
-import com.ninjaone.rmm.services.domain.ServiceRepository;
+import com.ninjaone.rmm.services.domain.ServiceInformationRepository;
 import com.ninjaone.rmm.services.domain.model.*;
+import com.ninjaone.shared.domain.ServiceId;
+
 
 @com.ninjaone.shared.domain.Service
 public final class ServiceCostPolicyAssigner {
-    private final ServiceRepository serviceRepository;
+    private final ServiceInformationRepository serviceInformationRepository;
 
-    public ServiceCostPolicyAssigner(ServiceRepository serviceRepository) {
-        this.serviceRepository = serviceRepository;
+    public ServiceCostPolicyAssigner(ServiceInformationRepository serviceInformationRepository) {
+        this.serviceInformationRepository = serviceInformationRepository;
     }
 
-    public void assign(String serviceId, String policyType, String policyValue) {
-        ServiceInformation serviceInformation = serviceRepository.search(new ServiceId(serviceId)).
+    public void assign(String serviceId, String deviceType, double cost) {
+        ServiceInformation serviceInformation = serviceInformationRepository.search(new ServiceId(serviceId)).
             orElseThrow(() -> new ServiceNotExistException(new ServiceId(serviceId)));
 
-        serviceInformation.addCostPolicy(CostPolicy.makeFor(policyType, policyValue));
+        serviceInformation.addCostPolicy(ServiceCostPolicy.create(deviceType, cost));
 
-        serviceRepository.save(serviceInformation);
+        serviceInformationRepository.save(serviceInformation);
     }
 }
