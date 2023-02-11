@@ -11,7 +11,7 @@ class ServiceCostPolicyPutControllerShould extends ApplicationTestCase {
             {"name":"random", "cost":"5"}
             """;
         var price = """
-            {"deviceType":"MAC", "cost":"10"}
+            {"type":"PER_DEVICE_TYPE", "value":{"device":"MAC", "cost":"100"}}
             """;
 
         assertRequestWithBody("PUT", "/services/322d91b8-441e-48f3-b223-ecc01eeb517d", service, CREATED);

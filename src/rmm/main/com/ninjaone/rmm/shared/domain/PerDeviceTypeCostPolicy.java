@@ -1,8 +1,13 @@
 package com.ninjaone.rmm.shared.domain;
+
 public class PerDeviceTypeCostPolicy extends ServiceCostPolicy {
+
+    public String type = CostPolicy.PER_DEVICE_TYPE.name();
 
     public PerDeviceTypeCostPolicy(String device, String cost) {
         super(device, cost);
+
+        super.type = CostPolicy.PER_DEVICE_TYPE.name();
     }
 
     protected PerDeviceTypeCostPolicy() {
@@ -19,10 +24,6 @@ public class PerDeviceTypeCostPolicy extends ServiceCostPolicy {
 
     public String device() {
         return device;
-    }
-
-    public String type() {
-        return "per_device";
     }
 }
 

@@ -1,5 +1,6 @@
 package com.ninjaone.rmm.bills.domain.costcalculation;
 
+import com.ninjaone.rmm.shared.domain.CostPolicy;
 import com.ninjaone.rmm.shared.domain.PerDeviceTypeCostPolicy;
 import com.ninjaone.shared.domain.Price;
 import com.ninjaone.shared.domain.Service;
@@ -12,7 +13,7 @@ public class PerDeviceCalculationStrategy extends ApplicableCalculationStrategy<
 
     @Override
     public boolean applyFor(String policyKey) {
-        return policyKey.equals("per_device");
+        return policyKey.equals(CostPolicy.PER_DEVICE_TYPE.name());
     }
 
     @Override

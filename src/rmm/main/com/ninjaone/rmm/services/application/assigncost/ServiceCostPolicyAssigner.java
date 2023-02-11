@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ninjaone.rmm.services.domain.InvalidCostPolicyException;
+import com.ninjaone.rmm.services.domain.MalFormedCostPolicyException;
 import com.ninjaone.rmm.services.domain.ServiceInformationRepository;
 import com.ninjaone.rmm.services.domain.ServiceNotExistException;
 import com.ninjaone.rmm.services.domain.model.ServiceInformation;
@@ -58,7 +59,7 @@ class PolicyFactory {
             }
 
         } catch (JsonProcessingException ex) {
-            throw new InvalidCostPolicyException(policyType);
+            throw new MalFormedCostPolicyException(value);
         }
 
         throw new InvalidCostPolicyException(policyType);

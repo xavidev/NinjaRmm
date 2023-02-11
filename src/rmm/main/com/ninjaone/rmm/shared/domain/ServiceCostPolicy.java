@@ -13,6 +13,8 @@ public class ServiceCostPolicy {
     protected String device;
     protected String cost;
 
+    protected String type;
+
     protected ServiceCostPolicy(String serviceName, String numOfServices, String discount) {
 
         this.serviceName = serviceName;
@@ -36,7 +38,7 @@ public class ServiceCostPolicy {
     }
 
     public String type(){
-        return "default";
+        return type;
     }
 
     public String value() throws JsonProcessingException {

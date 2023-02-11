@@ -18,10 +18,10 @@ class ServiceCostPolicyShould {
     void test_value() throws JsonProcessingException {
         var devicePolicy = ServiceCostPolicyMother.forDevice(DeviceInformationMother.Windows(), "50");
 
-        assertEquals("{\"device\":\"Windows\",\"cost\":\"50\"}", devicePolicy.value());
+        assertEquals("{\"device\":\"Windows\",\"cost\":\"50\",\"type\":\"PER_DEVICE_TYPE\"}", devicePolicy.value());
 
         var perServicePolicy = ServiceCostPolicyMother.forSameServices("antivirus", "3", "50");
 
-        assertEquals("{\"serviceName\":\"antivirus\",\"numOfServices\":\"3\",\"discount\":\"50\"}", perServicePolicy.value());
+        assertEquals("{\"serviceName\":\"antivirus\",\"numOfServices\":\"3\",\"discount\":\"50\",\"type\":\"PER_SAME_SERVICE\"}", perServicePolicy.value());
     }
 }

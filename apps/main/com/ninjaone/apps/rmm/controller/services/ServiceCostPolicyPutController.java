@@ -2,8 +2,10 @@ package com.ninjaone.apps.rmm.controller.services;
 
 import com.ninjaone.rmm.services.application.assigncost.AssignServiceCostPolicyCommand;
 import com.ninjaone.rmm.services.domain.InvalidCostPolicyException;
+import com.ninjaone.rmm.services.domain.MalFormedCostPolicyException;
 import com.ninjaone.rmm.services.domain.ServiceNotExistException;
 import com.ninjaone.shared.domain.DomainException;
+import com.ninjaone.shared.domain.Utils;
 import com.ninjaone.shared.domain.bus.command.CommandBus;
 import com.ninjaone.shared.domain.bus.query.QueryBus;
 import com.ninjaone.shared.infrastructure.spring.ApiController;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 @RestController
@@ -26,7 +29,8 @@ public final class ServiceCostPolicyPutController extends ApiController {
 
     @PutMapping("/services/{id}/cost")
     public ResponseEntity<String> index(@PathVariable String id, @RequestBody ServiceCostRequest request) {
-        dispatch(new AssignServiceCostPolicyCommand(id, request.getDeviceType(), request.getCost()));
+
+        dispatch(new AssignServiceCostPolicyCommand(id, request.getType(), Utils.jsonEncode(request.getValue())));
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -36,6 +40,7 @@ public final class ServiceCostPolicyPutController extends ApiController {
         HashMap<Class<? extends DomainException>, HttpStatus> errors = new HashMap<>();
         errors.put(ServiceNotExistException.class, HttpStatus.BAD_REQUEST);
         errors.put(InvalidCostPolicyException.class, HttpStatus.BAD_REQUEST);
+        errors.put(MalFormedCostPolicyException.class, HttpStatus.BAD_REQUEST);
 
         return errors;
     }
@@ -43,6 +48,7 @@ public final class ServiceCostPolicyPutController extends ApiController {
 
 @Data
 final class ServiceCostRequest {
-    private String deviceType;
-    private String cost;
+    private String type;
+
+    private HashMap<String, Serializable> value;
 }
