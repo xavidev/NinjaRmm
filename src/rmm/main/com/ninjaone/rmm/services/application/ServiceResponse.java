@@ -5,9 +5,11 @@ import com.ninjaone.shared.domain.Price;
 import com.ninjaone.shared.domain.bus.query.Response;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public final class ServiceResponse implements Response {
-    private final HashMap<String, String> costPolicies;
+    private final List<Map.Entry<String, String>> costPolicies;
     private String id;
     private Price cost;
     private String name;
@@ -34,7 +36,7 @@ public final class ServiceResponse implements Response {
         return name;
     }
 
-    public HashMap<String, String> policies() {
+    public List<Map.Entry<String, String>> policies() {
         return policies();
     }
 }

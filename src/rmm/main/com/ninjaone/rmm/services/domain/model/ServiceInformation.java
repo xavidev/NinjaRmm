@@ -58,16 +58,16 @@ public class ServiceInformation {
         return Objects.hash(id, name);
     }
 
-    public HashMap<String, String> costPolicies() {
-        var map = new HashMap<String, String>();
+    public List<Map.Entry<String, String>> costPolicies() {
+        var list = new ArrayList<Map.Entry<String, String>>();
         for (ServiceCostPolicy policy : costs) {
             try {
-                map.put(policy.type(),policy.value());
+                list.add(new AbstractMap.SimpleEntry<>(policy.type(), policy.value()));
             } catch (JsonProcessingException e) {
                 throw new InvalidCostPolicyException(policy.type());
             }
         }
 
-        return map;
+        return list;
     }
 }

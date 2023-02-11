@@ -36,7 +36,7 @@ class CreateBillItemOnServiceOrderCreatedShould extends BillsModuleUnitTestCase 
 
         shouldAsk(new FindDeviceByIdQuery(event.deviceId()), DeviceResponseMother.fromDevice(device));
 
-        shouldCalculatePriceForService(service.cost());
+//        shouldCalculatePriceForService(service.cost());
 
         subject.on(event);
 

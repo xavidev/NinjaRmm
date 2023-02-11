@@ -33,7 +33,7 @@ public final class BillItemCreator {
             Price cost = deviceResponse.cost();
             item = createBill(params, cost);
         }else if(params.getItemType().equals("service")){
-            Price cost = calculator.priceFor(params.getCustomerId(), params.getServiceId(), deviceResponse.id());
+            Price cost = calculator.priceFor(params.getCustomerId(), params.getServiceId(), deviceResponse.id(), deviceResponse.type());
 
             item = createBill(params, cost);
         } else {
