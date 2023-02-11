@@ -12,12 +12,20 @@ import com.ninjaone.shared.domain.Price;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ServicePriceCalculatorShould extends BillsModuleUnitTestCase {
     @BeforeEach
     public void setUp() {
         super.setUp();
+
+        var strategies = new ArrayList<CalculationStrategy>();
+        strategies.add(new PerDeviceCalculationStrategy());
+        strategies.add(new ForSameServicesCalculationStrategy());
+
+        calculator = new ServicePriceCalculator(queryBus, strategies);
     }
 
     @Test

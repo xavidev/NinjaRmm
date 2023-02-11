@@ -2,6 +2,7 @@ package com.ninjaone.rmm.bills.application.createbillitem;
 
 import com.ninjaone.rmm.bills.BillsModuleUnitTestCase;
 import com.ninjaone.rmm.bills.domain.BillItemMother;
+import com.ninjaone.rmm.bills.domain.costcalculation.ServicePriceCalculator;
 import com.ninjaone.rmm.devices.application.DeviceResponseMother;
 import com.ninjaone.rmm.devices.application.find.FindDeviceByIdQuery;
 import com.ninjaone.rmm.devices.domain.DeviceInformationMother;
@@ -12,6 +13,8 @@ import com.ninjaone.shared.domain.ServiceOrderCreatedDomainEventMother;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.mockito.Mockito.mock;
+
 class CreateBillItemOnServiceOrderCreatedShould extends BillsModuleUnitTestCase {
 
     private CreateBillItemOnServiceOrderCreated subject;
@@ -19,6 +22,7 @@ class CreateBillItemOnServiceOrderCreatedShould extends BillsModuleUnitTestCase 
     @BeforeEach
     public void setUp() {
         super.setUp();
+
 
         subject = new CreateBillItemOnServiceOrderCreated(new BillItemCreator(billItemRepository, queryBus, calculator));
     }
@@ -36,7 +40,7 @@ class CreateBillItemOnServiceOrderCreatedShould extends BillsModuleUnitTestCase 
 
         shouldAsk(new FindDeviceByIdQuery(event.deviceId()), DeviceResponseMother.fromDevice(device));
 
-//        shouldCalculatePriceForService(service.cost());
+        shouldCalculatePriceForService(service.cost(), BillCreationParamsMother.fromServiceOrderEvent(event), device.type());
 
         subject.on(event);
 

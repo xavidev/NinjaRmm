@@ -1,5 +1,6 @@
 package com.ninjaone.rmm.bills;
 
+import com.ninjaone.rmm.bills.application.createbillitem.BillCreationParams;
 import com.ninjaone.rmm.bills.domain.BillItemRepository;
 import com.ninjaone.rmm.bills.domain.costcalculation.CalculationStrategy;
 import com.ninjaone.rmm.bills.domain.costcalculation.ForSameServicesCalculationStrategy;
@@ -25,14 +26,10 @@ public class BillsModuleUnitTestCase extends UnitTestCase {
         super.setUp();
 
         billItemRepository = mock(BillItemRepository.class);
-        calculator = mock(ServicePriceCalculator.class);
+
         queryBus = mock(QueryBus.class);
 
-        var strategies = new ArrayList<CalculationStrategy>();
-        strategies.add(new PerDeviceCalculationStrategy());
-        strategies.add(new ForSameServicesCalculationStrategy());
-
-        calculator = new ServicePriceCalculator(queryBus, strategies);
+        calculator = mock(ServicePriceCalculator.class);
 
     }
 
@@ -40,8 +37,8 @@ public class BillsModuleUnitTestCase extends UnitTestCase {
         verify(billItemRepository, atLeastOnce()).save(item);
     }
 
-    public void shouldCalculatePriceForService(Price price) {
-//        when(calculator.priceFor(any(), any(), any(), deviceResponse.type()))
-//            .thenReturn(price);
+    public void shouldCalculatePriceForService(Price price, BillCreationParams params, String deviceTpye) {
+        when(calculator.priceFor(params.getCustomerId(), params.getServiceId(), params.getDeviceId(), deviceTpye))
+            .thenReturn(price);
     }
 }

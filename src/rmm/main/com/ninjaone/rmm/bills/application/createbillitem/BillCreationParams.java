@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-class BillCreationParams {
+public class BillCreationParams {
     private String orderId;
 
     private String orderConcept;
