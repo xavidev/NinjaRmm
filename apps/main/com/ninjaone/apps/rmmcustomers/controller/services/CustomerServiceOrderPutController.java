@@ -1,4 +1,4 @@
-package com.ninjaone.apps.rmm.controller.orders;
+package com.ninjaone.apps.rmmcustomers.controller.services;
 
 import com.ninjaone.rmm.devices.domain.DeviceNotExistsException;
 import com.ninjaone.rmm.orders.create.CreateServiceOrderCommand;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 
 @RestController
-public final class ServiceOrderPutController extends ApiController {
-    public ServiceOrderPutController(QueryBus queryBus, CommandBus commandBus) {
+public final class CustomerServiceOrderPutController extends ApiController {
+    public CustomerServiceOrderPutController(QueryBus queryBus, CommandBus commandBus) {
         super(queryBus, commandBus);
     }
 

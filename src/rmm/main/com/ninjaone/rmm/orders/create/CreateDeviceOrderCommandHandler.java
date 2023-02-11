@@ -4,10 +4,10 @@ import com.ninjaone.shared.domain.Service;
 import com.ninjaone.shared.domain.bus.command.CommandHandler;
 
 @Service
-public final class CreateDeviceOrderHandler implements CommandHandler<CreateDeviceOrderCommand> {
+public final class CreateDeviceOrderCommandHandler implements CommandHandler<CreateDeviceOrderCommand> {
     private final DeviceOrderCreator creator;
 
-    public CreateDeviceOrderHandler(DeviceOrderCreator creator) {
+    public CreateDeviceOrderCommandHandler(DeviceOrderCreator creator) {
         this.creator = creator;
     }
 
