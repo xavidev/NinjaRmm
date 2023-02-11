@@ -17,7 +17,7 @@ public class PerDeviceCalculationStrategy extends ApplicableCalculationStrategy<
 
     @Override
     protected Price doCalculation(Price price, PerDeviceTypeCostPolicy policy, CalculationParams calculationParams) {
-        if (policy.deviceType().equals(calculationParams.deviceType())) {
+        if (policy.device().equals(calculationParams.deviceType())) {
             return new Price(policy.cost());
         }
 

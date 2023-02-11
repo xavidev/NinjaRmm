@@ -6,18 +6,18 @@ public class PerDeviceTypeCostPolicy extends ServiceCostPolicy {
     }
 
     protected PerDeviceTypeCostPolicy() {
-        
+
     }
 
-    public static PerDeviceTypeCostPolicy create(String deviceType, String cost) {
-        return new PerDeviceTypeCostPolicy(deviceType, cost);
+    public static PerDeviceTypeCostPolicy create(String device, String cost) {
+        return new PerDeviceTypeCostPolicy(device, cost);
     }
 
     public String cost() {
         return cost;
     }
 
-    public String deviceType() {
+    public String device() {
         return device;
     }
 

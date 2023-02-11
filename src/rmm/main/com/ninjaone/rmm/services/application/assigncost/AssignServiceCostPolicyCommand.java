@@ -7,23 +7,23 @@ public final class AssignServiceCostPolicyCommand implements Command {
     private final String policyType;
     private final String cost;
 
-    public AssignServiceCostPolicyCommand(String serviceId, String deviceType, String cost) {
+    public AssignServiceCostPolicyCommand(String serviceId, String type, String value) {
 
 
         this.serviceId = serviceId;
-        this.policyType = deviceType;
-        this.cost = cost;
+        this.policyType = type;
+        this.cost = value;
     }
 
     public String serviceId() {
         return serviceId;
     }
 
-    public String deviceType() {
+    public String policyType() {
         return policyType;
     }
 
-    public String cost() {
+    public String policyValue() {
         return cost;
     }
 }
