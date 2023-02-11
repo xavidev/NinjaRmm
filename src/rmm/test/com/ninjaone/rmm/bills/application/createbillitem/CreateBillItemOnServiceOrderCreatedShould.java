@@ -2,6 +2,7 @@ package com.ninjaone.rmm.bills.application.createbillitem;
 
 import com.ninjaone.rmm.bills.BillsModuleUnitTestCase;
 import com.ninjaone.rmm.bills.domain.BillItemMother;
+import com.ninjaone.rmm.bills.domain.InvalidBillItemException;
 import com.ninjaone.rmm.bills.domain.costcalculation.ServicePriceCalculator;
 import com.ninjaone.rmm.devices.application.DeviceResponseMother;
 import com.ninjaone.rmm.devices.application.find.FindDeviceByIdQuery;
@@ -10,6 +11,7 @@ import com.ninjaone.rmm.devices.domain.DeviceOrderMother;
 import com.ninjaone.rmm.orders.domain.ServiceOrderMother;
 import com.ninjaone.rmm.services.domain.ServiceInformationMother;
 import com.ninjaone.shared.domain.ServiceOrderCreatedDomainEventMother;
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -45,5 +47,22 @@ class CreateBillItemOnServiceOrderCreatedShould extends BillsModuleUnitTestCase 
         subject.on(event);
 
         shouldHaveSaved(BillItemMother.fromService(event.aggregateId(), service, event.customerId()));
+    }
+
+    @Test
+    void should_not_create_bill_item_when_invalid_item_type() {
+        Assert.assertThrows(InvalidBillItemException.class, () -> {
+            var device = DeviceInformationMother.invalid();
+            var service = ServiceInformationMother.invalid();
+
+            var event = ServiceOrderCreatedDomainEventMother.from(
+                DeviceOrderMother.from(device),
+                ServiceOrderMother.from(service, device.id())
+            );
+
+            shouldAsk(new FindDeviceByIdQuery(event.deviceId()), DeviceResponseMother.fromDevice(device));
+
+            subject.on(event);
+        });
     }
 }

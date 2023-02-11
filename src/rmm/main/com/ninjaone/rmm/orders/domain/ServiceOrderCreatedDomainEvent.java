@@ -10,7 +10,7 @@ public final class ServiceOrderCreatedDomainEvent extends DomainEvent {
     private String serviceId;
     private String customerId;
 
-    public ServiceOrderCreatedDomainEvent(String aggregateId, String deviceId, String serviceId, String name) {
+    public ServiceOrderCreatedDomainEvent(String aggregateId, String deviceId, String serviceId, String name, String customerId) {
         super(aggregateId);
         this.deviceId = deviceId;
         this.serviceId = serviceId;

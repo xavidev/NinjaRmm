@@ -22,4 +22,12 @@ public class ServiceInformationMother {
             new Price(cost)
         );
     }
+
+    public static ServiceInformation invalid() {
+        return ServiceInformation.create(
+            new ServiceId(UuidMother.random()),
+            new ServiceName("random service"),
+            new Price("10")
+        );
+    }
 }

@@ -8,6 +8,7 @@ public final class ServiceOrderCreatedDomainEventMother {
             order.id(),
             order.deviceId(),
             order.serviceId(),
+            order.name(),
             order.customerId()
         );
     }

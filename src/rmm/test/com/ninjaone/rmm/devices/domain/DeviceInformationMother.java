@@ -13,7 +13,7 @@ public final class DeviceInformationMother {
         return DeviceInformation.create(UuidMother.random(), "Mac", "50");
     }
 
-    public static DeviceInformation random() {
-        return null;
+    public static DeviceInformation invalid() {
+        return DeviceInformation.create(UuidMother.random(), "INVALID", "50");
     }
 }

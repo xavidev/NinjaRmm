@@ -11,7 +11,8 @@ public final class ServiceOrderCreatedDomainEventMother {
             UuidMother.random(),
             device.deviceId(),
             service.serviceId(),
-            service.name()
+            service.name(),
+            service.customerId()
             );
     }
 }
