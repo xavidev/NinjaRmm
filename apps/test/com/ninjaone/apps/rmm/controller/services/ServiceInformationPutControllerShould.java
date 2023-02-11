@@ -1,9 +1,9 @@
 package com.ninjaone.apps.rmm.controller.services;
 
-import com.ninjaone.apps.ApplicationTestCase;
+import com.ninjaone.apps.rmm.RmmApplicationTestCase;
 import org.junit.jupiter.api.Test;
 
-public class ServiceInformationPutControllerShould extends ApplicationTestCase {
+public class ServiceInformationPutControllerShould extends RmmApplicationTestCase {
 
     @Test
     void create_non_existing_valid_service() throws Exception {

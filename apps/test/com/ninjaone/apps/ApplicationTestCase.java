@@ -1,5 +1,9 @@
 package com.ninjaone.apps;
 
+import com.ninjaone.shared.domain.bus.command.Command;
+import com.ninjaone.shared.domain.bus.command.CommandBus;
+import com.ninjaone.shared.domain.bus.event.DomainEvent;
+import com.ninjaone.shared.domain.bus.event.EventBus;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -9,6 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -17,7 +23,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@Transactional
 public abstract class ApplicationTestCase {
 
     protected final int BAD_REQUEST = 400;
@@ -26,6 +31,12 @@ public abstract class ApplicationTestCase {
     protected final int CREATED = 201;
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private EventBus eventBus;
+
+    @Autowired
+    private CommandBus commandBus;
 
     public void getRequest(String endpoint, Integer expectedStatusCode, String expectedResponse) throws Exception {
         mockMvc
@@ -71,5 +82,13 @@ public abstract class ApplicationTestCase {
             .perform(request(HttpMethod.valueOf(method), endpoint).content(body).contentType(APPLICATION_JSON))
             .andExpect(status().is(expectedStatusCode))
             .andExpect(content().string(expectedContent));
+    }
+
+    protected void givenISendEventsToTheBus(DomainEvent... domainEvents) {
+        eventBus.publish(Arrays.asList(domainEvents));
+    }
+
+    protected void givenISendCommandToTheBus(Command command) {
+        commandBus.dispatch(command);
     }
 }

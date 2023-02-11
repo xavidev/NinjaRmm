@@ -13,6 +13,6 @@ public final class CreateDeviceOrderCommandHandler implements CommandHandler<Cre
 
     @Override
     public void handle(CreateDeviceOrderCommand command) {
-        creator.create(command.customerDeviceId(), command.deviceId(), command.customerId());
+        creator.create(command.orderId(), command.deviceId(), command.customerId());
     }
 }

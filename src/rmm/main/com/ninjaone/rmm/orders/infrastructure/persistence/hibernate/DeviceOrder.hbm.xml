@@ -4,17 +4,21 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.ninjaone.rmm.orders.domain.model.DeviceOrder" table="devices_orders">
+    <class name="com.ninjaone.rmm.orders.domain.model.DeviceOrder" table="device_orders">
         <composite-id name="id" class="com.ninjaone.rmm.orders.domain.model.DeviceOrderId" access="field">
             <key-property column="id" name="value" length="36" access="field" />
         </composite-id>
 
-        <property name="deviceId" length="36" access="field"/>
+        <component name="deviceId" access="field">
+            <property name="value" column="device_id" length="36" access="field"/>
+        </component>
 
-        <property name="customerId" length="36" access="field"/>
+        <component name="customerId" access="field">
+            <property name="value" column="customer_id" length="36" access="field"/>
+        </component>
 
         <component name="name" access="field">
-            <property name="value" access="field"/>
+            <property name="value" column="name" access="field"/>
         </component>
     </class>
 </hibernate-mapping>

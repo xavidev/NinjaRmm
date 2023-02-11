@@ -1,7 +1,9 @@
 package com.ninjaone.rmm.orders.create;
 
 import com.ninjaone.rmm.devices.application.find.FindDeviceByIdQuery;
+import com.ninjaone.rmm.orders.domain.DeviceOrderRepository;
 import com.ninjaone.rmm.orders.domain.ServiceOrderRepository;
+import com.ninjaone.rmm.orders.domain.model.DeviceOrderId;
 import com.ninjaone.rmm.orders.domain.model.OrderName;
 import com.ninjaone.rmm.orders.domain.model.ServiceOrder;
 import com.ninjaone.rmm.orders.domain.model.ServiceOrderId;
@@ -16,13 +18,13 @@ import com.ninjaone.shared.domain.bus.query.QueryBus;
 
 @Service
 public final class ServiceOrderCreator {
-    private final ServiceOrderRepository repository;
+    private final ServiceOrderRepository serviceOrderRepository;
     private final EventBus eventBus;
     private final QueryBus queryBus;
 
-    public ServiceOrderCreator(ServiceOrderRepository repository, EventBus eventBus, QueryBus queryBus) {
+    public ServiceOrderCreator(ServiceOrderRepository serviceOrderRepository, EventBus eventBus, QueryBus queryBus) {
 
-        this.repository = repository;
+        this.serviceOrderRepository = serviceOrderRepository;
         this.eventBus = eventBus;
         this.queryBus = queryBus;
     }
@@ -40,7 +42,7 @@ public final class ServiceOrderCreator {
             new CustomerId(customerId)
         );
 
-        repository.save(service);
+        serviceOrderRepository.save(service);
 
         eventBus.publish(service.pullDomainEvents());
     }

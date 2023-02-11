@@ -34,8 +34,8 @@ CREATE TABLE IF NOT EXISTS service_orders (
 
 CREATE TABLE IF NOT EXISTS device_orders (
     id       CHAR(36)     NOT NULL,
-    deviceId     CHAR(36)     NOT NULL,
-    customerId     CHAR(36)     NOT NULL,
+    device_id     CHAR(36)     NOT NULL,
+    customer_id     CHAR(36)     NOT NULL,
     name VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
     )

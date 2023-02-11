@@ -1,6 +1,6 @@
 package com.ninjaone.apps.rmm.controller.services;
 
-import com.ninjaone.rmm.services.application.create.CreateServiceCommand;
+import com.ninjaone.rmm.services.application.create.CreateServiceInformationCommand;
 import com.ninjaone.rmm.services.domain.DuplicateServiceException;
 import com.ninjaone.shared.domain.DomainException;
 import com.ninjaone.shared.domain.bus.command.CommandBus;
@@ -26,7 +26,7 @@ public final class ServicePutController extends ApiController {
 
     @PutMapping("/services/{id}")
     public ResponseEntity<String> index(@PathVariable String id, @RequestBody ServiceRequest request) {
-        dispatch(new CreateServiceCommand(id, request.getName(), request.getCost()));
+        dispatch(new CreateServiceInformationCommand(id, request.getName(), request.getCost()));
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

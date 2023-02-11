@@ -20,7 +20,7 @@ class CreateServiceInformationCommandHandlerShould extends ServicesModuleUnitTes
     void create_valid_service() {
         var service = ServiceInformationMother.random();
 
-        handler.handle(new CreateServiceCommand(service.id(), service.name(), "20"));
+        handler.handle(new CreateServiceInformationCommand(service.id(), service.name(), "20"));
 
         shouldHaveSaved(service);
     }
