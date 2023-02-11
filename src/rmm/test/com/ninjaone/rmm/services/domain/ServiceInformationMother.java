@@ -1,5 +1,6 @@
 package com.ninjaone.rmm.services.domain;
 
+import com.ninjaone.rmm.orders.domain.model.ServiceOrder;
 import com.ninjaone.rmm.services.domain.model.ServiceInformation;
 import com.ninjaone.shared.domain.Price;
 import com.ninjaone.rmm.shared.domain.ServiceId;
@@ -28,6 +29,14 @@ public class ServiceInformationMother {
             new ServiceId(UuidMother.random()),
             new ServiceName("random service"),
             new Price("10")
+        );
+    }
+
+    public static ServiceInformation fromServiceOrder(ServiceOrder order) {
+        return ServiceInformation.create(
+            new ServiceId(order.serviceId()),
+            new ServiceName(order.name()),
+            new Price("100")
         );
     }
 }

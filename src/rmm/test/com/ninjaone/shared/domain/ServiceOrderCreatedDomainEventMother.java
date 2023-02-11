@@ -15,4 +15,26 @@ public final class ServiceOrderCreatedDomainEventMother {
             service.customerId()
             );
     }
+
+    public static ServiceOrderCreatedDomainEvent invalid() {
+        return new InvalidServiceOrderDomainEvent(
+            UuidMother.random(),
+            UuidMother.random(),
+            UuidMother.random(),
+            UuidMother.random(),
+            UuidMother.random()
+        );
+    }
+}
+
+class InvalidServiceOrderDomainEvent extends ServiceOrderCreatedDomainEvent {
+
+    public InvalidServiceOrderDomainEvent(String aggregateId, String deviceId, String serviceId, String name, String customerId) {
+        super(aggregateId, deviceId, serviceId, name, customerId);
+    }
+
+    @Override
+    public String itemType() {
+        return "INVALID";
+    }
 }

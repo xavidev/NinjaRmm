@@ -4,7 +4,7 @@ import com.ninjaone.shared.domain.bus.event.DomainEvent;
 
 import java.util.Objects;
 
-public final class ServiceOrderCreatedDomainEvent extends DomainEvent {
+public class ServiceOrderCreatedDomainEvent extends DomainEvent {
     private String name;
     private String deviceId;
     private String serviceId;

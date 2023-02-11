@@ -1,7 +1,8 @@
 package com.ninjaone.rmm.orders.application.create;
 
-import com.ninjaone.rmm.devices.application.DeviceResponseMother;
 import com.ninjaone.rmm.devices.application.find.FindDeviceByIdQuery;
+import com.ninjaone.rmm.devices.domain.DeviceInformationMother;
+import com.ninjaone.rmm.devices.domain.model.DeviceInformation;
 import com.ninjaone.rmm.orders.OrdersModuleUnitTestCase;
 import com.ninjaone.rmm.orders.create.CreateServiceOrderCommandHandler;
 import com.ninjaone.rmm.orders.create.ServiceOrderCreator;
@@ -29,11 +30,17 @@ class CreateServiceOrderCommandHandlerShould extends OrdersModuleUnitTestCase {
 
     @Test
     void should_create_a_service_order() {
-        var command = CreateServiceOrderCommandMother.random();
+        var service = ServiceInformationMother.antivirus("100");
+        var response = ServiceResponseMother.fromService(service);
 
-        var order = ServiceOrderMother.fromCommand(command);
+        DeviceInformation device = DeviceInformationMother.Windows();
+        var command = CreateServiceOrderCommandMother.from(service, device);
 
-        shouldAsk(new FindServiceByIdQuery(command.serviceId()), ServiceResponseMother.fromService(ServiceInformationMother.random()));
+        var order = ServiceOrderMother.from(command, service.name());
+
+        shouldAsk(
+            new FindServiceByIdQuery(command.serviceId()),
+            response);
 
         subject.handle(command);
 

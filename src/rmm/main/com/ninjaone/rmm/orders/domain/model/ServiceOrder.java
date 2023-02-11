@@ -24,7 +24,7 @@ public class ServiceOrder extends AggregateRoot {
         this.deviceId = deviceId;
         this.customerId = customerId;
 
-        record(new ServiceOrderCreatedDomainEvent(id.value(), deviceId.value(), serviceId.value(), customerId.value(), customerId.value()));
+        record(new ServiceOrderCreatedDomainEvent(id.value(), deviceId.value(), serviceId.value(), name.value(), customerId.value()));
     }
 
     protected ServiceOrder(){

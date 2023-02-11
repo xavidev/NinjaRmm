@@ -52,17 +52,8 @@ class CreateBillItemOnServiceOrderCreatedShould extends BillsModuleUnitTestCase 
     @Test
     void should_not_create_bill_item_when_invalid_item_type() {
         Assert.assertThrows(InvalidBillItemException.class, () -> {
-            var device = DeviceInformationMother.invalid();
-            var service = ServiceInformationMother.invalid();
 
-            var event = ServiceOrderCreatedDomainEventMother.from(
-                DeviceOrderMother.from(device),
-                ServiceOrderMother.from(service, device.id())
-            );
-
-            shouldAsk(new FindDeviceByIdQuery(event.deviceId()), DeviceResponseMother.fromDevice(device));
-
-            subject.on(event);
+            subject.on(ServiceOrderCreatedDomainEventMother.invalid());
         });
     }
 }

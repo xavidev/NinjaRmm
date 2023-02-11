@@ -20,6 +20,7 @@ public final class ServiceResponse implements Response {
         this.costPolicies = info.costPolicies();
     }
 
+
     public Price cost() {
         return cost;
     }

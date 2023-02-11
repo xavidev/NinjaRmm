@@ -1,5 +1,6 @@
 package com.ninjaone.rmm.orders.domain;
 
+import com.ninjaone.rmm.devices.domain.model.DeviceInformation;
 import com.ninjaone.rmm.orders.create.CreateServiceOrderCommand;
 import com.ninjaone.rmm.orders.domain.model.OrderName;
 import com.ninjaone.rmm.orders.domain.model.ServiceOrder;
@@ -11,11 +12,22 @@ import com.ninjaone.rmm.shared.domain.DeviceId;
 import com.ninjaone.rmm.shared.domain.ServiceId;
 
 public final class ServiceOrderMother {
+
     public static ServiceOrder fromCommand(CreateServiceOrderCommand command){
         return ServiceOrder.create(
             new ServiceOrderId(command.orderId()),
             new ServiceId(command.serviceId()),
             new OrderName("order"),
+            new DeviceId(command.deviceId()),
+            new CustomerId(command.customerId())
+        );
+    }
+
+    public static ServiceOrder from(CreateServiceOrderCommand command, String name) {
+        return ServiceOrder.create(
+            new ServiceOrderId(command.orderId()),
+            new ServiceId(command.serviceId()),
+            new OrderName(name),
             new DeviceId(command.deviceId()),
             new CustomerId(command.customerId())
         );
