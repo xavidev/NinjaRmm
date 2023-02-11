@@ -43,4 +43,16 @@ CREATE TABLE IF NOT EXISTS device_orders (
     DEFAULT CHARSET = utf8mb4
     COLLATE = utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS bill_items (
+    id       CHAR(36)     NOT NULL,
+    concept VARCHAR(255) NOT NULL,
+    customer_id     CHAR(36)     NOT NULL,
+    item_type VARCHAR(255) NOT NULL,
+    price     NUMERIC,
+    PRIMARY KEY (id)
+    )
+    ENGINE = InnoDB
+    DEFAULT CHARSET = utf8mb4
+    COLLATE = utf8mb4_unicode_ci;
+
 

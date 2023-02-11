@@ -2,7 +2,7 @@ package com.ninjaone.rmm.bills.domain.model;
 
 import java.util.Objects;
 
-public final class BillItemInfo {
+public class BillItemInfo {
     private final String concept;
     private final String itemType;
     private final String customerId;
@@ -11,6 +11,13 @@ public final class BillItemInfo {
         this.concept = concept;
         this.itemType = itemType;
         this.customerId = customerId;
+    }
+
+    private BillItemInfo() {
+
+        customerId = null;
+        itemType = null;
+        concept = null;
     }
 
     public String concept() {

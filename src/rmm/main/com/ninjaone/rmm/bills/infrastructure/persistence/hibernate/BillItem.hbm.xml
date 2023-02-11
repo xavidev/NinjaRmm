@@ -1,0 +1,22 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ninjaone.rmm.bills.domain.model.BillItem" table="bill_items">
+        <composite-id name="id" class="com.ninjaone.rmm.shared.domain.ServiceId" access="field">
+            <key-property column="id" name="value" length="36" access="field" />
+        </composite-id>
+
+        <component name="info" class="com.ninjaone.rmm.bills.domain.model.BillItemInfo" access="field">
+            <property name="concept" column="concept" type="string" access="field" />
+            <property name="itemType" column="item_type" type="string" access="field" />
+            <property name="customerId" column="customer_id" type="string" access="field" />
+        </component>
+
+        <component name="price" class="com.ninjaone.shared.domain.Price" access="field">
+            <property name="value" column="price" type="big_decimal" access="field" />
+        </component>
+    </class>
+</hibernate-mapping>

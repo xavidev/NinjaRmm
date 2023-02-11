@@ -1,5 +1,6 @@
 package com.ninjaone.rmm.services.infrastructure.persistence;
 
+import com.ninjaone.rmm.devices.domain.DeviceInformationMother;
 import com.ninjaone.rmm.services.ServicesModuleInfrastructureTestCase;
 import com.ninjaone.rmm.services.domain.ServiceCostPolicyMother;
 import com.ninjaone.rmm.services.domain.ServiceInformationMother;
@@ -27,8 +28,15 @@ class MySqlServiceInformationRepositoryShould extends ServicesModuleInfrastructu
 
         mySqlCourseRepository.save(service);
 
-        var found = mySqlCourseRepository.search(new ServiceId(service.id()));
+        var found = mySqlCourseRepository.search(new ServiceId(service.id())).get();
 
-        Assertions.assertEquals(service, found.get());
+        found.addCostPolicy(ServiceCostPolicyMother.forDevice(DeviceInformationMother.Mac(), "250"));
+        service.addCostPolicy(ServiceCostPolicyMother.forDevice(DeviceInformationMother.Mac(), "250"));
+
+        mySqlCourseRepository.save(found);
+
+        found = mySqlCourseRepository.search(new ServiceId(service.id())).get();
+
+        Assertions.assertEquals(service, found);
     }
 }
