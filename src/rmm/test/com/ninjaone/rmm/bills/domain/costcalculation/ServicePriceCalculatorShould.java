@@ -23,17 +23,18 @@ class ServicePriceCalculatorShould extends BillsModuleUnitTestCase {
     @Test
     void should_calculate_price_for_service_without_cost_policies() {
         ServiceInformation service = ServiceInformationMother.antivirus("100");
+        DeviceInformationMother.Windows();
 
         shouldAsk(new FindServiceByIdQuery(service.id()), ServiceResponseMother.fromService(service));
 
-//        Price calculatedPrice = calculator.priceFor(UuidMother.random(), service.id(), UuidMother.random(), deviceResponse.type());
-//
-//        assertEquals(service.cost(), calculatedPrice);
+        Price calculatedPrice = calculator.priceFor(UuidMother.random(), service.id(), UuidMother.random(), DeviceInformationMother.Windows().type());
+
+        assertEquals(service.cost(), calculatedPrice);
     }
 
     @Test
     void should_calculate_price_for_service_with_device_type_cost_policy() {
-        var serviceDevice = DeviceInformationMother.Windows();
+        var serviceDevice = DeviceInformationMother.Mac();
 
         ServiceInformation service = ServiceInformationMother.antivirus("100");
         service.addCostPolicy(ServiceCostPolicyMother.forDevice(DeviceInformationMother.Mac(), "150"));
@@ -41,8 +42,8 @@ class ServicePriceCalculatorShould extends BillsModuleUnitTestCase {
 
         shouldAsk(new FindServiceByIdQuery(service.id()), ServiceResponseMother.fromService(service));
 
-//        Price calculatedPrice = calculator.priceFor(UuidMother.random(), service.id(), serviceDevice.id(), deviceResponse.type());
-//
-//        assertEquals(service.cost(), calculatedPrice);
+        Price calculatedPrice = calculator.priceFor(UuidMother.random(), service.id(), serviceDevice.id(), serviceDevice.type());
+
+        assertEquals(new Price("150"), calculatedPrice);
     }
 }

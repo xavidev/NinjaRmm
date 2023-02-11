@@ -35,7 +35,6 @@ public abstract class ApplicableCalculationStrategy<T extends ServiceCostPolicy>
                     price = doCalculation(price, mapper.readValue(set.getValue(), clazz), calculationParams);
                 } catch (JsonProcessingException ex) {
 
-                    price = new Price("0");
                 }
             }
         }

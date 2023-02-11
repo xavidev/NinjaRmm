@@ -19,6 +19,6 @@ public final class ServiceFinder {
         ServiceInformation service = repository.search(new ServiceId(id))
             .orElseThrow(() -> new ServiceNotExistException(new ServiceId(id)));
 
-        return new ServiceResponse(service.id(), service.cost(), service.name());
+        return new ServiceResponse(service);
     }
 }

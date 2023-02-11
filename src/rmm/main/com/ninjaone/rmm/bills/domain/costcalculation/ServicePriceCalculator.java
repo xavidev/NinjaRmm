@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class ServicePriceCalculator {
     private final QueryBus queryBus;
-    private List<CalculationStrategy> strategies;
+    private final List<CalculationStrategy> strategies;
 
     public ServicePriceCalculator(QueryBus queryBus, List<CalculationStrategy> strategies) {
         this.queryBus = queryBus;

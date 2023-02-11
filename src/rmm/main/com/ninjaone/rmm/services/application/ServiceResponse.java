@@ -4,7 +4,6 @@ import com.ninjaone.rmm.services.domain.model.ServiceInformation;
 import com.ninjaone.shared.domain.Price;
 import com.ninjaone.shared.domain.bus.query.Response;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,13 +12,6 @@ public final class ServiceResponse implements Response {
     private String id;
     private Price cost;
     private String name;
-
-    public ServiceResponse(String id, Price cost, String name) {
-        this.id = id;
-        this.cost = cost;
-        this.name = name;
-        costPolicies = null;
-    }
 
     public ServiceResponse(ServiceInformation info) {
         this.id = info.id();
@@ -37,6 +29,6 @@ public final class ServiceResponse implements Response {
     }
 
     public List<Map.Entry<String, String>> policies() {
-        return policies();
+        return costPolicies;
     }
 }
