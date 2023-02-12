@@ -10,6 +10,7 @@ import com.ninjaone.rmm.devices.application.DeviceResponse;
 import com.ninjaone.rmm.devices.application.find.FindDeviceByIdQuery;
 import com.ninjaone.shared.domain.Price;
 import com.ninjaone.shared.domain.Service;
+import com.ninjaone.shared.domain.bus.event.EventBus;
 import com.ninjaone.shared.domain.bus.query.QueryBus;
 
 @Service
@@ -17,11 +18,18 @@ public final class ServiceBillItemCreator {
     private final BillItemRepository repository;
     private final QueryBus bus;
     private final ServicePriceCalculator calculator;
+    private final EventBus eventBus;
 
-    public ServiceBillItemCreator(BillItemRepository repository, QueryBus bus, ServicePriceCalculator calculator){
+    public ServiceBillItemCreator(
+        BillItemRepository repository,
+        QueryBus bus,
+        ServicePriceCalculator calculator,
+        EventBus eventBus){
+
         this.repository = repository;
         this.bus = bus;
         this.calculator = calculator;
+        this.eventBus = eventBus;
     }
 
     public void create(BillCreationParams params) {
@@ -37,6 +45,8 @@ public final class ServiceBillItemCreator {
         }
 
         repository.save(item);
+
+        eventBus.publish(item.pullDomainEvents());
     }
 
     private static BillItem createBill(BillCreationParams params, Price cost) {

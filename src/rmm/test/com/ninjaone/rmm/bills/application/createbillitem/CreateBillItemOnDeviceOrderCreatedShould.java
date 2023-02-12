@@ -19,7 +19,7 @@ class CreateBillItemOnDeviceOrderCreatedShould extends BillsModuleUnitTestCase {
     public void setUp() {
         super.setUp();
 
-        subject = new CreateBillItemOnDeviceOrderCreated(new DeviceBillItemCreator(billItemRepository, queryBus));
+        subject = new CreateBillItemOnDeviceOrderCreated(new DeviceBillItemCreator(billItemRepository, queryBus,eventBus));
     }
 
     @Test

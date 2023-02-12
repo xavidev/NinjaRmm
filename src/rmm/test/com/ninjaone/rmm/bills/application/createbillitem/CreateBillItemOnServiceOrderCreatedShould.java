@@ -23,7 +23,7 @@ class CreateBillItemOnServiceOrderCreatedShould extends BillsModuleUnitTestCase 
         super.setUp();
 
 
-        subject = new CreateBillItemOnServiceOrderCreated(new ServiceBillItemCreator(billItemRepository, queryBus, calculator));
+        subject = new CreateBillItemOnServiceOrderCreated(new ServiceBillItemCreator(billItemRepository, queryBus, calculator, eventBus));
     }
 
     @Test
