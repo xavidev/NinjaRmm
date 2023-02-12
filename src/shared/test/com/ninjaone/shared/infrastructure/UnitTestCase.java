@@ -12,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.*;
 
 public abstract class UnitTestCase {
@@ -35,10 +34,6 @@ public abstract class UnitTestCase {
 
     public void shouldHavePublished(DomainEvent domainEvent) {
         shouldHavePublished(Collections.singletonList(domainEvent));
-    }
-
-    public void shouldGenerateUuid(String uuid) {
-        when(uuidGenerator.generate()).thenReturn(uuid);
     }
 
     public void shouldAsk(Query query, Response response) {

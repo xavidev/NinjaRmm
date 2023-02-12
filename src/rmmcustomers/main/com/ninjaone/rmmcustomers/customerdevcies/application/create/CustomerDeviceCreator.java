@@ -13,6 +13,11 @@ public final class CustomerDeviceCreator {
     }
 
     public void create(String id, String customerId, String name) {
+
+        if (repository.search(new CustomerDeviceId(id)).isPresent()) {
+            return;
+        }
+
         var device = CustomerDevice.create(
             new CustomerDeviceId(id),
             new SystemName(name + "-" + customerId),

@@ -5,6 +5,7 @@ import com.ninjaone.shared.domain.Price;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CustomerDevice extends AggregateRoot {
 
@@ -64,5 +65,22 @@ public class CustomerDevice extends AggregateRoot {
 
     public Price totalCost() {
         return totalCost;
+    }
+
+    public String customerId() {
+        return customerId.value();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomerDevice that = (CustomerDevice) o;
+        return Objects.equals(id, that.id) && Objects.equals(systemName, that.systemName) && Objects.equals(type, that.type) && Objects.equals(customerId, that.customerId) && Objects.equals(deviceCost, that.deviceCost) && Objects.equals(services, that.services) && Objects.equals(totalCost, that.totalCost);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, systemName, type, customerId, deviceCost, services, totalCost);
     }
 }

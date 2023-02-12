@@ -29,7 +29,7 @@ public final class TechnicalTaskAcceptanceTest extends CustomersApplicationTestC
     private String macThirdOrder = "766c1138-5caa-4539-a9b7-45f408674fbd";
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         customer = new CustomerId(UuidMother.random()).value();
         createWindows();
         createMac();
@@ -62,7 +62,7 @@ public final class TechnicalTaskAcceptanceTest extends CustomersApplicationTestC
         ));
     }
 
-    private void createWindows() throws Exception {
+    private void createWindows() {
         givenISendCommandToTheBus(new CreateDeviceInformationCommand(
             windowsId,
             "Windows",
@@ -70,7 +70,7 @@ public final class TechnicalTaskAcceptanceTest extends CustomersApplicationTestC
         ));
     }
 
-    private void createMac() throws Exception {
+    private void createMac() {
         givenISendCommandToTheBus(new CreateDeviceInformationCommand(
             macId,
             "Mac",
