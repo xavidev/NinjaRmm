@@ -1,9 +1,6 @@
 package com.ninjaone.rmmcustomers.customerdevcies.domain;
 
-import com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerDevice;
-import com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerDeviceId;
-import com.ninjaone.rmmcustomers.customerdevcies.domain.model.DeviceType;
-import com.ninjaone.rmmcustomers.customerdevcies.domain.model.SystemName;
+import com.ninjaone.rmmcustomers.customerdevcies.domain.model.*;
 import com.ninjaone.shared.domain.Price;
 import com.ninjaone.shared.domain.UuidMother;
 
@@ -15,5 +12,15 @@ public final class CustomerDeviceMother {
             new DeviceType("Windows"),
             new Price("200")
         );
+    }
+
+    public static CustomerDevice randomWithServices() {
+        var device = random();
+
+        device.addService(new CustomerService(UuidMother.random(), "random"));
+        device.addService(new CustomerService(UuidMother.random(), "random"));
+        device.addService(new CustomerService(UuidMother.random(), "random"));
+
+        return device;
     }
 }

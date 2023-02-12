@@ -31,4 +31,8 @@ public class CustomerDevice extends AggregateRoot {
     public static CustomerDevice create(CustomerDeviceId id, SystemName systemName, DeviceType type, Price totalCost){
         return new CustomerDevice(id, systemName, type, totalCost);
     }
+
+    public void addService(CustomerService service) {
+        this.services.add(service);
+    }
 }

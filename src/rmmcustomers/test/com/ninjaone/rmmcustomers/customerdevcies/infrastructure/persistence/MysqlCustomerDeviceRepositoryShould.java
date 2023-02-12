@@ -10,8 +10,11 @@ class MysqlCustomerDeviceRepositoryShould extends CustomerDevicesModuleInfrastru
 
     @Test
     void save_customer_device(){
-        var customerDevice = CustomerDeviceMother.random();
+        repository.save(CustomerDeviceMother.random());
+    }
 
-        repository.save(customerDevice);
+    @Test
+    void save_customer_device_with_services(){
+        repository.save(CustomerDeviceMother.randomWithServices());
     }
 }
