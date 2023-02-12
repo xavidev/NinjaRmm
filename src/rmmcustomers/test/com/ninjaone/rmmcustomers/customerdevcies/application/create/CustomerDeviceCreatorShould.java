@@ -2,9 +2,7 @@ package com.ninjaone.rmmcustomers.customerdevcies.application.create;
 
 import com.ninjaone.rmmcustomers.customerdevcies.domain.CustomerDeviceMother;
 import com.ninjaone.rmmcustomers.customerdevcies.domain.CustomerDeviceRepository;
-import com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerDevice;
 import com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerDeviceId;
-import com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerId;
 import com.ninjaone.shared.domain.UuidMother;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -15,8 +15,8 @@ public final class TechnicalTaskAcceptanceTest extends CustomersApplicationTestC
     private String customer;
 
     private String screenShareId = "322d91b8-441e-48f3-b223-ecc01eeb517d";
-    private String backupId = "322d91b8-441e-48f3-b223-ecc01eeb517d";
-    private String antivirusId = "322d91b8-441e-48f3-b223-ecc01eeb517d";
+    private String backupId = "c434194c-406d-4037-b02c-9d44192abb23";
+    private String antivirusId = "d0aecd09-c9a7-4801-9aa9-6c7303c17ac5";
     private String windowsId = "c34512f7-631e-4200-b639-a973d4197e00";
     private String macId = "322d91b8-441e-48f3-b223-ecc01eeb517d";
 
@@ -97,17 +97,21 @@ public final class TechnicalTaskAcceptanceTest extends CustomersApplicationTestC
             orderingAnScreenShare(),
             orderingAnScreenShare());
 
-//
-//        getTheExplanation(
-//            """
-//                Total Cost: $64
-//                Explanation:
-//                    Devices cost: $20
-//                    Antivirus cost: $31
-//                    Backup: $9
-//                    Screen Share: $4
-//                """
-//        );
+
+        getTheExplanation(
+            """
+                Total Cost: $64
+                Explanation:
+                    Devices cost: $20
+                    Antivirus cost: $31
+                    Backup: $9
+                    Screen Share: $4
+                """
+        );
+    }
+
+    private void getTheExplanation(String expected) throws Exception {
+        getRequestStringContent("/explanation/" + customer, OK, expected);
     }
 
     private void withTwoWindowsWith(Consumer<String>... orders) throws Exception {

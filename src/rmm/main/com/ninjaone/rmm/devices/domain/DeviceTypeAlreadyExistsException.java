@@ -7,7 +7,7 @@ public final class DeviceTypeAlreadyExistsException extends DomainException {
     public DeviceTypeAlreadyExistsException(DeviceType type) {
         super(
             "device_type_not_exist",
-            String.format("The device type <%s> not exist.", type.value())
+            String.format("The device type <%s> already exist.", type.value())
         );
     }
 }

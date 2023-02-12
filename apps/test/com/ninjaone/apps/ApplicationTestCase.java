@@ -48,6 +48,13 @@ public abstract class ApplicationTestCase {
             .andExpect(content().json(expectedResponse));
     }
 
+    public void getRequestStringContent(String endpoint, Integer expectedStatusCode, String expectedResponse) throws Exception {
+        mockMvc
+            .perform(get(endpoint))
+            .andExpect(status().is(expectedStatusCode))
+            .andExpect(content().string(expectedResponse));
+    }
+
     public void postRequest(String endpoint, Integer expectedStatusCode) throws Exception {
         mockMvc
             .perform(post(endpoint))

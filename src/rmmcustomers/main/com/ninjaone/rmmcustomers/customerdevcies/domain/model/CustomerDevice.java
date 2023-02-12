@@ -67,6 +67,10 @@ public class CustomerDevice extends AggregateRoot {
         return totalCost;
     }
 
+    public Price deviceCost() {
+        return deviceCost;
+    }
+
     public String customerId() {
         return customerId.value();
     }

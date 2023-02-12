@@ -26,6 +26,7 @@ public final class DeviceOrderCreator {
     }
 
     public void create(String id, String deviceId, String customerId) {
+        
         DeviceResponse response = queryBus.ask(new FindDeviceByIdQuery(deviceId));
 
         DeviceOrder device = DeviceOrder.orderFor(

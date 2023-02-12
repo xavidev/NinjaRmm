@@ -4,11 +4,13 @@ import com.ninjaone.rmmcustomers.customerdevcies.domain.CustomerDeviceRepository
 import com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerDevice;
 import com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerDeviceId;
 import com.ninjaone.shared.domain.Service;
+import com.ninjaone.shared.domain.criteria.Criteria;
 import com.ninjaone.shared.infrastructure.hibernate.HibernateRepository;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,5 +28,10 @@ public class MysqlCustomerDeviceRepository extends HibernateRepository<CustomerD
     @Override
     public Optional<CustomerDevice> search(CustomerDeviceId customerDeviceId) {
         return byId(customerDeviceId);
+    }
+
+    @Override
+    public List<CustomerDevice> match(Criteria criteria) {
+        return byCriteria(criteria);
     }
 }
