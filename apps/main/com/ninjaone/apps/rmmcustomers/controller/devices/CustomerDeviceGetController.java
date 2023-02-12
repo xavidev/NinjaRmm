@@ -1,6 +1,7 @@
 package com.ninjaone.apps.rmmcustomers.controller.devices;
 
-import com.ninjaone.rmm.orders.create.CreateDeviceOrderCommand;
+import com.ninjaone.rmmcustomers.customerdevcies.application.find.CustomerDeviceResponse;
+import com.ninjaone.rmmcustomers.customerdevcies.application.find.FindCustomerDeviceQuery;
 import com.ninjaone.shared.domain.DomainException;
 import com.ninjaone.shared.domain.bus.command.CommandBus;
 import com.ninjaone.shared.domain.bus.query.QueryBus;
@@ -13,19 +14,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 
 @RestController
-public final class CustomerDeviceOrderPutController extends ApiController {
-    public CustomerDeviceOrderPutController(QueryBus queryBus, CommandBus commandBus) {
+public final class CustomerDeviceGetController extends ApiController {
+    public CustomerDeviceGetController(QueryBus queryBus, CommandBus commandBus) {
         super(queryBus, commandBus);
     }
 
-    @PutMapping(path = "/orders/{id}/devices/{deviceId}")
-    public @ResponseBody ResponseEntity<String> index(
+    @GetMapping(path = "/devices/{id}/detail")
+    public @ResponseBody ResponseEntity<CustomerDeviceResponse> index(
         @PathVariable String id,
-        @PathVariable String deviceId,
         @RequestBody DeviceOrderRequest request) {
-        dispatch(new CreateDeviceOrderCommand(id, deviceId, request.getCustomerId()));
+        CustomerDeviceResponse response = ask(new FindCustomerDeviceQuery(id, request.getCustomerId()));
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Override
@@ -35,6 +35,6 @@ public final class CustomerDeviceOrderPutController extends ApiController {
 }
 
 @Data
-class DeviceOrderRequest {
+class DeviceRequest {
     private String customerId;
 }
