@@ -15,9 +15,9 @@ public final class CustomerDeviceMother {
     public static CustomerDevice randomWithServices() {
         var device = random();
 
-        device.addService(new CustomerService(UuidMother.random(), "random"));
-        device.addService(new CustomerService(UuidMother.random(), "random"));
-        device.addService(new CustomerService(UuidMother.random(), "random"));
+        device.addService(new CustomerService(UuidMother.random(), "random", "150"));
+        device.addService(new CustomerService(UuidMother.random(), "random", "200"));
+        device.addService(new CustomerService(UuidMother.random(), "random", "300,50"));
 
         return device;
     }

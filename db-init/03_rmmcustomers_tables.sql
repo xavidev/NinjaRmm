@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS customer_devices (
     system_name     VARCHAR(255) NOT NULL,
     device_type     VARCHAR(255) NOT NULL,
     device_services   JSON    NOT NULL,
+    device_cost     NUMERIC,
     total_cost     NUMERIC,
     PRIMARY KEY (id)
     )

@@ -23,6 +23,10 @@
             </type>
         </property>
 
+        <component name="deviceCost" class="com.ninjaone.shared.domain.Price" access="field">
+            <property name="value" column="device_cost" type="big_decimal" access="field" />
+        </component>
+
         <component name="totalCost" class="com.ninjaone.shared.domain.Price" access="field">
             <property name="value" column="total_cost" type="big_decimal" access="field" />
         </component>

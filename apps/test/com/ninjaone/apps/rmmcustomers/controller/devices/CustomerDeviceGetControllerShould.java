@@ -1,10 +1,9 @@
 package com.ninjaone.apps.rmmcustomers.controller.devices;
 
 import com.ninjaone.apps.rmmcustomers.CustomersApplicationTestCase;
-import com.ninjaone.shared.domain.bills.BillItemCreatedDomainEvent;
 import com.ninjaone.rmm.devices.application.create.CreateDeviceInformationCommand;
-import com.ninjaone.shared.domain.orders.DeviceOrderCreatedDomainEvent;
 import com.ninjaone.shared.domain.UuidMother;
+import com.ninjaone.shared.domain.orders.DeviceOrderCreatedDomainEvent;
 import org.junit.jupiter.api.Test;
 
 class CustomerDeviceGetControllerShould extends CustomersApplicationTestCase {

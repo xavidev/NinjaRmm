@@ -23,9 +23,9 @@ public final class DeviceCostUpdater {
             .orElseThrow(() -> new CustomerDeviceNotExistException(new CustomerDeviceId(deviceId)));
 
         if (itemType.equals("service")) {
-            device.addService(new CustomerService(deviceId, concept));
+            device.addService(new CustomerService(deviceId, concept, cost));
         }
-        device.updateCost(new Price(cost));
+        device.setDeviceCost(new Price(cost));
 
         repository.save(device);
     }
