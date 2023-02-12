@@ -12,7 +12,7 @@ public final class CustomerDeviceCreator {
         this.repository = repository;
     }
 
-    public void create(String id, String deviceId, String customerId, String name) {
+    public void create(String id, String customerId, String name) {
         var device = CustomerDevice.create(
             new CustomerDeviceId(id),
             new SystemName(name + "-" + customerId),

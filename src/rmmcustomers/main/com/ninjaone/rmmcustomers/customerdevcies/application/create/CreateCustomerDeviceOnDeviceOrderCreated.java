@@ -19,7 +19,6 @@ public final class CreateCustomerDeviceOnDeviceOrderCreated {
     public void on (DeviceOrderCreatedDomainEvent event){
         creator.create(
             event.aggregateId(),
-            event.deviceId(),
             event.customerId(),
             event.name());
     }
