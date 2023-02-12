@@ -3,6 +3,7 @@ package com.ninjaone.apps.rmm.controller.devices;
 import com.ninjaone.rmm.devices.application.create.CreateDeviceInformationCommand;
 import com.ninjaone.rmm.devices.domain.DeviceTypeAlreadyExistsException;
 import com.ninjaone.shared.domain.DomainException;
+import com.ninjaone.shared.domain.InvalidPriceException;
 import com.ninjaone.shared.domain.bus.command.CommandBus;
 import com.ninjaone.shared.domain.bus.query.QueryBus;
 import com.ninjaone.shared.infrastructure.spring.ApiController;
@@ -33,6 +34,7 @@ public final class DevicePutController extends ApiController {
     public HashMap<Class<? extends DomainException>, HttpStatus> errorMapping() {
         HashMap<Class<? extends DomainException>, HttpStatus> errors = new HashMap<>();
         errors.put(DeviceTypeAlreadyExistsException.class, HttpStatus.CONFLICT);
+        errors.put(InvalidPriceException.class, HttpStatus.BAD_REQUEST);
 
         return  errors;
     }

@@ -3,6 +3,7 @@ package com.ninjaone.apps.rmm.controller.services;
 import com.ninjaone.rmm.services.application.create.CreateServiceInformationCommand;
 import com.ninjaone.rmm.services.domain.DuplicateServiceException;
 import com.ninjaone.shared.domain.DomainException;
+import com.ninjaone.shared.domain.InvalidPriceException;
 import com.ninjaone.shared.domain.bus.command.CommandBus;
 import com.ninjaone.shared.domain.bus.query.QueryBus;
 import com.ninjaone.shared.infrastructure.spring.ApiController;
@@ -35,6 +36,7 @@ public final class ServicePutController extends ApiController {
     public HashMap<Class<? extends DomainException>, HttpStatus> errorMapping() {
         HashMap<Class<? extends DomainException>, HttpStatus> errors = new HashMap<>();
         errors.put(DuplicateServiceException.class, HttpStatus.CONFLICT);
+        errors.put(InvalidPriceException.class, HttpStatus.BAD_REQUEST);
 
         return errors;
     }

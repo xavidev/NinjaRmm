@@ -5,6 +5,7 @@ import com.ninjaone.rmm.services.domain.InvalidCostPolicyException;
 import com.ninjaone.rmm.services.domain.MalFormedCostPolicyException;
 import com.ninjaone.rmm.services.domain.ServiceNotExistException;
 import com.ninjaone.shared.domain.DomainException;
+import com.ninjaone.shared.domain.InvalidPriceException;
 import com.ninjaone.shared.domain.Utils;
 import com.ninjaone.shared.domain.bus.command.CommandBus;
 import com.ninjaone.shared.domain.bus.query.QueryBus;
@@ -41,6 +42,7 @@ public final class ServiceCostPolicyPutController extends ApiController {
         errors.put(ServiceNotExistException.class, HttpStatus.BAD_REQUEST);
         errors.put(InvalidCostPolicyException.class, HttpStatus.BAD_REQUEST);
         errors.put(MalFormedCostPolicyException.class, HttpStatus.BAD_REQUEST);
+        errors.put(InvalidPriceException.class, HttpStatus.BAD_REQUEST);
 
         return errors;
     }

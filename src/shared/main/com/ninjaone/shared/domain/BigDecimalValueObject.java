@@ -7,7 +7,11 @@ public class BigDecimalValueObject {
     private final BigDecimal value;
 
     public BigDecimalValueObject(String value) {
-        this.value = new BigDecimal(value);
+        try {
+            this.value = new BigDecimal(value);
+        }catch (NumberFormatException ignore){
+            throw new InvalidPriceException(value);
+        }
     }
 
     protected BigDecimalValueObject(){
