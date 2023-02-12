@@ -8,7 +8,8 @@ public final class CustomerDeviceMother {
         return CustomerDevice.create(
             new CustomerDeviceId(UuidMother.random()),
             new SystemName("random"),
-            new DeviceType("Windows")
+            new DeviceType("Windows"),
+            new CustomerId(UuidMother.random())
         );
     }
 

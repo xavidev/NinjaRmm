@@ -1,10 +1,7 @@
 package com.ninjaone.rmmcustomers.customerdevcies.application.create;
 
 import com.ninjaone.rmmcustomers.customerdevcies.domain.CustomerDeviceRepository;
-import com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerDevice;
-import com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerDeviceId;
-import com.ninjaone.rmmcustomers.customerdevcies.domain.model.DeviceType;
-import com.ninjaone.rmmcustomers.customerdevcies.domain.model.SystemName;
+import com.ninjaone.rmmcustomers.customerdevcies.domain.model.*;
 import com.ninjaone.shared.domain.Service;
 
 @Service
@@ -19,7 +16,8 @@ public final class CustomerDeviceCreator {
         var device = CustomerDevice.create(
             new CustomerDeviceId(id),
             new SystemName(name + "-" + customerId),
-            new DeviceType(name)
+            new DeviceType(name),
+            new CustomerId(customerId)
         );
 
         repository.save(device);

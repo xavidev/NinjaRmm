@@ -1,6 +1,7 @@
 USE rmmcustomers;
 CREATE TABLE IF NOT EXISTS customer_devices (
     id       CHAR(36)     NOT NULL,
+    customer_id       CHAR(36)     NOT NULL,
     system_name     VARCHAR(255) NOT NULL,
     device_type     VARCHAR(255) NOT NULL,
     device_services   JSON    NOT NULL,

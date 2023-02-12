@@ -5,6 +5,7 @@ import com.ninjaone.rmmcustomers.customerdevcies.domain.CustomerDeviceRepository
 import com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerDevice;
 import com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerDeviceId;
 import com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerService;
+import com.ninjaone.shared.domain.ItemType;
 import com.ninjaone.shared.domain.Price;
 import com.ninjaone.shared.domain.Service;
 
@@ -22,7 +23,7 @@ public final class DeviceCostUpdater {
             .search(new CustomerDeviceId(deviceId))
             .orElseThrow(() -> new CustomerDeviceNotExistException(new CustomerDeviceId(deviceId)));
 
-        if (itemType.equals("service")) {
+        if (new ItemType(itemType).isService()) {
             device.addService(new CustomerService(deviceId, concept, cost));
         }else{
             device.setDeviceCost(new Price(cost));

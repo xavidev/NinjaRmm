@@ -7,6 +7,7 @@ import com.ninjaone.rmm.bills.domain.model.BillItemId;
 import com.ninjaone.rmm.bills.domain.model.BillItemInfo;
 import com.ninjaone.rmm.devices.application.DeviceResponse;
 import com.ninjaone.rmm.devices.application.find.FindDeviceByIdQuery;
+import com.ninjaone.shared.domain.ItemType;
 import com.ninjaone.shared.domain.Price;
 import com.ninjaone.shared.domain.Service;
 import com.ninjaone.shared.domain.bus.event.EventBus;
@@ -29,7 +30,7 @@ public final class DeviceBillItemCreator {
         BillItem item;
         DeviceResponse deviceResponse = bus.ask(new FindDeviceByIdQuery(params.getDeviceId()));
 
-        if(params.getItemType().equals("device")){
+        if(new ItemType(params.getItemType()).isDevice()){
             Price cost = deviceResponse.cost();
             item = createBill(params, cost);
         } else {

@@ -9,6 +9,10 @@
             <key-property column="id" name="value" length="36" access="field" />
         </composite-id>
 
+        <component name="customerId" class="com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerId" access="field">
+            <property name="value" column="customer_id" type="string" length="36" access="field" />
+        </component>
+
         <component name="systemName" class="com.ninjaone.rmmcustomers.customerdevcies.domain.model.SystemName" access="field">
             <property name="value" column="system_name" type="string" access="field" />
         </component>

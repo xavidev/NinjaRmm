@@ -9,6 +9,7 @@ import com.ninjaone.rmm.devices.domain.DeviceInformationMother;
 import com.ninjaone.rmm.devices.domain.DeviceOrderMother;
 import com.ninjaone.rmm.orders.domain.ServiceOrderMother;
 import com.ninjaone.rmm.services.domain.ServiceInformationMother;
+import com.ninjaone.shared.domain.InvalidItemTypeException;
 import com.ninjaone.shared.domain.ServiceOrderCreatedDomainEventMother;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,7 +49,7 @@ class CreateBillItemOnServiceOrderCreatedShould extends BillsModuleUnitTestCase 
 
     @Test
     void should_not_create_bill_item_when_invalid_item_type() {
-        Assert.assertThrows(InvalidBillItemException.class, () -> {
+        Assert.assertThrows(InvalidItemTypeException.class, () -> {
 
             subject.on(ServiceOrderCreatedDomainEventMother.invalid());
         });

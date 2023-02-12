@@ -11,16 +11,18 @@ public class CustomerDevice extends AggregateRoot {
     private CustomerDeviceId id;
     private SystemName systemName;
     private DeviceType type;
+    private CustomerId customerId;
 
     private Price deviceCost;
     private List<CustomerService> services;
 
     private Price totalCost;
 
-    private CustomerDevice(CustomerDeviceId id, SystemName systemName, DeviceType type) {
+    private CustomerDevice(CustomerDeviceId id, SystemName systemName, DeviceType type, CustomerId customerId) {
         this.id = id;
         this.systemName = systemName;
         this.type = type;
+        this.customerId = customerId;
         this.services = new ArrayList<>();
         this.deviceCost = new Price("0");
         this.totalCost = new Price("0");
@@ -30,8 +32,8 @@ public class CustomerDevice extends AggregateRoot {
 
     }
 
-    public static CustomerDevice create(CustomerDeviceId id, SystemName systemName, DeviceType type) {
-        return new CustomerDevice(id, systemName, type);
+    public static CustomerDevice create(CustomerDeviceId id, SystemName systemName, DeviceType type, CustomerId customerId) {
+        return new CustomerDevice(id, systemName, type, customerId);
     }
 
     public void addService(CustomerService service) {
