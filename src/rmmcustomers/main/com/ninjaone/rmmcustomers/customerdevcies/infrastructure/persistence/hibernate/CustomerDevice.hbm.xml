@@ -1,0 +1,31 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerDevice" table="customer_devices">
+        <composite-id name="id" class="com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerDeviceId" access="field">
+            <key-property column="id" name="value" length="36" access="field" />
+        </composite-id>
+
+        <component name="systemName" class="com.ninjaone.rmmcustomers.customerdevcies.domain.model.SystemName" access="field">
+            <property name="value" column="system_name" type="string" access="field" />
+        </component>
+
+        <component name="type" class="com.ninjaone.rmmcustomers.customerdevcies.domain.model.DeviceType" access="field">
+            <property name="value" column="device_type" type="string" access="field" />
+        </component>
+
+        <property name="services" column="device_services" access="field">
+            <type name="json_string">
+                <param name="list_of">com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerService</param>
+            </type>
+        </property>
+
+        <component name="totalCost" class="com.ninjaone.shared.domain.Price" access="field">
+            <property name="value" column="total_cost" type="big_decimal" access="field" />
+        </component>
+
+    </class>
+</hibernate-mapping>

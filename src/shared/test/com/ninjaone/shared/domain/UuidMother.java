@@ -1,4 +1,4 @@
-package com.ninjaone.rmm.shared.domain;
+package com.ninjaone.shared.domain;
 
 import java.util.UUID;
 

@@ -1,4 +1,13 @@
 package com.ninjaone.rmmcustomers.customerdevcies.domain.model;
 
-public final class DeviceType {
+import com.ninjaone.shared.domain.StringValue;
+
+public class DeviceType extends StringValue {
+    public DeviceType(String value) {
+        super(value);
+    }
+
+    public DeviceType() {
+        super(null);
+    }
 }

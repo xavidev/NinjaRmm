@@ -1,4 +1,15 @@
 package com.ninjaone.rmmcustomers.customerdevcies.domain.model;
 
-public final class CustomerService {
+public class CustomerService {
+    private String id;
+    private String name;
+
+    public CustomerService(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    protected CustomerService() {
+
+    }
 }
