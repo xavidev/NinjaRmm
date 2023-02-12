@@ -1,6 +1,6 @@
 package com.ninjaone.rmm.shared.domain;
 
-import com.ninjaone.rmm.orders.domain.DeviceOrderCreatedDomainEvent;
+import com.ninjaone.shared.domain.orders.DeviceOrderCreatedDomainEvent;
 import com.ninjaone.rmm.orders.domain.model.DeviceOrder;
 
 public final class DeviceOrderCreatedDomainEventMother {

@@ -28,11 +28,31 @@ public class CustomerDevice extends AggregateRoot {
 
     }
 
-    public static CustomerDevice create(CustomerDeviceId id, SystemName systemName, DeviceType type, Price totalCost){
-        return new CustomerDevice(id, systemName, type, totalCost);
+    public static CustomerDevice create(CustomerDeviceId id, SystemName systemName, DeviceType type){
+        return new CustomerDevice(id, systemName, type, new Price("0"));
     }
 
     public void addService(CustomerService service) {
         this.services.add(service);
+    }
+
+    public CustomerDeviceId id() {
+        return id;
+    }
+
+    public SystemName systemName() {
+        return systemName;
+    }
+
+    public DeviceType type() {
+        return type;
+    }
+
+    public List<CustomerService> services() {
+        return services;
+    }
+
+    public Price totalCost() {
+        return totalCost;
     }
 }

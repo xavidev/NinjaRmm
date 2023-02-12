@@ -1,4 +1,4 @@
-package com.ninjaone.rmm.orders.domain;
+package com.ninjaone.shared.domain.orders;
 
 import com.ninjaone.shared.domain.bus.event.DomainEvent;
 

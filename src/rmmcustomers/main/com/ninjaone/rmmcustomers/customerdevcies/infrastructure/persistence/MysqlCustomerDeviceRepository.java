@@ -2,11 +2,14 @@ package com.ninjaone.rmmcustomers.customerdevcies.infrastructure.persistence;
 
 import com.ninjaone.rmmcustomers.customerdevcies.domain.CustomerDeviceRepository;
 import com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerDevice;
+import com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerDeviceId;
 import com.ninjaone.shared.domain.Service;
 import com.ninjaone.shared.infrastructure.hibernate.HibernateRepository;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @Transactional("rmmcustomers-transaction_manager")
@@ -18,5 +21,10 @@ public class MysqlCustomerDeviceRepository extends HibernateRepository<CustomerD
     @Override
     public void save(CustomerDevice device) {
         persist(device);
+    }
+
+    @Override
+    public Optional<CustomerDevice> search(CustomerDeviceId customerDeviceId) {
+        return byId(customerDeviceId);
     }
 }

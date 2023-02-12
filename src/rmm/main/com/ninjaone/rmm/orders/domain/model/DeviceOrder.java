@@ -1,6 +1,6 @@
 package com.ninjaone.rmm.orders.domain.model;
 
-import com.ninjaone.rmm.orders.domain.DeviceOrderCreatedDomainEvent;
+import com.ninjaone.shared.domain.orders.DeviceOrderCreatedDomainEvent;
 import com.ninjaone.shared.domain.AggregateRoot;
 import com.ninjaone.rmm.shared.domain.CustomerId;
 import com.ninjaone.rmm.shared.domain.DeviceId;

@@ -1,6 +1,6 @@
 package com.ninjaone.rmm.bills.application.createbillitem;
 
-import com.ninjaone.rmm.orders.domain.DeviceOrderCreatedDomainEvent;
+import com.ninjaone.shared.domain.orders.DeviceOrderCreatedDomainEvent;
 import com.ninjaone.shared.domain.Service;
 import com.ninjaone.shared.domain.bus.event.DomainEventSubscriber;
 import org.springframework.context.event.EventListener;

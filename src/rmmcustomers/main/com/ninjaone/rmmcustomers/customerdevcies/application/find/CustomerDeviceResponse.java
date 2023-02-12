@@ -11,4 +11,27 @@ public final class CustomerDeviceResponse implements Response {
     private List<String> services;
 
     private String totalCost;
+
+    public CustomerDeviceResponse(String systemName, String deviceType, List<String> services, String totalCost) {
+        this.systemName = systemName;
+        this.deviceType = deviceType;
+        this.services = services;
+        this.totalCost = totalCost;
+    }
+
+    public String getSystemName() {
+        return systemName;
+    }
+
+    public String getDeviceType() {
+        return deviceType;
+    }
+
+    public List<String> getServices() {
+        return services;
+    }
+
+    public String getTotalCost() {
+        return totalCost;
+    }
 }

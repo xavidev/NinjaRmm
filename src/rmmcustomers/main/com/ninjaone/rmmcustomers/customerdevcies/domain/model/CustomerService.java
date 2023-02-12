@@ -12,4 +12,8 @@ public class CustomerService {
     protected CustomerService() {
 
     }
+
+    public String name() {
+        return name;
+    }
 }
