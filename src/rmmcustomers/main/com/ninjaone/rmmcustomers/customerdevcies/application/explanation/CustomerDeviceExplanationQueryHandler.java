@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static java.util.stream.Collectors.groupingBy;
 
@@ -53,9 +54,9 @@ public final class CustomerDeviceExplanationQueryHandler implements QueryHandler
 
         StringBuilder builder = new StringBuilder();
 
-        builder.append(String.format("Total Cost: %s\n", totalCost.value()));
+        builder.append(String.format("Total Cost: %s\n", currencyFormat(totalCost.value())));
         builder.append("Explanation:\n");
-        builder.append(String.format("\tDevices cost: %s\n", devicesCost.value()));
+        builder.append(String.format("\tDevices cost: %s\n", currencyFormat(devicesCost.value())));
         for (var group : groupedServices.entrySet()) {
             builder.append(String.format("\t%s cost: %s\n", group.getKey(), currencyFormat(group
                 .getValue()
@@ -68,6 +69,6 @@ public final class CustomerDeviceExplanationQueryHandler implements QueryHandler
     }
 
     private static String currencyFormat(BigDecimal n) {
-        return NumberFormat.getCurrencyInstance().format(n);
+        return NumberFormat.getCurrencyInstance(Locale.US).format(n);
     }
 }

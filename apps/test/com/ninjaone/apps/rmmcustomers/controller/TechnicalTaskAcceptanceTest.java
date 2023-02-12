@@ -100,12 +100,12 @@ public final class TechnicalTaskAcceptanceTest extends CustomersApplicationTestC
 
         getTheExplanation(
             """
-                Total Cost: $64
+                Total Cost: $134.00
                 Explanation:
-                    Devices cost: $20
-                    Antivirus cost: $31
-                    Backup: $9
-                    Screen Share: $4
+                	Devices cost: $25.00
+                	Screen Share cost: $20.00
+                	Backup cost: $24.00
+                	Antivirus cost: $65.00
                 """
         );
     }

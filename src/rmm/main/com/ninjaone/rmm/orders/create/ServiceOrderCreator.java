@@ -28,10 +28,6 @@ public final class ServiceOrderCreator {
     }
 
     public void create(String id, String serviceId, String deviceId, String customerId) {
-        if(serviceOrderRepository.search(new ServiceOrderId(id)).isPresent()){
-            return;
-        }
-
         ensureDeviceExist(deviceId);
 
         ServiceResponse response = queryBus.ask(new FindServiceByIdQuery(serviceId));
