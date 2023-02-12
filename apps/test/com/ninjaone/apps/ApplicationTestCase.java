@@ -29,6 +29,9 @@ public abstract class ApplicationTestCase {
 
     protected final int CONFLICT = 409;
     protected final int CREATED = 201;
+
+    protected final int OK = 200;
+
     @Autowired
     private MockMvc mockMvc;
 

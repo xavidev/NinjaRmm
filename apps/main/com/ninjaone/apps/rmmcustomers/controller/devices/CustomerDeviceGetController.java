@@ -19,11 +19,11 @@ public final class CustomerDeviceGetController extends ApiController {
         super(queryBus, commandBus);
     }
 
-    @GetMapping(path = "/devices/{id}/detail")
+    @GetMapping(path = "customers/{customerId}/devices/{id}/detail")
     public @ResponseBody ResponseEntity<CustomerDeviceResponse> index(
         @PathVariable String id,
-        @RequestBody DeviceOrderRequest request) {
-        CustomerDeviceResponse response = ask(new FindCustomerDeviceQuery(id, request.getCustomerId()));
+        @PathVariable String customerId) {
+        CustomerDeviceResponse response = ask(new FindCustomerDeviceQuery(id, customerId));
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -32,9 +32,4 @@ public final class CustomerDeviceGetController extends ApiController {
     public HashMap<Class<? extends DomainException>, HttpStatus> errorMapping() {
         return null;
     }
-}
-
-@Data
-class DeviceRequest {
-    private String customerId;
 }
