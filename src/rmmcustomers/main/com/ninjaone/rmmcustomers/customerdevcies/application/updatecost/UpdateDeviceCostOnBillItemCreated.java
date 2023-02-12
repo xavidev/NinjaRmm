@@ -9,7 +9,7 @@ import org.springframework.context.event.EventListener;
 @DomainEventSubscriber({BillItemCreatedDomainEvent.class})
 public final class UpdateDeviceCostOnBillItemCreated {
 
-    private DeviceCostUpdater costUpdater;
+    private final DeviceCostUpdater costUpdater;
 
     public UpdateDeviceCostOnBillItemCreated(DeviceCostUpdater costUpdater) {
         this.costUpdater = costUpdater;
@@ -17,6 +17,6 @@ public final class UpdateDeviceCostOnBillItemCreated {
 
     @EventListener
     public void on(BillItemCreatedDomainEvent event){
-        costUpdater.update(event.aggregateId(), event.cost());
+        costUpdater.update(event.aggregateId(), event.cost(), event.itemType(), event.concept());
     }
 }

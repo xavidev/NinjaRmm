@@ -22,10 +22,15 @@ public class BillItem extends AggregateRoot {
         this.info = billItemInfo;
         this.price = price;
 
-        record(new BillItemCreatedDomainEvent(id.value(), info.customerId(), info.concept(), price.toString()));
+        record(new BillItemCreatedDomainEvent(
+            id.value(),
+            info.customerId(),
+            info.itemType(),
+            info.concept(),
+            price.toString()));
     }
 
-    public static BillItem create(BillItemId id, BillItemInfo info, Price price) {
+    public static BillItem billDevice(BillItemId id, BillItemInfo info, Price price) {
         return new BillItem(id, info, price);
     }
 

@@ -42,7 +42,7 @@ public final class DeviceBillItemCreator {
     }
 
     private static BillItem createBill(BillCreationParams params, Price cost) {
-        return BillItem.create(
+        return BillItem.billDevice(
             new BillItemId(params.getOrderId()),
             new BillItemInfo(params.getOrderConcept(), params.getItemType(), params.getCustomerId()),
             new Price(String.valueOf(cost.value())));
