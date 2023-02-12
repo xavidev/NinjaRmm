@@ -3,7 +3,6 @@ package com.ninjaone.rmm.bills.application.createbillitem;
 import com.ninjaone.rmm.bills.BillsModuleUnitTestCase;
 import com.ninjaone.rmm.bills.domain.BillItemMother;
 import com.ninjaone.rmm.bills.domain.InvalidBillItemException;
-import com.ninjaone.rmm.bills.domain.costcalculation.ServicePriceCalculator;
 import com.ninjaone.rmm.devices.application.DeviceResponseMother;
 import com.ninjaone.rmm.devices.application.find.FindDeviceByIdQuery;
 import com.ninjaone.rmm.devices.domain.DeviceInformationMother;
@@ -15,8 +14,6 @@ import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.mockito.Mockito.mock;
-
 class CreateBillItemOnServiceOrderCreatedShould extends BillsModuleUnitTestCase {
 
     private CreateBillItemOnServiceOrderCreated subject;
@@ -26,7 +23,7 @@ class CreateBillItemOnServiceOrderCreatedShould extends BillsModuleUnitTestCase 
         super.setUp();
 
 
-        subject = new CreateBillItemOnServiceOrderCreated(new BillItemCreator(billItemRepository, queryBus, calculator));
+        subject = new CreateBillItemOnServiceOrderCreated(new ServiceBillItemCreator(billItemRepository, queryBus, calculator));
     }
 
     @Test

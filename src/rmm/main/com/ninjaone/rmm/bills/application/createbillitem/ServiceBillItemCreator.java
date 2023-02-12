@@ -13,13 +13,12 @@ import com.ninjaone.shared.domain.Service;
 import com.ninjaone.shared.domain.bus.query.QueryBus;
 
 @Service
-public final class BillItemCreator {
-
+public final class ServiceBillItemCreator {
     private final BillItemRepository repository;
     private final QueryBus bus;
     private final ServicePriceCalculator calculator;
 
-    public BillItemCreator(BillItemRepository repository, QueryBus bus, ServicePriceCalculator calculator){
+    public ServiceBillItemCreator(BillItemRepository repository, QueryBus bus, ServicePriceCalculator calculator){
         this.repository = repository;
         this.bus = bus;
         this.calculator = calculator;
@@ -29,10 +28,7 @@ public final class BillItemCreator {
         BillItem item;
         DeviceResponse deviceResponse = bus.ask(new FindDeviceByIdQuery(params.getDeviceId()));
 
-        if(params.getItemType().equals("device")){
-            Price cost = deviceResponse.cost();
-            item = createBill(params, cost);
-        }else if(params.getItemType().equals("service")){
+        if(params.getItemType().equals("service")){
             Price cost = calculator.priceFor(params.getCustomerId(), params.getServiceId(), deviceResponse.id(), deviceResponse.type());
 
             item = createBill(params, cost);

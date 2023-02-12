@@ -1,9 +1,7 @@
 package com.ninjaone.rmm.orders.create;
 
 import com.ninjaone.rmm.devices.application.find.FindDeviceByIdQuery;
-import com.ninjaone.rmm.orders.domain.DeviceOrderRepository;
 import com.ninjaone.rmm.orders.domain.ServiceOrderRepository;
-import com.ninjaone.rmm.orders.domain.model.DeviceOrderId;
 import com.ninjaone.rmm.orders.domain.model.OrderName;
 import com.ninjaone.rmm.orders.domain.model.ServiceOrder;
 import com.ninjaone.rmm.orders.domain.model.ServiceOrderId;
@@ -11,8 +9,8 @@ import com.ninjaone.rmm.services.application.ServiceResponse;
 import com.ninjaone.rmm.services.application.find.FindServiceByIdQuery;
 import com.ninjaone.rmm.shared.domain.CustomerId;
 import com.ninjaone.rmm.shared.domain.DeviceId;
-import com.ninjaone.shared.domain.Service;
 import com.ninjaone.rmm.shared.domain.ServiceId;
+import com.ninjaone.shared.domain.Service;
 import com.ninjaone.shared.domain.bus.event.EventBus;
 import com.ninjaone.shared.domain.bus.query.QueryBus;
 

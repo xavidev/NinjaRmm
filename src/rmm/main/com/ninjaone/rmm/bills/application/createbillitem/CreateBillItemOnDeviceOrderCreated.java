@@ -9,9 +9,9 @@ import org.springframework.context.event.EventListener;
 @DomainEventSubscriber({DeviceOrderCreatedDomainEvent.class})
 public final class CreateBillItemOnDeviceOrderCreated {
 
-    private final BillItemCreator creator;
+    private final DeviceBillItemCreator creator;
 
-    public CreateBillItemOnDeviceOrderCreated(BillItemCreator creator) {
+    public CreateBillItemOnDeviceOrderCreated(DeviceBillItemCreator creator) {
         this.creator = creator;
     }
 
