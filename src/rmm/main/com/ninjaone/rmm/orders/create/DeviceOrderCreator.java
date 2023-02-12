@@ -31,7 +31,7 @@ public final class DeviceOrderCreator {
         DeviceOrder device = DeviceOrder.orderFor(
             new DeviceOrderId(id),
             new DeviceId(deviceId),
-             new CustomerId(customerId),
+            new CustomerId(customerId),
             new OrderName(response.type())
         );
 
