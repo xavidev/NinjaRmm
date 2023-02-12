@@ -24,8 +24,9 @@ public final class DeviceCostUpdater {
 
         if (itemType.equals("service")) {
             device.addService(new CustomerService(deviceId, concept, cost));
+        }else{
+            device.setDeviceCost(new Price(cost));
         }
-        device.setDeviceCost(new Price(cost));
 
         repository.save(device);
     }

@@ -17,7 +17,7 @@ public final class CustomerDeviceMother {
 
         device.addService(new CustomerService(UuidMother.random(), "random", "150"));
         device.addService(new CustomerService(UuidMother.random(), "random", "200"));
-        device.addService(new CustomerService(UuidMother.random(), "random", "300,50"));
+        device.addService(new CustomerService(UuidMother.random(), "random", "300.50"));
 
         return device;
     }
