@@ -15,7 +15,7 @@ public class RmmServerConfiguration {
     }
 
     @Bean
-    public FilterRegistrationBean<ApiExceptionMiddleware> basicHttpAuthMiddleware() {
+    public FilterRegistrationBean<ApiExceptionMiddleware> apiExceptionMiddleware() {
         FilterRegistrationBean<ApiExceptionMiddleware> registrationBean = new FilterRegistrationBean<>();
 
         registrationBean.setFilter(new ApiExceptionMiddleware(mapping));
