@@ -26,7 +26,11 @@ public final class DeviceOrderCreator {
     }
 
     public void create(String id, String deviceId, String customerId) {
-        
+
+        if(repository.search(new DeviceOrderId(id)).isPresent()){
+            return;
+        }
+
         DeviceResponse response = queryBus.ask(new FindDeviceByIdQuery(deviceId));
 
         DeviceOrder device = DeviceOrder.orderFor(
