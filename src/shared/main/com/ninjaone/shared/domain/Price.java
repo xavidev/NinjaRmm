@@ -12,7 +12,10 @@ public class Price extends BigDecimalValueObject {
     }
 
     public Price plus(Price price){
-        return new Price(price.value().add(price.value()).toString());
+
+        var newPrice = value().add(price.value());
+
+        return new Price(String.valueOf(newPrice));
     }
 
     @Override

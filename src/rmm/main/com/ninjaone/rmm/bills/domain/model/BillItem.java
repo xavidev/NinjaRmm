@@ -1,6 +1,6 @@
 package com.ninjaone.rmm.bills.domain.model;
 
-import com.ninjaone.rmm.bills.domain.BillItemCreatedDomainEvent;
+import com.ninjaone.shared.domain.bills.BillItemCreatedDomainEvent;
 import com.ninjaone.shared.domain.AggregateRoot;
 import com.ninjaone.shared.domain.Price;
 

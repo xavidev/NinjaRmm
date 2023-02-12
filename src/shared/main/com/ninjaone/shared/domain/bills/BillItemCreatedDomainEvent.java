@@ -1,4 +1,4 @@
-package com.ninjaone.rmm.bills.domain;
+package com.ninjaone.shared.domain.bills;
 
 import com.ninjaone.shared.domain.bus.event.DomainEvent;
 

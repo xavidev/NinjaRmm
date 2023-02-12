@@ -36,6 +36,10 @@ public class CustomerDevice extends AggregateRoot {
         this.services.add(service);
     }
 
+    public void updateCost(Price price) {
+        this.totalCost = totalCost.plus(price);
+    }
+
     public CustomerDeviceId id() {
         return id;
     }
