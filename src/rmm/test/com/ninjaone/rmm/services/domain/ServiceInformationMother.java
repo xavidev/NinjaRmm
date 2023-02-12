@@ -5,7 +5,8 @@ import com.ninjaone.rmm.services.domain.model.ServiceInformation;
 import com.ninjaone.shared.domain.Price;
 import com.ninjaone.rmm.shared.domain.ServiceId;
 import com.ninjaone.rmm.services.domain.model.ServiceName;
-import com.ninjaone.rmm.shared.domain.UuidMother;
+import com.ninjaone.shared.domain.UuidMother;
+
 
 public class ServiceInformationMother {
     public static ServiceInformation random() {

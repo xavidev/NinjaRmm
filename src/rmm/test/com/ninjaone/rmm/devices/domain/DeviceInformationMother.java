@@ -1,7 +1,7 @@
 package com.ninjaone.rmm.devices.domain;
 
 import com.ninjaone.rmm.devices.domain.model.DeviceInformation;
-import com.ninjaone.rmm.shared.domain.UuidMother;
+import com.ninjaone.shared.domain.UuidMother;
 
 
 public final class DeviceInformationMother {

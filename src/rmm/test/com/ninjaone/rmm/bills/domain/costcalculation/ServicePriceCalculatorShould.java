@@ -7,8 +7,8 @@ import com.ninjaone.rmm.services.application.find.FindServiceByIdQuery;
 import com.ninjaone.rmm.services.domain.ServiceCostPolicyMother;
 import com.ninjaone.rmm.services.domain.ServiceInformationMother;
 import com.ninjaone.rmm.services.domain.model.ServiceInformation;
-import com.ninjaone.rmm.shared.domain.UuidMother;
 import com.ninjaone.shared.domain.Price;
+import com.ninjaone.shared.domain.UuidMother;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,15 +1,14 @@
 package com.ninjaone.rmm.orders.domain;
 
-import com.ninjaone.rmm.devices.domain.model.DeviceInformation;
 import com.ninjaone.rmm.orders.create.CreateServiceOrderCommand;
 import com.ninjaone.rmm.orders.domain.model.OrderName;
 import com.ninjaone.rmm.orders.domain.model.ServiceOrder;
 import com.ninjaone.rmm.orders.domain.model.ServiceOrderId;
 import com.ninjaone.rmm.services.domain.model.ServiceInformation;
-import com.ninjaone.rmm.shared.domain.UuidMother;
 import com.ninjaone.rmm.shared.domain.CustomerId;
 import com.ninjaone.rmm.shared.domain.DeviceId;
 import com.ninjaone.rmm.shared.domain.ServiceId;
+import com.ninjaone.shared.domain.UuidMother;
 
 public final class ServiceOrderMother {
 

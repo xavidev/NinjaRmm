@@ -5,12 +5,13 @@ import com.ninjaone.rmmcustomers.customerdevcies.domain.model.CustomerDevice;
 import com.ninjaone.shared.domain.Service;
 import com.ninjaone.shared.infrastructure.hibernate.HibernateRepository;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional("rmmcustomers-transaction_manager")
 public class MysqlCustomerDeviceRepository extends HibernateRepository<CustomerDevice> implements CustomerDeviceRepository {
-    public MysqlCustomerDeviceRepository(SessionFactory sessionFactory) {
+    public MysqlCustomerDeviceRepository(@Qualifier("rmmcustomers-session_factory") SessionFactory sessionFactory) {
         super(sessionFactory, CustomerDevice.class);
     }
 

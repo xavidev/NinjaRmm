@@ -1,6 +1,7 @@
 package com.ninjaone.rmm.services.application.assigncost;
 
-import com.ninjaone.rmm.shared.domain.UuidMother;
+
+import com.ninjaone.shared.domain.UuidMother;
 
 public final class AssignServiceCostPolicyCommandMother {
     public static AssignServiceCostPolicyCommand perDeviceType() {
